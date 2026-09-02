@@ -129,17 +129,17 @@
 
   /* ---------- Intro (KWI-Style) ---------- */
   .intro { height: 100vh; height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .intro .bg { position: absolute; inset: 0; background: url('assets/brand/hero-1920.jpg') center/cover no-repeat; animation: kenburns 18s ease-out forwards; }
+  .intro .bg { position: absolute; inset: 0; background: url('assets/brand/hero-1920.jpg') center/cover no-repeat; animation: kenburns 18s ease-out forwards; filter: brightness(.52) saturate(.85); will-change: transform; }
   @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
   .intro::after { content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 90% 70% at 50% 42%, rgba(11,11,12,.35), rgba(11,11,12,.86) 100%),
-                linear-gradient(180deg, rgba(11,11,12,.78), rgba(11,11,12,.6) 45%, var(--ink) 94%); }
+    background: radial-gradient(ellipse 85% 65% at 50% 42%, rgba(11,11,12,.42), rgba(11,11,12,.94) 100%),
+                linear-gradient(180deg, rgba(11,11,12,.82), rgba(11,11,12,.66) 45%, var(--ink) 92%); }
   .intro .korn { position: absolute; inset: 0; z-index: 1; opacity: .5; mix-blend-mode: overlay; pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E"); }
   .intro-inhalt { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
   .intro-inhalt img.logo { width: min(430px, 74vw); display: block; margin: 0 auto; opacity: 0; animation: auftauchen 1.4s .3s ease forwards; }
-  .intro-inhalt .unterzeile { margin-top: 26px; color: rgba(246,245,242,.75); font-size: 13px; letter-spacing: .5em; text-transform: uppercase; opacity: 0; animation: auftauchen 1.4s .8s ease forwards; }
-  .intro-inhalt .unterzeile b { color: var(--rot); font-weight: 500; }
+  .intro-inhalt .unterzeile { margin-top: 14px; color: #f6f5f2; font-family: var(--sans); font-weight: 800; font-size: clamp(19px, 3vw, 30px); letter-spacing: .32em; text-indent: .32em; text-transform: uppercase; opacity: 0; animation: auftauchen 1.4s .8s ease forwards; }
+  .intro-inhalt .unterzeile b { color: var(--rot); font-weight: 800; }
   @keyframes auftauchen { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   .scrollcue { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; color: rgba(246,245,242,.55); font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; }
   .scrollcue .ln { width: 1px; height: 52px; background: rgba(246,245,242,.25); position: relative; overflow: hidden; }
@@ -266,6 +266,17 @@
   .k-zeile a, .k-zeile span { font-family: var(--serif); font-size: 27px; font-weight: 300; transition: color .2s; }
   .k-zeile a:hover { color: var(--rot); }
 
+  /* ---------- Laufband ---------- */
+  .band { background: var(--rot); color: #fff; overflow: hidden; padding: 15px 0; }
+  .band-spur { display: flex; gap: 34px; align-items: baseline; white-space: nowrap; width: max-content; animation: lauf 26s linear infinite; }
+  .band-spur span { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 19px; letter-spacing: .04em; }
+  .band-spur i { font-style: normal; opacity: .55; }
+  .band:hover .band-spur { animation-play-state: paused; }
+  @keyframes lauf { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+
+  .nav-links a.aktiv { color: #fff; }
+  .nav-links a.aktiv::after { content: ''; display: block; height: 1px; background: var(--rot); margin-top: 3px; }
+
   footer { background: var(--ink); color: rgba(246,245,242,.42); padding: 36px 0 46px; border-top: 1px solid var(--hair-w); font-size: 13px; }
   .fuss { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
   .fuss img { height: 15px; opacity: .5; }
@@ -294,7 +305,7 @@
   <div class="korn"></div>
   <div class="intro-inhalt">
     <img class="logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa — 黒岩" width="430" height="80">
-    <div class="unterzeile">Real <b>Estate</b></div>
+    <div class="unterzeile">Real Estate<b>.</b></div>
   </div>
   <div class="scrollcue"><span>Scrollen</span><span class="ln"></span></div>
 </header>
@@ -306,9 +317,9 @@
     <p class="sub">Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz. Diskret, direkt und mit eigenem Kapital investiert — denn die besten Liegenschaften wechseln die Hand, bevor jemand davon erfährt.</p>
     <a class="cta voll" href="#kontakt">Gespräch vereinbaren</a>
     <div class="zeile">
-      <div class="zahl"><div class="gross">100<span class="rot">+</span></div><div class="klein">Retail-Abschlüsse an Schweizer 1A-Lagen</div></div>
-      <div class="zahl"><div class="gross">CHF 90 <span style="font-size:26px">Mio.</span></div><div class="klein">Total verkauftes Volumen</div></div>
-      <div class="zahl"><div class="gross">3</div><div class="klein">Kantone im aktiven Ankauf</div></div>
+      <div class="zahl"><div class="gross"><span class="zaehler" data-ziel="100">0</span><span class="rot">+</span></div><div class="klein">Retail-Abschlüsse an Schweizer 1A-Lagen</div></div>
+      <div class="zahl"><div class="gross">CHF <span class="zaehler" data-ziel="90">0</span> <span style="font-size:26px">Mio.</span></div><div class="klein">Total verkauftes Volumen</div></div>
+      <div class="zahl"><div class="gross"><span class="zaehler" data-ziel="3">0</span></div><div class="klein">Kantone im aktiven Ankauf</div></div>
     </div>
   </div>
 </section>
@@ -401,6 +412,14 @@
     <div class="fussnote">Auszug aus abgeschlossenen Mandaten. Weitere Referenzen auf Anfrage — Diskretion ist Teil unseres Geschäftsmodells.</div>
   </div>
 </section>
+
+<div class="band" aria-hidden="true">
+  <div class="band-spur">
+    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
+    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
+    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
+  </div>
+</div>
 
 <section class="hell-sektion" id="partner">
   <div class="wrap enter">
@@ -520,7 +539,10 @@
   <div class="wrap fuss">
     <div>© <span id="jahr"></span> Kuroiwa Real Estate AG · Baarerstrasse 107 · 6300 Zug</div>
     <img src="assets/brand/kanji.png" alt="黒岩" loading="lazy">
-    <div>KUROIWA 黒岩 — «schwarzer Fels»</div>
+    <div style="display:flex;gap:22px">
+      <a href="impressum.html" style="color:inherit">Impressum &amp; Legal Notice</a>
+      <a href="datenschutz.html" style="color:inherit">Datenschutz</a>
+    </div>
   </div>
 </footer>
 
@@ -528,9 +550,42 @@
   document.getElementById('jahr').textContent = new Date().getFullYear();
   const nav = document.getElementById('nav');
   const intro = document.querySelector('.intro');
-  addEventListener('scroll', () => nav.classList.toggle('zeig', scrollY > intro.offsetHeight * .75), { passive: true });
+  const bg = document.querySelector('.intro .bg');
+
+  // Parallax auf dem Intro-Bild + Nav-Einblendung
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    nav.classList.toggle('zeig', y > intro.offsetHeight * .72);
+    if (y < intro.offsetHeight) bg.style.transform = `translateY(${y * .32}px) scale(1.02)`;
+  }, { passive: true });
+
+  // Sanftes Erscheinen der Sektionen
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('da')), { threshold: .1 });
   document.querySelectorAll('.enter').forEach(el => io.observe(el));
+
+  // Count-up der Kennzahlen, sobald sichtbar
+  const zaehlerIo = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting || e.target.dataset.fertig) return;
+    e.target.dataset.fertig = '1';
+    const ziel = Number(e.target.dataset.ziel);
+    const start = performance.now(), dauer = 1400;
+    const tick = t => {
+      const p = Math.min(1, (t - start) / dauer);
+      e.target.textContent = Math.round(ziel * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }), { threshold: .6 });
+  document.querySelectorAll('.zaehler').forEach(el => zaehlerIo.observe(el));
+
+  // Scrollspy: aktiven Navigationspunkt markieren
+  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+  const spyIo = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(l => l.classList.toggle('aktiv', l.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-40% 0px -55% 0px' });
+  ['leistungen','track','partner','investitionen','perspektiven','ueber','kontakt']
+    .forEach(id => { const el = document.getElementById(id); if (el) spyIo.observe(el); });
 </script>
 </body>
 </html>
