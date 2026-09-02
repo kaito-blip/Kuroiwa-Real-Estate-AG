@@ -947,25 +947,6 @@
     });
   });
 
-  // Gewichtetes Smooth-Scrolling (nur Maus/Trackpad-Rad, respektiert reduced motion)
-  if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let ziel = scrollY, rollt = false;
-    addEventListener('wheel', e => {
-      if (e.ctrlKey || e.metaKey) return;
-      e.preventDefault();
-      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
-      ziel = Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, ziel + delta));
-      if (!rollt) { rollt = true; requestAnimationFrame(glatt); }
-    }, { passive: false });
-    function glatt() {
-      const d = ziel - scrollY;
-      if (Math.abs(d) < .5) { rollt = false; return; }
-      scrollTo(0, scrollY + d * .13);
-      requestAnimationFrame(glatt);
-    }
-    addEventListener('scroll', () => { if (!rollt) ziel = scrollY; }, { passive: true });
-  }
-
   // E-Mail kopieren mit Bestätigung
   const toast = document.getElementById('toast');
   document.querySelectorAll('.kopier').forEach(b => b.addEventListener('click', async () => {
