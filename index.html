@@ -295,6 +295,39 @@
   .deal, .kachel { transition: transform .3s ease, border-color .3s ease; will-change: transform; }
   .cta { transition: transform .2s ease, background .2s, color .2s, border-color .2s; }
 
+  /* ---------- Preloader ---------- */
+  .lade { position: fixed; inset: 0; background: #060606; z-index: 10000; display: flex; align-items: center; justify-content: center; transition: transform .85s cubic-bezier(.77,0,.18,1); }
+  .lade.weg { transform: translateY(-100%); }
+  .lade-inhalt { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .lade-kanji { font-size: 42px; color: var(--paper); letter-spacing: .18em; text-indent: .18em; }
+  .lade-zahl { font-family: var(--serif); font-weight: 300; font-size: 15px; color: rgba(246,245,242,.45); font-variant-numeric: tabular-nums; }
+
+  /* ---------- Split-Text-Reveal ---------- */
+  .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .12em; margin-bottom: -.12em; }
+  .wi { display: inline-block; transform: translateY(112%); transition: transform 1s cubic-bezier(.19,1,.22,1); }
+  .sichtbar .wi { transform: translateY(0); }
+
+  /* ---------- Kaskaden-Reveal ---------- */
+  .enter .stagger { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.19,1,.22,1), transform .9s cubic-bezier(.19,1,.22,1); }
+  .enter.da .stagger { opacity: 1; transform: translateY(0); }
+  .stagger.frei { transition: transform .3s ease, border-color .3s ease; }
+
+  /* ---------- Kanji-Wasserzeichen ---------- */
+  .manifest { position: relative; overflow: hidden; }
+  .kanji-wz { position: absolute; right: -50px; top: 6%; font-size: 360px; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(11,11,12,.08); pointer-events: none; user-select: none; z-index: 0; will-change: transform; }
+  .manifest .wrap { position: relative; z-index: 1; }
+
+  /* ---------- Kopieren + Toast ---------- */
+  .kopier { background: none; border: none; color: rgba(246,245,242,.38); font-family: var(--sans); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; padding: 0; margin-top: 5px; text-align: left; transition: color .2s; }
+  .kopier:hover { color: var(--rot); }
+  .toast { position: fixed; left: 50%; bottom: 34px; transform: translate(-50%, 20px); background: var(--paper); color: var(--ink); font-size: 13.5px; padding: 12px 22px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; z-index: 5000; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+  .toast.zeig { opacity: 1; transform: translate(-50%, 0); }
+
+  /* ---------- Nach-oben ---------- */
+  .hoch { position: fixed; right: 26px; bottom: 26px; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(246,245,242,.25); background: rgba(11,11,12,.72); color: var(--paper); backdrop-filter: blur(6px); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .35s, transform .35s, border-color .2s, color .2s; transform: translateY(8px); z-index: 4000; font-size: 16px; }
+  .hoch.zeig { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .hoch:hover { border-color: var(--rot); color: var(--rot); }
+
   .nav-links a.aktiv { color: #fff; }
   .nav-links a.aktiv::after { content: ''; display: block; height: 1px; background: var(--rot); margin-top: 3px; }
 
@@ -312,6 +345,9 @@
 </head>
 <body>
 <div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
+<div class="lade" id="lade" aria-hidden="true"><div class="lade-inhalt"><span class="lade-kanji">黒岩</span><span class="lade-zahl" id="ladeZahl">0&thinsp;%</span></div></div>
+<div class="toast" id="toast" role="status">E-Mail-Adresse kopiert</div>
+<button class="hoch" id="hoch" aria-label="Nach oben">&uarr;</button>
 
 <nav id="nav">
   <div class="wrap nav-inner">
@@ -354,6 +390,7 @@
 </section>
 
 <section class="hell-sektion manifest" id="haltung">
+  <span class="kanji-wz" id="kanjiWz" aria-hidden="true">黒岩</span>
   <div class="wrap enter">
     <div class="label">Haltung</div>
     <div class="manifest-grid">
@@ -588,7 +625,7 @@
       </div>
       <div>
         <div class="k-zeile"><span class="was">Telefon</span><a href="tel:+41792522570">079 252 25 70</a></div>
-        <div class="k-zeile"><span class="was">E-Mail</span><a href="mailto:kaito@kuroiwa.ch">kaito@kuroiwa.ch</a></div>
+        <div class="k-zeile"><span class="was">E-Mail</span><a href="mailto:kaito@kuroiwa.ch">kaito@kuroiwa.ch</a><button class="kopier" data-mail="kaito@kuroiwa.ch">Adresse kopieren</button></div>
         <div class="k-zeile"><span class="was">Adresse</span><span>Baarerstrasse 107, 6300 Zug</span></div>
         <p style="margin-top:22px;font-size:13.5px;color:rgba(246,245,242,.45)">Erreichbar Montag bis Samstag. Erste Rückmeldung in der Regel innert 24 Stunden — verbindliche Einschätzung zu Ihrer Liegenschaft innert weniger Tage.</p>
       </div>
@@ -625,7 +662,7 @@
     </div>
     <div class="fuss-unten">
       <span>© <span id="jahr"></span> Kuroiwa Real Estate AG · 黒岩</span>
-      <span>Baarerstrasse 107 · 6300 Zug · Schweiz</span>
+      <span>Baarerstrasse 107 · 6300 Zug · Schweiz · <span id="ortszeit"></span></span>
     </div>
   </div>
 </footer>
@@ -636,14 +673,27 @@
   const intro = document.querySelector('.intro');
   const bg = document.querySelector('.intro .bg');
 
-  // Parallax auf dem Intro-Bild, Nav-Einblendung, Lese-Fortschritt
+  // Parallax, Intro-Kinetik, Nav-Einblendung, Lese-Fortschritt, Kanji-Parallax
   const fortschritt = document.getElementById('fortschritt');
+  const introInhalt = document.querySelector('.intro-inhalt');
+  const kanjiWz = document.getElementById('kanjiWz');
+  const haltung = document.getElementById('haltung');
+  const hoch = document.getElementById('hoch');
   addEventListener('scroll', () => {
-    const y = scrollY;
-    nav.classList.toggle('zeig', y > intro.offsetHeight * .72);
-    if (y < intro.offsetHeight) bg.style.transform = `translateY(${y * .32}px) scale(1.02)`;
+    const y = scrollY, ih = intro.offsetHeight;
+    nav.classList.toggle('zeig', y > ih * .72);
+    hoch.classList.toggle('zeig', y > innerHeight * 1.5);
+    if (y < ih) {
+      bg.style.transform = `translateY(${y * .32}px) scale(1.02)`;
+      const p = y / ih;
+      introInhalt.style.opacity = Math.max(0, 1 - p * 1.5);
+      introInhalt.style.transform = `translateY(${y * .16}px) scale(${1 - p * .06})`;
+    }
+    const r = haltung.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight) kanjiWz.style.transform = `translateY(${(innerHeight - r.top) * -.07}px)`;
     fortschritt.style.width = (y / (document.documentElement.scrollHeight - innerHeight) * 100) + '%';
   }, { passive: true });
+  hoch.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
   // Sanftes Erscheinen der Sektionen
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('da')), { threshold: .1 });
@@ -737,6 +787,98 @@
     document.getElementById('checkMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent('Liegenschaft anbieten — Ankaufs-Check') + '&body=' + msg;
     document.getElementById('checkErgebnis').hidden = false;
   }
+
+  // Preloader: Zähler 0-100, dann Vorhang nach oben
+  const lade = document.getElementById('lade');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) lade.remove();
+  else {
+    const ladeZahl = document.getElementById('ladeZahl');
+    const t0 = performance.now();
+    requestAnimationFrame(function zaehl(t) {
+      const p = Math.min(1, (t - t0) / 900);
+      ladeZahl.innerHTML = Math.round(p * 100) + '&thinsp;%';
+      if (p < 1) requestAnimationFrame(zaehl);
+      else ladeWeg();
+    });
+    setTimeout(ladeWeg, 2500);
+  }
+  function ladeWeg() {
+    if (!document.body.contains(lade)) return;
+    lade.classList.add('weg');
+    setTimeout(() => lade.remove(), 950);
+  }
+
+  // Split-Text: Headlines wortweise maskiert einblenden
+  function splitte(el) {
+    const knoten = [...el.childNodes], neu = document.createDocumentFragment();
+    let i = 0;
+    const huelle = inhalt => {
+      const w = document.createElement('span'); w.className = 'w';
+      const wi = document.createElement('span'); wi.className = 'wi';
+      wi.style.transitionDelay = (i++ * 60) + 'ms';
+      wi.append(inhalt); w.append(wi);
+      return w;
+    };
+    knoten.forEach(n => {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(t => {
+          if (!t) return;
+          if (t.trim()) neu.append(huelle(document.createTextNode(t)));
+          else neu.append(document.createTextNode(' '));
+        });
+      } else if (n.tagName === 'BR') neu.append(n);
+      else neu.append(huelle(n));
+    });
+    el.innerHTML = '';
+    el.append(neu);
+  }
+  const splitIo = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('sichtbar')), { threshold: .3 });
+  document.querySelectorAll('h1, section h2').forEach(h => { splitte(h); splitIo.observe(h); });
+
+  // Kaskaden-Reveal für Karten-Grids
+  document.querySelectorAll('.drei, .deals, .logowall').forEach(g => {
+    [...g.children].forEach((k, idx) => {
+      k.classList.add('stagger');
+      k.style.transitionDelay = (idx * 90) + 'ms';
+      k.addEventListener('transitionend', function frei(e) {
+        if (e.propertyName !== 'transform') return;
+        k.classList.add('frei'); k.style.transitionDelay = '';
+        k.removeEventListener('transitionend', frei);
+      });
+    });
+  });
+
+  // Gewichtetes Smooth-Scrolling (nur Maus/Trackpad-Rad, respektiert reduced motion)
+  if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ziel = scrollY, rollt = false;
+    addEventListener('wheel', e => {
+      if (e.ctrlKey || e.metaKey) return;
+      e.preventDefault();
+      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+      ziel = Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, ziel + delta));
+      if (!rollt) { rollt = true; requestAnimationFrame(glatt); }
+    }, { passive: false });
+    function glatt() {
+      const d = ziel - scrollY;
+      if (Math.abs(d) < .5) { rollt = false; return; }
+      scrollTo(0, scrollY + d * .13);
+      requestAnimationFrame(glatt);
+    }
+    addEventListener('scroll', () => { if (!rollt) ziel = scrollY; }, { passive: true });
+  }
+
+  // E-Mail kopieren mit Bestätigung
+  const toast = document.getElementById('toast');
+  document.querySelectorAll('.kopier').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.mail); } catch (e) {}
+    toast.classList.add('zeig');
+    setTimeout(() => toast.classList.remove('zeig'), 2200);
+  }));
+
+  // Ortszeit Zug im Footer
+  const ortszeit = document.getElementById('ortszeit');
+  const zeitFormat = new Intl.DateTimeFormat('de-CH', { timeZone: 'Europe/Zurich', hour: '2-digit', minute: '2-digit' });
+  (function uhr() { ortszeit.textContent = 'Ortszeit ' + zeitFormat.format(new Date()); setTimeout(uhr, 15000); })();
 </script>
 </body>
 </html>
