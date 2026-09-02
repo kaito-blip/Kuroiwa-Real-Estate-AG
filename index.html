@@ -131,7 +131,11 @@
   .intro { height: 100vh; height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .intro .bg { position: absolute; inset: 0; background: url('assets/brand/hero-1920.jpg') center/cover no-repeat; animation: kenburns 18s ease-out forwards; }
   @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
-  .intro::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,.55), rgba(11,11,12,.35) 45%, var(--ink) 96%); }
+  .intro::after { content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 90% 70% at 50% 42%, rgba(11,11,12,.35), rgba(11,11,12,.86) 100%),
+                linear-gradient(180deg, rgba(11,11,12,.78), rgba(11,11,12,.6) 45%, var(--ink) 94%); }
+  .intro .korn { position: absolute; inset: 0; z-index: 1; opacity: .5; mix-blend-mode: overlay; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E"); }
   .intro-inhalt { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
   .intro-inhalt img.logo { width: min(430px, 74vw); display: block; margin: 0 auto; opacity: 0; animation: auftauchen 1.4s .3s ease forwards; }
   .intro-inhalt .unterzeile { margin-top: 26px; color: rgba(246,245,242,.75); font-size: 13px; letter-spacing: .5em; text-transform: uppercase; opacity: 0; animation: auftauchen 1.4s .8s ease forwards; }
@@ -160,11 +164,25 @@
   .zahl .gross { font-family: var(--serif); font-size: 46px; font-weight: 300; letter-spacing: -.01em; }
   .zahl .klein { color: rgba(246,245,242,.48); font-size: 13px; margin-top: 4px; }
 
+  /* ---------- Manifest ---------- */
+  .manifest { padding-bottom: 90px; }
+  .manifest-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 80px; margin-top: 34px; align-items: start; }
+  @media (max-width: 900px) { .manifest-grid { grid-template-columns: 1fr; gap: 48px; } }
+  .gross-prosa { font-family: var(--serif); font-weight: 300; font-size: clamp(21px, 2.5vw, 27px); line-height: 1.5; color: var(--ink); margin-bottom: 26px; }
+  .initial { font-family: var(--serif); font-weight: 500; font-size: 3.1em; line-height: .8; float: left; margin: 8px 14px 0 0; color: var(--rot); }
+  .manifest-text p:not(.gross-prosa) { color: #504e49; max-width: 640px; margin-bottom: 18px; font-size: 16px; }
+  .zitat { position: sticky; top: 120px; padding-top: 10px; }
+  .zitat-strich { width: 56px; height: 3px; background: var(--rot); margin-bottom: 26px; }
+  .zitat blockquote { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(23px, 2.4vw, 29px); line-height: 1.35; }
+  .zitat-wer { margin-top: 20px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--grau); }
+
   /* ---------- Leistungen ---------- */
   .hell-sektion { background: var(--paper); }
   .drei { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-top: 52px; }
-  .kachel { background: var(--paper); padding: 48px 38px 42px; display: flex; flex-direction: column; transition: background .35s ease; }
+  .kachel { background: var(--paper); padding: 48px 38px 42px; display: flex; flex-direction: column; transition: background .35s ease; position: relative; overflow: hidden; }
   .kachel:hover { background: #fff; }
+  .kachel::after { content: attr(data-nr); position: absolute; right: 14px; top: -8px; font-family: var(--serif); font-weight: 300; font-size: 120px; line-height: 1; color: rgba(11,11,12,.05); transition: color .35s; }
+  .kachel:hover::after { color: rgba(192,39,31,.09); }
   .kachel .nr { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--rot); }
   .kachel h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; margin: 16px 0 12px; }
   .kachel p { color: #504e49; font-size: 15px; }
@@ -273,6 +291,7 @@
 <!-- Intro im KWI-Stil -->
 <header class="intro" id="top">
   <div class="bg"></div>
+  <div class="korn"></div>
   <div class="intro-inhalt">
     <img class="logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa — 黒岩" width="430" height="80">
     <div class="unterzeile">Real <b>Estate</b></div>
@@ -284,7 +303,7 @@
   <div class="wrap">
     <div class="label hell">Kuroiwa Real Estate AG · Zug</div>
     <h1>Immobilien, die den Markt <em>nie erreichen.</em></h1>
-    <p class="sub">Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz. Diskret, direkt und mit eigenem Kapital investiert.</p>
+    <p class="sub">Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz. Diskret, direkt und mit eigenem Kapital investiert — denn die besten Liegenschaften wechseln die Hand, bevor jemand davon erfährt.</p>
     <a class="cta voll" href="#kontakt">Gespräch vereinbaren</a>
     <div class="zeile">
       <div class="zahl"><div class="gross">100<span class="rot">+</span></div><div class="klein">Retail-Abschlüsse an Schweizer 1A-Lagen</div></div>
@@ -294,22 +313,40 @@
   </div>
 </section>
 
-<section class="hell-sektion" id="leistungen">
+<section class="hell-sektion manifest" id="haltung">
+  <div class="wrap enter">
+    <div class="label">Haltung</div>
+    <div class="manifest-grid">
+      <div class="manifest-text">
+        <p class="gross-prosa"><span class="initial">K</span>uroiwa — 黒岩 — heisst «schwarzer Fels». Der Name ist Programm: Ein Fels bewegt sich nicht mit der Stimmung des Marktes. Er steht, wenn andere schwanken, und er ist da, lange bevor jemand ihn bemerkt. So arbeiten wir.</p>
+        <p>Die interessantesten Liegenschaften der Schweiz werden nie inseriert. Sie wechseln die Hand in Gesprächen, die auf Vertrauen gebaut sind — zwischen Menschen, die sich kennen, und über Vermittler, die ihr Wort halten. In diesem Markt sind wir zu Hause. Wir telefonieren, bevor andere publizieren. Wir prüfen, bevor andere versprechen. Und wir schliessen ab, während andere noch Broschüren drucken.</p>
+        <p>Dass wir mit eigenem Kapital investieren, verändert jedes Gespräch: Wir kennen beide Seiten des Tisches — die Ungeduld des Verkäufers und die Vorsicht des Käufers. Wer uns eine Liegenschaft anvertraut, bekommt keinen Makler, der vermittelt. Er bekommt einen Partner, der versteht.</p>
+      </div>
+      <div class="zitat">
+        <div class="zitat-strich"></div>
+        <blockquote>«Diskretion ist keine Höflichkeit.<br>Sie ist unser Geschäftsmodell.»</blockquote>
+        <div class="zitat-wer">Kaito Weingart, Inhaber</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hell-sektion" id="leistungen" style="padding-top:0">
   <div class="wrap enter">
     <div class="label">Leistungen</div>
     <h2>Drei Disziplinen.<br>Ein Anspruch: <span class="rot">Abschluss.</span></h2>
     <div class="drei">
-      <div class="kachel">
+      <div class="kachel" data-nr="01">
         <div class="nr">No. 1</div>
         <h3>Verkauf</h3>
         <p>Strukturierte Verkaufsprozesse für Renditeliegenschaften und Geschäftshäuser: Bewertung, Dossier, gezielte Ansprache qualifizierter Käufer — ohne öffentliche Ausschreibung, ohne Marktlärm.</p>
       </div>
-      <div class="kachel">
+      <div class="kachel" data-nr="02">
         <div class="nr">No. 2</div>
         <h3>Vermittlung &amp; Vermietung</h3>
         <p>Gewerbeflächen an 1A-Lagen: Wir bringen expandierende Marken und Eigentümer direkt zusammen — von der Ladenfläche am Bahnhofplatz bis zum Fachmarkt-Standort.</p>
       </div>
-      <div class="kachel">
+      <div class="kachel" data-nr="03">
         <div class="nr">No. 3</div>
         <h3>Off-Market-Ankauf</h3>
         <p>Wir erwerben selbst: Wohnungen und Wohn-/Geschäftshäuser in den Kantonen Luzern, Aargau und St. Gallen — geprüft in Tagen, abgewickelt in Wochen.</p>
@@ -322,6 +359,7 @@
   <div class="wrap enter">
     <div class="label hell">Track Record</div>
     <h2>Referenz-Transaktionen<span class="rot">.</span></h2>
+    <p style="max-width:620px;color:rgba(246,245,242,.55);font-weight:300">Jede dieser Transaktionen begann mit einem Gespräch, das nie öffentlich wurde. Was Sie hier sehen, ist der sichtbare Teil — der grössere bleibt es aus gutem Grund nicht.</p>
     <div class="deals">
       <div class="deal">
         <div class="typ">Landmark-Vermietung</div>
@@ -368,7 +406,7 @@
   <div class="wrap enter">
     <div class="label">Partner &amp; Mandate</div>
     <h2>Marken, die mit uns <span class="rot">expandieren.</span></h2>
-    <p style="max-width:600px;color:#504e49">Wir begleiten wachsende Konzepte bei der Standortsuche — vom Padel-Betreiber über Fashion und Gastronomie bis zur Fitnesskette.</p>
+    <p style="max-width:640px;color:#504e49">Expansion ist Vertrauenssache: Wer eine Marke in die Schweiz bringt oder in die nächste Stadt trägt, braucht jemanden, der die Lagen kennt, die Eigentümer erreicht und den Abschluss durchzieht. Diese Konzepte begleiten wir bei der Standortsuche — vom Padel-Betreiber über Fashion und Gastronomie bis zur Fitnesskette.</p>
     <div class="logowall">
       <div class="logo-zelle"><span class="wm wm-padelta">PADELTA</span></div>
       <div class="logo-zelle"><span class="wm wm-ayverdis">Ayverdi's</span></div>
@@ -472,6 +510,7 @@
         <div class="k-zeile"><span class="was">Telefon</span><a href="tel:+41792522570">079 252 25 70</a></div>
         <div class="k-zeile"><span class="was">E-Mail</span><a href="mailto:kaito@kuroiwa.ch">kaito@kuroiwa.ch</a></div>
         <div class="k-zeile"><span class="was">Adresse</span><span>Baarerstrasse 107, 6300 Zug</span></div>
+        <p style="margin-top:22px;font-size:13.5px;color:rgba(246,245,242,.45)">Erreichbar Montag bis Samstag. Erste Rückmeldung in der Regel innert 24 Stunden — verbindliche Einschätzung zu Ihrer Liegenschaft innert weniger Tage.</p>
       </div>
     </div>
   </div>
