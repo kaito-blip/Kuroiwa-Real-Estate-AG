@@ -12,13 +12,11 @@
 <link rel="alternate" hreflang="de-CH" href="https://kuroiwa.ch/">
 <link rel="alternate" hreflang="x-default" href="https://kuroiwa.ch/">
 
-<!-- Geo -->
 <meta name="geo.region" content="CH-ZG">
 <meta name="geo.placename" content="Zug">
 <meta name="geo.position" content="47.1789;8.5165">
 <meta name="ICBM" content="47.1789, 8.5165">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kuroiwa Real Estate AG">
 <meta property="og:title" content="Kuroiwa Real Estate — Off-Market Immobilien, Verkauf & Vermittlung">
@@ -28,14 +26,18 @@
 <meta property="og:image" content="https://kuroiwa.ch/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kuroiwa Real Estate — Off-Market Immobilien Schweiz">
 <meta name="twitter:description" content="Verkauf, Vermittlung und eigener Ankauf von Gewerbe- und Wohnimmobilien. Diskret und präzise.">
 <meta name="twitter:image" content="https://kuroiwa.ch/assets/og.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0c'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-size='34' fill='%23f6f5f2' text-anchor='middle'%3EK%3C/text%3E%3Crect x='44' y='14' width='6' height='36' fill='%23c0271f'/%3E%3C/svg%3E">
+
+<link rel="preload" as="image" href="assets/brand/hero-1920.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/brand/kuroiwa-wort.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap" rel="stylesheet">
 
 <!-- Google tag (gtag.js) — G-XXXXXXXXXX durch echte Mess-ID ersetzen -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -46,7 +48,6 @@
   gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
 </script>
 
-<!-- Strukturierte Daten -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,14 +60,7 @@
       "logo": "https://kuroiwa.ch/assets/og.png",
       "telephone": "+41792522570",
       "email": "kaito@kuroiwa.ch",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Baarerstrasse 107",
-        "postalCode": "6300",
-        "addressLocality": "Zug",
-        "addressRegion": "ZG",
-        "addressCountry": "CH"
-      },
+      "address": { "@type": "PostalAddress", "streetAddress": "Baarerstrasse 107", "postalCode": "6300", "addressLocality": "Zug", "addressRegion": "ZG", "addressCountry": "CH" },
       "geo": { "@type": "GeoCoordinates", "latitude": 47.1789, "longitude": 8.5165 },
       "areaServed": [
         { "@type": "Country", "name": "Schweiz" },
@@ -77,8 +71,7 @@
         { "@type": "AdministrativeArea", "name": "Kanton Zürich" }
       ],
       "knowsAbout": ["Off-Market-Transaktionen", "Gewerbeimmobilien", "Mehrfamilienhäuser", "Immobilienvermittlung", "Renditeliegenschaften"],
-      "founder": { "@id": "https://kuroiwa.ch/#kaito" },
-      "sameAs": []
+      "founder": { "@id": "https://kuroiwa.ch/#kaito" }
     },
     {
       "@type": "Person",
@@ -101,167 +94,225 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
   :root {
-    --ink: #0b0b0c; --ink2: #17171a; --paper: #f6f5f2; --paper2: #efede8;
-    --rot: #c0271f; --grau: #8d8b86; --hair: rgba(11,11,12,.12); --hair-w: rgba(246,245,242,.16);
+    --ink: #0b0b0c; --ink2: #141416; --paper: #f6f5f2; --paper2: #edebe6;
+    --rot: #c0271f; --grau: #8d8b86; --hair: rgba(11,11,12,.1); --hair-w: rgba(246,245,242,.14);
     --serif: 'Fraunces', Georgia, serif; --sans: 'Inter', -apple-system, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--sans); background: var(--ink); color: var(--ink); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--rot); color: #fff; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-  .label { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--grau); font-weight: 500; }
-  .label.hell { color: rgba(246,245,242,.55); }
-  h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.12; letter-spacing: -.01em; margin: 14px 0 18px; }
+  .label { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--grau); font-weight: 500; display: flex; align-items: center; gap: 16px; }
+  .label::after { content: ''; height: 1px; width: 56px; background: var(--rot); }
+  .label.hell { color: rgba(246,245,242,.5); }
+  h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.1; letter-spacing: -.01em; margin: 20px 0 20px; }
   .rot { color: var(--rot); }
-  section { padding: 96px 0; }
-  .enter { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+  section { padding: 110px 0; }
+  .enter { opacity: 0; transform: translateY(30px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
   .enter.da { opacity: 1; transform: none; }
 
-  /* Nav */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s ease, box-shadow .3s ease; }
-  nav.fest { background: rgba(11,11,12,.92); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--hair-w); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-  .marke { display: flex; align-items: baseline; gap: 10px; color: var(--paper); }
-  .marke .wort { font-family: var(--serif); font-size: 21px; letter-spacing: .04em; font-weight: 500; }
-  .marke .wort b { color: var(--rot); font-weight: 500; }
-  .marke .kanji { font-size: 13px; color: rgba(246,245,242,.55); letter-spacing: .3em; }
-  .nav-links { display: flex; gap: 34px; }
-  .nav-links a { color: rgba(246,245,242,.75); font-size: 13.5px; letter-spacing: .04em; transition: color .2s; }
-  .nav-links a:hover { color: var(--paper); }
-  @media (max-width: 860px) { .nav-links { display: none; } }
+  /* ---------- Nav ---------- */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; opacity: 0; pointer-events: none; transition: opacity .4s ease; }
+  nav.zeig { opacity: 1; pointer-events: auto; background: rgba(11,11,12,.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--hair-w); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .marke img { height: 22px; display: block; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a { color: rgba(246,245,242,.7); font-size: 13px; letter-spacing: .06em; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a.cta-mini { border: 1px solid rgba(246,245,242,.3); padding: 8px 18px; transition: background .25s, border-color .25s; }
+  .nav-links a.cta-mini:hover { background: var(--rot); border-color: var(--rot); }
+  @media (max-width: 900px) { .nav-links a:not(.cta-mini) { display: none; } }
 
-  /* Hero */
-  .hero { background: var(--ink); color: var(--paper); min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 140px 0 90px; }
-  .hero::after { content: '黒岩'; position: absolute; right: -40px; bottom: -70px; font-size: 340px; font-weight: 600; color: rgba(246,245,242,.028); font-family: var(--serif); line-height: 1; pointer-events: none; }
-  .hero h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 7vw, 84px); line-height: 1.06; letter-spacing: -.015em; margin: 22px 0 26px; max-width: 880px; }
-  .hero h1 em { font-style: italic; color: var(--rot); }
-  .hero p.sub { max-width: 560px; color: rgba(246,245,242,.65); font-size: 17.5px; font-weight: 300; margin-bottom: 42px; }
-  .cta { display: inline-flex; align-items: center; gap: 12px; border: 1px solid rgba(246,245,242,.35); padding: 15px 30px; font-size: 13.5px; letter-spacing: .12em; text-transform: uppercase; transition: background .25s, border-color .25s; }
+  /* ---------- Intro (KWI-Style) ---------- */
+  .intro { height: 100vh; height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .intro .bg { position: absolute; inset: 0; background: url('assets/brand/hero-1920.jpg') center/cover no-repeat; animation: kenburns 18s ease-out forwards; }
+  @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
+  .intro::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,.55), rgba(11,11,12,.35) 45%, var(--ink) 96%); }
+  .intro-inhalt { position: relative; z-index: 2; text-align: center; padding: 0 24px; }
+  .intro-inhalt img.logo { width: min(430px, 74vw); display: block; margin: 0 auto; opacity: 0; animation: auftauchen 1.4s .3s ease forwards; }
+  .intro-inhalt .unterzeile { margin-top: 26px; color: rgba(246,245,242,.75); font-size: 13px; letter-spacing: .5em; text-transform: uppercase; opacity: 0; animation: auftauchen 1.4s .8s ease forwards; }
+  .intro-inhalt .unterzeile b { color: var(--rot); font-weight: 500; }
+  @keyframes auftauchen { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .scrollcue { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; color: rgba(246,245,242,.55); font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; }
+  .scrollcue .ln { width: 1px; height: 52px; background: rgba(246,245,242,.25); position: relative; overflow: hidden; }
+  .scrollcue .ln::after { content: ''; position: absolute; top: -50%; left: 0; width: 100%; height: 50%; background: var(--rot); animation: fall 2.2s ease-in-out infinite; }
+  @keyframes fall { 0% { top: -50%; } 100% { top: 110%; } }
+
+  /* ---------- Statement ---------- */
+  .statement { background: var(--ink); color: var(--paper); padding: 40px 0 120px; }
+  .statement h1 { font-family: var(--serif); font-weight: 300; font-size: clamp(42px, 6.4vw, 78px); line-height: 1.07; letter-spacing: -.015em; margin: 24px 0 28px; max-width: 900px; }
+  .statement h1 em { font-style: italic; color: var(--rot); }
+  .statement p.sub { max-width: 560px; color: rgba(246,245,242,.62); font-size: 17.5px; font-weight: 300; margin-bottom: 44px; }
+  .cta { display: inline-flex; align-items: center; gap: 14px; border: 1px solid rgba(246,245,242,.35); padding: 16px 32px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; transition: background .25s, border-color .25s, gap .25s; }
+  .cta::after { content: '→'; transition: transform .25s; }
   .cta:hover { background: var(--rot); border-color: var(--rot); }
+  .cta:hover::after { transform: translateX(5px); }
   .cta.voll { background: var(--rot); border-color: var(--rot); }
-  .cta.voll:hover { background: #a01f18; }
-  .hero .zeile { display: flex; gap: 56px; margin-top: 76px; flex-wrap: wrap; }
-  .zahl .gross { font-family: var(--serif); font-size: 40px; font-weight: 400; }
-  .zahl .klein { color: rgba(246,245,242,.5); font-size: 13px; margin-top: 2px; }
+  .cta.voll:hover { background: #a01f18; border-color: #a01f18; }
+  .statement .zeile { display: flex; gap: 0; margin-top: 84px; border-top: 1px solid var(--hair-w); flex-wrap: wrap; }
+  .zahl { flex: 1; min-width: 200px; padding: 30px 34px 0 0; }
+  .zahl + .zahl { border-left: 1px solid var(--hair-w); padding-left: 34px; }
+  @media (max-width: 700px) { .zahl + .zahl { border-left: none; padding-left: 0; } }
+  .zahl .gross { font-family: var(--serif); font-size: 46px; font-weight: 300; letter-spacing: -.01em; }
+  .zahl .klein { color: rgba(246,245,242,.48); font-size: 13px; margin-top: 4px; }
 
-  /* Leistungen */
-  .drei { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-top: 48px; }
-  .kachel { background: var(--paper); padding: 44px 36px; transition: background .3s ease; }
+  /* ---------- Leistungen ---------- */
+  .hell-sektion { background: var(--paper); }
+  .drei { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-top: 52px; }
+  .kachel { background: var(--paper); padding: 48px 38px 42px; display: flex; flex-direction: column; transition: background .35s ease; }
   .kachel:hover { background: #fff; }
-  .kachel .nr { font-family: var(--serif); font-size: 15px; color: var(--rot); }
-  .kachel h3 { font-family: var(--serif); font-weight: 500; font-size: 23px; margin: 14px 0 10px; }
+  .kachel .nr { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--rot); }
+  .kachel h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; margin: 16px 0 12px; }
   .kachel p { color: #504e49; font-size: 15px; }
 
-  /* Track Record */
+  /* ---------- Track Record ---------- */
   .dunkel { background: var(--ink); color: var(--paper); }
-  .deals { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1px; background: var(--hair-w); border: 1px solid var(--hair-w); margin-top: 48px; }
-  .deal { background: var(--ink); padding: 34px 32px; transition: background .3s ease; }
+  .deals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hair-w); border: 1px solid var(--hair-w); margin-top: 52px; }
+  @media (max-width: 1000px) { .deals { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .deals { grid-template-columns: 1fr; } }
+  .deal { background: var(--ink); padding: 36px 32px 30px; display: flex; flex-direction: column; min-height: 250px; transition: background .35s ease; }
   .deal:hover { background: var(--ink2); }
-  .deal .typ { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--rot); }
-  .deal h3 { font-family: var(--serif); font-weight: 400; font-size: 21.5px; margin: 12px 0 6px; }
-  .deal p { color: rgba(246,245,242,.55); font-size: 14.5px; }
-  .deal .meta { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--hair-w); font-size: 13px; color: rgba(246,245,242,.45); display: flex; justify-content: space-between; }
-  .fussnote { color: rgba(246,245,242,.4); font-size: 13px; margin-top: 26px; }
+  .deal .typ { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--rot); }
+  .deal h3 { font-family: var(--serif); font-weight: 400; font-size: 21.5px; line-height: 1.25; margin: 14px 0 8px; }
+  .deal p { color: rgba(246,245,242,.52); font-size: 14px; }
+  .deal .meta { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--hair-w); font-size: 12.5px; color: rgba(246,245,242,.45); display: flex; justify-content: space-between; letter-spacing: .04em; }
+  .fussnote { color: rgba(246,245,242,.38); font-size: 13px; margin-top: 28px; }
 
-  /* Partner */
-  .partner-band { display: flex; flex-wrap: wrap; gap: 16px 54px; align-items: baseline; margin-top: 42px; }
-  .partner-band span { font-family: var(--serif); font-size: 24px; color: #3c3a36; opacity: .85; transition: opacity .25s, color .25s; white-space: nowrap; }
-  .partner-band span:hover { opacity: 1; color: var(--ink); }
-  .partner-band i { font-style: normal; color: var(--rot); }
+  /* ---------- Partner-Logowall ---------- */
+  .logowall { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-top: 52px; }
+  @media (max-width: 900px) { .logowall { grid-template-columns: repeat(2, 1fr); } }
+  .logo-zelle { background: var(--paper); height: 128px; display: flex; align-items: center; justify-content: center; transition: background .35s ease; padding: 0 18px; }
+  .logo-zelle:hover { background: #fff; }
+  .logo-zelle .wm { color: #2e2c29; opacity: .78; transition: opacity .3s; text-align: center; white-space: nowrap; }
+  .logo-zelle:hover .wm { opacity: 1; }
+  .wm-padelta { font: 800 24px/1 var(--sans); letter-spacing: .1em; }
+  .wm-ayverdis { font: italic 500 27px/1 var(--serif); letter-spacing: .01em; }
+  .wm-arctic { font: 600 14px/1.5 var(--sans); letter-spacing: .28em; }
+  .wm-tonja { font: 300 21px/1 var(--sans); letter-spacing: .34em; }
+  .wm-clever { font: italic 800 23px/1 var(--sans); letter-spacing: -.01em; text-transform: lowercase; }
+  .wm-plm { font: 400 13.5px/1.6 var(--serif); letter-spacing: .3em; }
+  .wm-only { font: 900 27px/1 var(--sans); letter-spacing: .16em; }
+  .wm-swissbox { font: 700 19px/1 var(--sans); letter-spacing: .08em; }
+  .wm-swissbox b { border: 2px solid var(--rot); padding: 2px 5px; margin-left: 3px; font-weight: 700; }
 
-  /* Investitionen */
+  /* ---------- Investitionen ---------- */
   .invest { background: var(--paper2); }
-  .invest-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 70px; align-items: start; }
+  .invest-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 72px; align-items: stretch; }
   @media (max-width: 900px) { .invest-grid { grid-template-columns: 1fr; } }
-  .profil { background: var(--ink); color: var(--paper); padding: 40px 38px; }
-  .profil h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; margin-bottom: 20px; }
+  .profil { background: var(--ink); color: var(--paper); padding: 44px 40px; display: flex; flex-direction: column; }
+  .profil h3 { font-family: var(--serif); font-weight: 400; font-size: 25px; margin-bottom: 22px; }
   .profil ul { list-style: none; }
-  .profil li { padding: 12px 0; border-bottom: 1px solid var(--hair-w); font-size: 15px; color: rgba(246,245,242,.8); display: flex; gap: 12px; }
-  .profil li::before { content: '—'; color: var(--rot); }
-  .kantone { display: flex; gap: 12px; margin: 24px 0 6px; flex-wrap: wrap; }
-  .kanton { border: 1px solid var(--hair); padding: 9px 20px; font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; }
+  .profil li { padding: 13px 0; border-bottom: 1px solid var(--hair-w); font-size: 15px; color: rgba(246,245,242,.82); display: flex; gap: 14px; }
+  .profil li:last-child { border-bottom: none; }
+  .profil li::before { content: '—'; color: var(--rot); flex-shrink: 0; }
+  .kantone { display: flex; gap: 12px; margin: 26px 0 8px; flex-wrap: wrap; }
+  .kanton { border: 1px solid rgba(11,11,12,.3); padding: 10px 22px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; transition: background .25s, color .25s; }
+  .kanton:hover { background: var(--ink); color: var(--paper); }
 
-  /* Über */
-  .ueber-grid { display: grid; grid-template-columns: 380px 1fr; gap: 70px; align-items: center; }
+  /* ---------- Perspektiven ---------- */
+  .studien { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin-top: 52px; }
+  @media (max-width: 800px) { .studien { grid-template-columns: 1fr; } }
+  .studie { background: var(--paper); padding: 44px 40px; display: flex; flex-direction: column; min-height: 300px; transition: background .35s ease; position: relative; }
+  .studie:hover { background: #fff; }
+  .studie .kopfzeile { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--rot); }
+  .studie .kopfzeile span:last-child { color: var(--grau); }
+  .studie h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.6vw, 31px); line-height: 1.15; margin: 18px 0 14px; }
+  .studie p { color: #504e49; font-size: 15px; max-width: 460px; }
+  .studie .mehr { margin-top: auto; padding-top: 24px; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; color: var(--ink); }
+  .studie .mehr::after { content: '→'; color: var(--rot); transition: transform .25s; }
+  .studie:hover .mehr::after { transform: translateX(6px); }
+
+  /* ---------- Über ---------- */
+  .ueber-grid { display: grid; grid-template-columns: 360px 1fr; gap: 76px; align-items: center; }
   @media (max-width: 900px) { .ueber-grid { grid-template-columns: 1fr; } }
-  .portrait { aspect-ratio: 4/5; background: linear-gradient(160deg, var(--ink2), var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; }
-  .portrait svg { width: 42%; opacity: .35; }
-  .portrait .platzhalter { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: rgba(246,245,242,.35); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
-  .ueber p { color: #504e49; margin-bottom: 14px; }
-  .ueber .punkte { margin: 22px 0; }
-  .ueber .punkte div { padding: 13px 0; border-bottom: 1px solid var(--hair); display: flex; gap: 14px; font-size: 15.5px; }
-  .ueber .punkte div::before { content: '—'; color: var(--rot); }
+  .portrait { aspect-ratio: 4/5; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; }
+  .portrait::after { content: '黒岩'; position: absolute; top: 18px; right: 20px; font-family: var(--serif); color: rgba(246,245,242,.14); font-size: 21px; letter-spacing: .2em; }
+  .portrait svg { width: 40%; opacity: .3; }
+  .portrait .platzhalter { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: rgba(246,245,242,.32); font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; }
+  .ueber p { color: #504e49; margin-bottom: 14px; max-width: 560px; }
+  .ueber .punkte { margin: 26px 0; }
+  .ueber .punkte div { padding: 14px 0; border-bottom: 1px solid var(--hair); display: flex; gap: 16px; font-size: 15.5px; }
+  .ueber .punkte div::before { content: '—'; color: var(--rot); flex-shrink: 0; }
 
-  /* Kontakt */
+  /* ---------- Kontakt ---------- */
   .kontakt { background: var(--ink); color: var(--paper); }
-  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 76px; }
   @media (max-width: 860px) { .kontakt-grid { grid-template-columns: 1fr; } }
-  .kontakt h2 { max-width: 480px; }
-  .k-zeile { display: flex; flex-direction: column; gap: 4px; padding: 22px 0; border-bottom: 1px solid var(--hair-w); }
-  .k-zeile .was { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(246,245,242,.45); }
-  .k-zeile a, .k-zeile span { font-family: var(--serif); font-size: 25px; font-weight: 300; transition: color .2s; }
+  .k-zeile { display: flex; flex-direction: column; gap: 5px; padding: 24px 0; border-bottom: 1px solid var(--hair-w); }
+  .k-zeile:first-child { padding-top: 8px; }
+  .k-zeile .was { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: rgba(246,245,242,.42); }
+  .k-zeile a, .k-zeile span { font-family: var(--serif); font-size: 27px; font-weight: 300; transition: color .2s; }
   .k-zeile a:hover { color: var(--rot); }
 
-  footer { background: var(--ink); color: rgba(246,245,242,.45); padding: 34px 0 44px; border-top: 1px solid var(--hair-w); font-size: 13px; }
-  .fuss { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer { background: var(--ink); color: rgba(246,245,242,.42); padding: 36px 0 46px; border-top: 1px solid var(--hair-w); font-size: 13px; }
+  .fuss { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+  .fuss img { height: 15px; opacity: .5; }
 </style>
 </head>
 <body>
 
 <nav id="nav">
   <div class="wrap nav-inner">
-    <a class="marke" href="#top"><span class="wort">KUR<b>O</b>IWA</span><span class="kanji">黒岩</span></a>
+    <a class="marke" href="#top"><img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa Real Estate" width="78" height="22" style="width:auto"></a>
     <div class="nav-links">
       <a href="#leistungen">Leistungen</a>
       <a href="#track">Track Record</a>
       <a href="#partner">Partner</a>
       <a href="#investitionen">Investitionen</a>
+      <a href="#perspektiven">Perspektiven</a>
       <a href="#ueber">Über</a>
-      <a href="#kontakt">Kontakt</a>
+      <a class="cta-mini" href="#kontakt">Kontakt</a>
     </div>
   </div>
 </nav>
 
-<header class="hero" id="top">
+<!-- Intro im KWI-Stil -->
+<header class="intro" id="top">
+  <div class="bg"></div>
+  <div class="intro-inhalt">
+    <img class="logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa — 黒岩" width="430" height="80">
+    <div class="unterzeile">Real <b>Estate</b></div>
+  </div>
+  <div class="scrollcue"><span>Scrollen</span><span class="ln"></span></div>
+</header>
+
+<section class="statement">
   <div class="wrap">
     <div class="label hell">Kuroiwa Real Estate AG · Zug</div>
     <h1>Immobilien, die den Markt <em>nie erreichen.</em></h1>
     <p class="sub">Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz. Diskret, direkt und mit eigenem Kapital investiert.</p>
     <a class="cta voll" href="#kontakt">Gespräch vereinbaren</a>
     <div class="zeile">
-      <div class="zahl"><div class="gross">40<span class="rot">+</span></div><div class="klein">Retail-Abschlüsse an 1A-Lagen</div></div>
-      <div class="zahl"><div class="gross">CH</div><div class="klein">Fokus Deutschschweiz</div></div>
+      <div class="zahl"><div class="gross">100<span class="rot">+</span></div><div class="klein">Retail-Abschlüsse an Schweizer 1A-Lagen</div></div>
+      <div class="zahl"><div class="gross">CHF 90 <span style="font-size:26px">Mio.</span></div><div class="klein">Total verkauftes Volumen</div></div>
       <div class="zahl"><div class="gross">3</div><div class="klein">Kantone im aktiven Ankauf</div></div>
     </div>
   </div>
-</header>
+</section>
 
-<section id="leistungen">
+<section class="hell-sektion" id="leistungen">
   <div class="wrap enter">
     <div class="label">Leistungen</div>
     <h2>Drei Disziplinen.<br>Ein Anspruch: <span class="rot">Abschluss.</span></h2>
     <div class="drei">
       <div class="kachel">
-        <div class="nr">01</div>
+        <div class="nr">No. 1</div>
         <h3>Verkauf</h3>
         <p>Strukturierte Verkaufsprozesse für Renditeliegenschaften und Geschäftshäuser: Bewertung, Dossier, gezielte Ansprache qualifizierter Käufer — ohne öffentliche Ausschreibung, ohne Marktlärm.</p>
       </div>
       <div class="kachel">
-        <div class="nr">02</div>
+        <div class="nr">No. 2</div>
         <h3>Vermittlung &amp; Vermietung</h3>
         <p>Gewerbeflächen an 1A-Lagen: Wir bringen expandierende Marken und Eigentümer direkt zusammen — von der Ladenfläche am Bahnhofplatz bis zum Fachmarkt-Standort.</p>
       </div>
       <div class="kachel">
-        <div class="nr">03</div>
+        <div class="nr">No. 3</div>
         <h3>Off-Market-Ankauf</h3>
-        <p>Wir erwerben selbst: Mehrfamilienhäuser und Wohn-/Geschäftshäuser in den Kantonen Luzern, Aargau und St. Gallen — geprüft in Tagen, abgewickelt in Wochen.</p>
+        <p>Wir erwerben selbst: Wohnungen und Wohn-/Geschäftshäuser in den Kantonen Luzern, Aargau und St. Gallen — geprüft in Tagen, abgewickelt in Wochen.</p>
       </div>
     </div>
   </div>
@@ -297,35 +348,36 @@
         <div class="meta"><span>Interlaken BE</span><span>1A-Lage</span></div>
       </div>
       <div class="deal">
-        <div class="typ">Vermittlung Gewerbe</div>
-        <h3>Geschäftsfläche — Im Zentrum 14, Gossau ZH</h3>
-        <p>Begleitung der Anmietung einer Geschäftsfläche im Zentrum von Gossau: Dossier, Verhandlung, Abschluss.</p>
-        <div class="meta"><span>Gossau ZH</span><span>Gewerbe</span></div>
+        <div class="typ">Portfolio</div>
+        <h3>100+ Retail-Abschlüsse an 1A-Lagen</h3>
+        <p>Über hundert abgeschlossene Vermittlungs- und Beratungsmandate für Retail-Flächen an Schweizer Top-Lagen.</p>
+        <div class="meta"><span>Schweiz</span><span>laufend</span></div>
       </div>
       <div class="deal">
-        <div class="typ">Portfolio</div>
-        <h3>40+ Retail-Abschlüsse an 1A-Lagen</h3>
-        <p>Über vierzig abgeschlossene Vermittlungs- und Beratungsmandate für Retail-Flächen an Schweizer Top-Lagen.</p>
-        <div class="meta"><span>Schweiz</span><span>seit 2021</span></div>
+        <div class="typ">Transaktionsvolumen</div>
+        <h3>CHF 90 Mio. verkauftes Volumen</h3>
+        <p>Begleitete Verkäufe von Wohn- und Geschäftsliegenschaften — vom Einzelobjekt bis zum Portfolio.</p>
+        <div class="meta"><span>Schweiz</span><span>total</span></div>
       </div>
     </div>
     <div class="fussnote">Auszug aus abgeschlossenen Mandaten. Weitere Referenzen auf Anfrage — Diskretion ist Teil unseres Geschäftsmodells.</div>
   </div>
 </section>
 
-<section id="partner">
+<section class="hell-sektion" id="partner">
   <div class="wrap enter">
     <div class="label">Partner &amp; Mandate</div>
     <h2>Marken, die mit uns <span class="rot">expandieren.</span></h2>
-    <p style="max-width:600px;color:#504e49">Wir begleiten wachsende Konzepte bei der Standortsuche — vom Padel-Betreiber bis zur System-Gastronomie.</p>
-    <div class="partner-band">
-      <span>Padelta</span>
-      <span>Ayverdi<i>'</i>s</span>
-      <span>Arctic Juice <i>&amp;</i> Café</span>
-      <span>Tonja Concept</span>
-      <span>Hans im Glück</span>
-      <span>dieci</span>
-      <span>update Fitness</span>
+    <p style="max-width:600px;color:#504e49">Wir begleiten wachsende Konzepte bei der Standortsuche — vom Padel-Betreiber über Fashion und Gastronomie bis zur Fitnesskette.</p>
+    <div class="logowall">
+      <div class="logo-zelle"><span class="wm wm-padelta">PADELTA</span></div>
+      <div class="logo-zelle"><span class="wm wm-ayverdis">Ayverdi's</span></div>
+      <div class="logo-zelle"><span class="wm wm-arctic">ARCTIC JUICE<br>&amp; CAFÉ</span></div>
+      <div class="logo-zelle"><span class="wm wm-tonja">TONJA</span></div>
+      <div class="logo-zelle"><span class="wm wm-clever">clever fit</span></div>
+      <div class="logo-zelle"><span class="wm wm-plm">PIERRE-LOUIS<br>MASCIA</span></div>
+      <div class="logo-zelle"><span class="wm wm-only">ONLY</span></div>
+      <div class="logo-zelle"><span class="wm wm-swissbox">SWISS<b>BOX</b></span></div>
     </div>
   </div>
 </section>
@@ -336,22 +388,22 @@
       <div>
         <div class="label">Investitionen</div>
         <h2>Wir kaufen selbst<span class="rot">.</span></h2>
-        <p style="color:#504e49">Kuroiwa investiert eigenes Kapital in Schweizer Liegenschaften. Wir suchen laufend Mehrfamilienhäuser und Wohn-/Geschäftshäuser zum Direkterwerb — ohne Ausschreibung, ohne Bieterverfahren, mit schneller und verbindlicher Abwicklung.</p>
+        <p style="color:#504e49">Kuroiwa investiert eigenes Kapital in Schweizer Liegenschaften. Wir suchen laufend Wohnungen und Wohn-/Geschäftshäuser zum Direkterwerb — ohne Ausschreibung, ohne Bieterverfahren, mit schneller und verbindlicher Abwicklung.</p>
         <div class="kantone">
           <div class="kanton">Luzern</div>
           <div class="kanton">Aargau</div>
           <div class="kanton">St. Gallen</div>
         </div>
         <p style="color:#504e49;margin-top:18px">Sie besitzen eine Liegenschaft in diesen Regionen und denken über einen Verkauf nach? Melden Sie sich direkt — wir prüfen innert weniger Tage und unterbreiten Ihnen eine verbindliche Einschätzung.</p>
-        <a class="cta" style="border-color:var(--ink);color:var(--ink);margin-top:14px" href="#kontakt">Liegenschaft anbieten</a>
+        <a class="cta" style="border-color:var(--ink);color:var(--ink);margin-top:16px" href="#kontakt">Liegenschaft anbieten</a>
       </div>
       <div class="profil">
         <h3>Ankaufsprofil</h3>
         <ul>
-          <li>Mehrfamilienhäuser ab 6 Einheiten</li>
+          <li>Wohnungen ab 1 Studio bis Mehrfamilienhaus</li>
           <li>Wohn- und Geschäftshäuser an zentralen Lagen</li>
           <li>Auch mit Sanierungsbedarf oder Leerstand</li>
-          <li>Volumen bis CHF 15 Mio. pro Objekt</li>
+          <li>Volumen bis CHF 2 Mio. pro Objekt</li>
           <li>Direkter Erwerb — diskret und zügig</li>
           <li>Off-Market bevorzugt, Vermittler willkommen</li>
         </ul>
@@ -360,7 +412,29 @@
   </div>
 </section>
 
-<section id="ueber">
+<section class="hell-sektion" id="perspektiven">
+  <div class="wrap enter">
+    <div class="label">Perspektiven</div>
+    <h2>Wie wir <span class="rot">denken.</span></h2>
+    <p style="max-width:600px;color:#504e49">Ausgewählte Studien aus dem Kuroiwa-Haus — über Ökonomie, Knappheit und die Kräfte, die Immobilienwerte langfristig treiben.</p>
+    <div class="studien">
+      <a class="studie" href="https://kwicapital.ch/study.html?id=verteilung-folgt-verdraengung" target="_blank" rel="noopener">
+        <div class="kopfzeile"><span>Ökonomie</span><span>9 Min. Lesezeit</span></div>
+        <h3>Verteilung folgt Verdrängung</h3>
+        <p>Wenn dieselbe Person plötzlich das Dreifache schafft, braucht es die dritte Stelle nicht mehr. Über die stille Verdrängung durch Produktivität — und die Verteilung, die ihr historisch immer gefolgt ist.</p>
+        <span class="mehr">Studie lesen</span>
+      </a>
+      <a class="studie" href="https://kwicapital.ch/study.html?id=knappheit-ist-ein-geschaeftsmodell" target="_blank" rel="noopener">
+        <div class="kopfzeile"><span>Ökonomie</span><span>7 Min. Lesezeit</span></div>
+        <h3>Knappheit ist ein Geschäftsmodell</h3>
+        <p>Die Kosten für alles Reproduzierbare fallen. Was nicht reproduzierbar ist — Lage, Land, Bewilligung — wird teurer. Über Preise, die nicht an Kosten hängen, und den bleibenden Wert des Knappen.</p>
+        <span class="mehr">Studie lesen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="hell-sektion" id="ueber" style="background:var(--paper2)">
   <div class="wrap enter">
     <div class="ueber-grid">
       <div class="portrait">
@@ -375,8 +449,8 @@
         <h2>Kaito Weingart<span class="rot">.</span></h2>
         <p>Inhaber der Kuroiwa Real Estate AG. Diverse Immobiliendeals und langjährige Erfahrung im Verkauf und in der Vermittlung — mit Fokus auf Gewerbeimmobilien sowie Wohnimmobilien, insbesondere Mehrfamilienhäuser.</p>
         <div class="punkte">
-          <div>Über 40 Retail-Abschlüsse an Schweizer 1A-Lagen</div>
-          <div>Verkaufs- und Vermittlungsmandate von CHF 3 bis 15 Mio.</div>
+          <div>Über 100 Retail-Abschlüsse an Schweizer 1A-Lagen</div>
+          <div>Total verkauftes Volumen: CHF 90 Mio.</div>
           <div>Direkter Zugang zu expandierenden Marken und institutionellen Käufern</div>
           <div>Eigene Investments — wir verstehen beide Seiten des Tisches</div>
         </div>
@@ -392,7 +466,7 @@
       <div>
         <div class="label hell">Kontakt</div>
         <h2>Sprechen wir über Ihre <span class="rot">Liegenschaft.</span></h2>
-        <p style="color:rgba(246,245,242,.6);max-width:440px">Ob Verkauf, Vermietung oder Direkterwerb: Der schnellste Weg ist ein kurzes Gespräch. Diskretion selbstverständlich.</p>
+        <p style="color:rgba(246,245,242,.58);max-width:440px">Ob Verkauf, Vermietung oder Direkterwerb: Der schnellste Weg ist ein kurzes Gespräch. Diskretion selbstverständlich.</p>
       </div>
       <div>
         <div class="k-zeile"><span class="was">Telefon</span><a href="tel:+41792522570">079 252 25 70</a></div>
@@ -406,6 +480,7 @@
 <footer>
   <div class="wrap fuss">
     <div>© <span id="jahr"></span> Kuroiwa Real Estate AG · Baarerstrasse 107 · 6300 Zug</div>
+    <img src="assets/brand/kanji.png" alt="黒岩" loading="lazy">
     <div>KUROIWA 黒岩 — «schwarzer Fels»</div>
   </div>
 </footer>
@@ -413,8 +488,9 @@
 <script>
   document.getElementById('jahr').textContent = new Date().getFullYear();
   const nav = document.getElementById('nav');
-  addEventListener('scroll', () => nav.classList.toggle('fest', scrollY > 40), { passive: true });
-  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('da')), { threshold: .12 });
+  const intro = document.querySelector('.intro');
+  addEventListener('scroll', () => nav.classList.toggle('zeig', scrollY > intro.offsetHeight * .75), { passive: true });
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('da')), { threshold: .1 });
   document.querySelectorAll('.enter').forEach(el => io.observe(el));
 </script>
 </body>
