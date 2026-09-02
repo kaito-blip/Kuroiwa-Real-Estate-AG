@@ -257,32 +257,61 @@
   .ueber .punkte div::before { content: '—'; color: var(--rot); flex-shrink: 0; }
 
   /* ---------- Kontakt ---------- */
-  .kontakt { background: var(--ink); color: var(--paper); }
-  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 76px; }
+  .kontakt { background: var(--ink); color: var(--paper); padding: 72px 0; }
+  .kontakt h2 { font-size: clamp(26px, 3.2vw, 38px); margin: 14px 0 14px; }
+  .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   @media (max-width: 860px) { .kontakt-grid { grid-template-columns: 1fr; } }
-  .k-zeile { display: flex; flex-direction: column; gap: 5px; padding: 24px 0; border-bottom: 1px solid var(--hair-w); }
+  .k-zeile { display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--hair-w); }
   .k-zeile:first-child { padding-top: 8px; }
   .k-zeile .was { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: rgba(246,245,242,.42); }
-  .k-zeile a, .k-zeile span { font-family: var(--serif); font-size: 27px; font-weight: 300; transition: color .2s; }
+  .k-zeile a, .k-zeile span { font-family: var(--serif); font-size: 19px; font-weight: 300; transition: color .2s; }
   .k-zeile a:hover { color: var(--rot); }
 
-  /* ---------- Laufband ---------- */
-  .band { background: var(--rot); color: #fff; overflow: hidden; padding: 15px 0; }
-  .band-spur { display: flex; gap: 34px; align-items: baseline; white-space: nowrap; width: max-content; animation: lauf 26s linear infinite; }
-  .band-spur span { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 19px; letter-spacing: .04em; }
-  .band-spur i { font-style: normal; opacity: .55; }
-  .band:hover .band-spur { animation-play-state: paused; }
-  @keyframes lauf { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+  /* ---------- Scroll-Fortschritt ---------- */
+  .fortschritt { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--rot); z-index: 1001; }
+
+  /* ---------- Cursor ---------- */
+  @media (pointer: fine) {
+    .zeiger { position: fixed; top: 0; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--rot); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width .25s ease, height .25s ease, background .25s ease, border .25s ease, opacity .35s; opacity: 0; }
+    .zeiger.an { opacity: .92; }
+    .zeiger.gross { width: 42px; height: 42px; background: transparent; border: 1px solid var(--rot); }
+  }
+
+  /* ---------- Ankaufs-Check ---------- */
+  .check { margin-top: 76px; background: var(--ink); color: var(--paper); padding: 52px 56px 56px; }
+  .check h3 { font-family: var(--serif); font-weight: 300; font-size: clamp(23px, 2.8vw, 33px); line-height: 1.2; margin: 12px 0 36px; }
+  .check-felder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+  .feld-name { font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; color: rgba(246,245,242,.45); margin-bottom: 13px; }
+  .pillen { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pille { font-family: var(--sans); font-size: 13.5px; padding: 9px 17px; border: 1px solid rgba(246,245,242,.25); border-radius: 999px; background: transparent; color: rgba(246,245,242,.75); cursor: pointer; transition: all .18s ease; }
+  .pille:hover { border-color: #fff; color: #fff; }
+  .pille.aktiv { background: var(--rot); border-color: var(--rot); color: #fff; }
+  .check-ergebnis { margin-top: 38px; padding-top: 30px; border-top: 1px solid rgba(246,245,242,.12); }
+  .check-ergebnis p { font-family: var(--serif); font-size: 21px; font-weight: 300; line-height: 1.5; max-width: 760px; }
+  .check-ctas { display: flex; gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+  .check-ctas .cta.voll { background: var(--rot); border-color: var(--rot); color: #fff; }
+  @media (max-width: 860px) { .check { padding: 34px 26px 40px; } .check-felder { grid-template-columns: 1fr; gap: 24px; } }
+
+  .deal, .kachel { transition: transform .3s ease, border-color .3s ease; will-change: transform; }
+  .cta { transition: transform .2s ease, background .2s, color .2s, border-color .2s; }
 
   .nav-links a.aktiv { color: #fff; }
   .nav-links a.aktiv::after { content: ''; display: block; height: 1px; background: var(--rot); margin-top: 3px; }
 
-  footer { background: var(--ink); color: rgba(246,245,242,.42); padding: 36px 0 46px; border-top: 1px solid var(--hair-w); font-size: 13px; }
-  .fuss { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
-  .fuss img { height: 15px; opacity: .5; }
+  footer { background: #060606; color: rgba(246,245,242,.5); padding: 74px 0 42px; border-top: 1px solid var(--hair-w); font-size: 14px; font-weight: 300; }
+  .fuss-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; border-bottom: 1px solid rgba(246,245,242,.08); padding-bottom: 50px; }
+  .fuss-logo { height: 20px; width: auto; margin-bottom: 20px; display: block; }
+  footer h5 { color: #fff; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 22px; font-weight: 600; }
+  footer a { color: rgba(246,245,242,.5); display: block; margin-bottom: 12px; transition: color .2s; }
+  footer a:hover { color: #fff; }
+  .fuss-desc { max-width: 38ch; color: rgba(246,245,242,.38); line-height: 1.8; }
+  .flags { display: flex; gap: 10px; margin-top: 16px; }
+  .fuss-unten { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 28px; flex-wrap: wrap; color: rgba(246,245,242,.32); font-size: 12px; letter-spacing: .04em; }
+  @media (max-width: 860px) { .fuss-top { grid-template-columns: 1fr; gap: 34px; } }
 </style>
 </head>
 <body>
+<div class="fortschritt" id="fortschritt" aria-hidden="true"></div>
 
 <nav id="nav">
   <div class="wrap nav-inner">
@@ -413,14 +442,6 @@
   </div>
 </section>
 
-<div class="band" aria-hidden="true">
-  <div class="band-spur">
-    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
-    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
-    <span>Off-Market</span><i>·</i><span>Verkauf</span><i>·</i><span>Vermittlung</span><i>·</i><span>Eigener Ankauf</span><i>·</i><span>Diskretion</span><i>·</i>
-  </div>
-</div>
-
 <section class="hell-sektion" id="partner">
   <div class="wrap enter">
     <div class="label">Partner &amp; Mandate</div>
@@ -464,6 +485,46 @@
           <li>Direkter Erwerb — diskret und zügig</li>
           <li>Off-Market bevorzugt, Vermittler willkommen</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="check enter" id="check">
+      <div class="label hell">Ankaufs-Check</div>
+      <h3>Passt Ihre Liegenschaft? <span class="rot">Antwort in 20 Sekunden.</span></h3>
+      <div class="check-felder">
+        <div>
+          <div class="feld-name">Kanton</div>
+          <div class="pillen" data-gruppe="kanton">
+            <button class="pille" data-wert="Luzern">Luzern</button>
+            <button class="pille" data-wert="Aargau">Aargau</button>
+            <button class="pille" data-wert="St. Gallen">St. Gallen</button>
+            <button class="pille" data-wert="anderer Kanton">Anderer</button>
+          </div>
+        </div>
+        <div>
+          <div class="feld-name">Objekt</div>
+          <div class="pillen" data-gruppe="objekt">
+            <button class="pille" data-wert="Wohnung / Studio">Wohnung / Studio</button>
+            <button class="pille" data-wert="Mehrfamilienhaus">Mehrfamilienhaus</button>
+            <button class="pille" data-wert="Wohn- und Geschäftshaus">Wohn- &amp; Geschäftshaus</button>
+            <button class="pille" data-wert="Gewerbe">Gewerbe</button>
+          </div>
+        </div>
+        <div>
+          <div class="feld-name">Preisvorstellung</div>
+          <div class="pillen" data-gruppe="preis">
+            <button class="pille" data-wert="bis CHF 1 Mio.">bis 1 Mio.</button>
+            <button class="pille" data-wert="CHF 1–2 Mio.">1–2 Mio.</button>
+            <button class="pille" data-wert="über CHF 2 Mio.">über 2 Mio.</button>
+          </div>
+        </div>
+      </div>
+      <div class="check-ergebnis" id="checkErgebnis" hidden>
+        <p id="checkText"></p>
+        <div class="check-ctas">
+          <a class="cta voll" id="checkWa" href="#" rel="noopener" target="_blank">Eckdaten per WhatsApp senden&ensp;&rarr;</a>
+          <a class="cta" id="checkMail" style="border-color:rgba(246,245,242,.4);color:var(--paper)" href="#">Per E-Mail</a>
+        </div>
       </div>
     </div>
   </div>
@@ -536,12 +597,35 @@
 </section>
 
 <footer>
-  <div class="wrap fuss">
-    <div>© <span id="jahr"></span> Kuroiwa Real Estate AG · Baarerstrasse 107 · 6300 Zug</div>
-    <img src="assets/brand/kanji.png" alt="黒岩" loading="lazy">
-    <div style="display:flex;gap:22px">
-      <a href="impressum.html" style="color:inherit">Impressum &amp; Legal Notice</a>
-      <a href="datenschutz.html" style="color:inherit">Datenschutz</a>
+  <div class="wrap">
+    <div class="fuss-top">
+      <div>
+        <img class="fuss-logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa" loading="lazy">
+        <p class="fuss-desc">黒岩 — «schwarzer Fels». Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz.</p>
+        <div class="flags" title="Japan × Schweiz">
+          <svg width="20" height="14" viewBox="0 0 30 20"><rect width="30" height="20" rx="3" fill="#FAF9F6"/><circle cx="15" cy="10" r="5.6" fill="#BC002D"/></svg>
+          <svg width="20" height="14" viewBox="0 0 30 20"><rect width="30" height="20" rx="3" fill="#D52B1E"/><rect x="12.9" y="4.5" width="4.2" height="11" rx="1" fill="#fff"/><rect x="9.5" y="7.9" width="11" height="4.2" rx="1" fill="#fff"/></svg>
+        </div>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#track">Track Record</a>
+        <a href="#investitionen">Investitionen</a>
+        <a href="#perspektiven">Perspektiven</a>
+        <a href="#ueber">Über Kaito</a>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <a href="mailto:kaito@kuroiwa.ch">kaito@kuroiwa.ch</a>
+        <a href="tel:+41792522570">079 252 25 70</a>
+        <a href="impressum.html">Impressum &amp; Legal Notice</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+    <div class="fuss-unten">
+      <span>© <span id="jahr"></span> Kuroiwa Real Estate AG · 黒岩</span>
+      <span>Baarerstrasse 107 · 6300 Zug · Schweiz</span>
     </div>
   </div>
 </footer>
@@ -552,11 +636,13 @@
   const intro = document.querySelector('.intro');
   const bg = document.querySelector('.intro .bg');
 
-  // Parallax auf dem Intro-Bild + Nav-Einblendung
+  // Parallax auf dem Intro-Bild, Nav-Einblendung, Lese-Fortschritt
+  const fortschritt = document.getElementById('fortschritt');
   addEventListener('scroll', () => {
     const y = scrollY;
     nav.classList.toggle('zeig', y > intro.offsetHeight * .72);
     if (y < intro.offsetHeight) bg.style.transform = `translateY(${y * .32}px) scale(1.02)`;
+    fortschritt.style.width = (y / (document.documentElement.scrollHeight - innerHeight) * 100) + '%';
   }, { passive: true });
 
   // Sanftes Erscheinen der Sektionen
@@ -586,6 +672,71 @@
   }), { rootMargin: '-40% 0px -55% 0px' });
   ['leistungen','track','partner','investitionen','perspektiven','ueber','kontakt']
     .forEach(id => { const el = document.getElementById(id); if (el) spyIo.observe(el); });
+
+  // Eigener Cursor (nur mit Maus, nicht auf Touch)
+  if (matchMedia('(pointer: fine)').matches) {
+    const zeiger = document.createElement('div');
+    zeiger.className = 'zeiger';
+    document.body.appendChild(zeiger);
+    let mx = innerWidth / 2, my = innerHeight / 2, zx = mx, zy = my;
+    addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; zeiger.classList.add('an'); }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', () => zeiger.classList.remove('an'));
+    (function folge() {
+      zx += (mx - zx) * .22; zy += (my - zy) * .22;
+      zeiger.style.left = zx + 'px'; zeiger.style.top = zy + 'px';
+      requestAnimationFrame(folge);
+    })();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => zeiger.classList.add('gross'));
+      el.addEventListener('mouseleave', () => zeiger.classList.remove('gross'));
+    });
+
+    // Dezenter 3D-Tilt auf Referenz-Karten
+    document.querySelectorAll('.deal').forEach(k => {
+      k.addEventListener('mousemove', e => {
+        const r = k.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        k.style.transform = `perspective(700px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-2px)`;
+      });
+      k.addEventListener('mouseleave', () => k.style.transform = '');
+    });
+
+    // Magnetische CTAs
+    document.querySelectorAll('.cta').forEach(b => {
+      b.addEventListener('mousemove', e => {
+        const r = b.getBoundingClientRect();
+        b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .1}px, ${(e.clientY - r.top - r.height / 2) * .28}px)`;
+      });
+      b.addEventListener('mouseleave', () => b.style.transform = '');
+    });
+  }
+
+  // Ankaufs-Check: Auswahl -> sofortige Einschätzung + vorbefüllte Anfrage
+  const wahl = {};
+  document.querySelectorAll('.pillen').forEach(g => g.addEventListener('click', e => {
+    const b = e.target.closest('.pille'); if (!b) return;
+    g.querySelectorAll('.pille').forEach(p => p.classList.remove('aktiv'));
+    b.classList.add('aktiv');
+    wahl[g.dataset.gruppe] = b.dataset.wert;
+    checkErgebnis();
+  }));
+  function checkErgebnis() {
+    if (!wahl.kanton || !wahl.objekt || !wahl.preis) return;
+    let text;
+    if (wahl.preis === 'über CHF 2 Mio.')
+      text = 'Für den Direkterwerb liegt das über unserem Profil — aber es ist ein starker Fall für ein Vermittlungsmandat: Wir bringen Ihre Liegenschaft diskret zu geprüften Käufern.';
+    else if (wahl.kanton === 'anderer Kanton')
+      text = 'Ausserhalb unseres Ankaufs-Kernraums Luzern, Aargau und St. Gallen — für Verkauf und Vermittlung sind wir jedoch schweizweit tätig. Sprechen wir darüber.';
+    else if (wahl.objekt === 'Gewerbe')
+      text = 'Reine Gewerbeobjekte prüfen wir im Einzelfall — an zentralen 1A-Lagen sind wir sehr interessiert. Senden Sie uns die Eckdaten.';
+    else
+      text = 'Ihre Liegenschaft passt in unser Ankaufsprofil. Wir prüfen innert weniger Tage und unterbreiten Ihnen eine verbindliche Einschätzung — ohne Ausschreibung, ohne Bieterverfahren.';
+    document.getElementById('checkText').textContent = text;
+    const msg = `Guten Tag%0A%0AObjekt: ${encodeURIComponent(wahl.objekt)}%0AKanton: ${encodeURIComponent(wahl.kanton)}%0APreisvorstellung: ${encodeURIComponent(wahl.preis)}%0A%0AIch wünsche eine Einschätzung von Kuroiwa.`;
+    document.getElementById('checkWa').href = 'https://wa.me/41792522570?text=' + msg;
+    document.getElementById('checkMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent('Liegenschaft anbieten — Ankaufs-Check') + '&body=' + msg;
+    document.getElementById('checkErgebnis').hidden = false;
+  }
 </script>
 </body>
 </html>
