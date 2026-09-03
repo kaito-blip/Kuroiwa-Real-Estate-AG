@@ -36,8 +36,42 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   footer a { color: inherit; }
 </style>
+<style>
+  .tor { position: fixed; inset: 0; background: #060606; z-index: 30000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+  .tor img { height: 26px; width: auto; }
+  .tor-text { color: rgba(246,245,242,.5); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+  .tor input { background: none; border: none; border-bottom: 1px solid rgba(246,245,242,.35); color: #f6f5f2; font-size: 34px; letter-spacing: .5em; text-indent: .25em; text-align: center; width: 170px; outline: none; padding-bottom: 10px; transition: border-color .2s; }
+  .tor input:focus { border-color: #c0271f; }
+  .tor-fehler { color: #c0271f; font-size: 13px; font-family: 'Inter', sans-serif; }
+</style>
 </head>
 <body>
+<div class="tor" id="tor">
+  <img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa">
+  <div class="tor-text">Geschützter Bereich · Zugangscode</div>
+  <input id="torCode" type="password" inputmode="numeric" maxlength="4" placeholder="&middot;&middot;&middot;&middot;" autocomplete="off" aria-label="Zugangscode">
+  <div class="tor-fehler" id="torFehler" hidden>Falscher Code — bitte erneut versuchen.</div>
+</div>
+<script>
+(function () {
+  const tor = document.getElementById('tor');
+  if (sessionStorage.getItem('kuroiwa-zugang') === '1') { tor.remove(); return; }
+  document.documentElement.style.overflow = 'hidden';
+  const feld = document.getElementById('torCode');
+  setTimeout(() => feld.focus(), 100);
+  feld.addEventListener('input', () => {
+    if (feld.value.length < 4) return;
+    if (feld.value === '0000') {
+      sessionStorage.setItem('kuroiwa-zugang', '1');
+      tor.remove();
+      document.documentElement.style.overflow = '';
+    } else {
+      document.getElementById('torFehler').hidden = false;
+      feld.value = '';
+    }
+  });
+})();
+</script>
 
 <header class="kopf">
   <div class="wrap">
