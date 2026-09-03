@@ -336,6 +336,29 @@
   .feld-hilfe b { color: rgba(246,245,242,.65); font-weight: 600; }
   .kanton-wahl { margin-top: 12px; background: none; border: none; border-bottom: 1px solid rgba(246,245,242,.3); color: var(--paper); font-family: var(--sans); font-size: 14px; padding: 6px 2px 8px; outline: none; max-width: 260px; width: 100%; cursor: pointer; }
   .kanton-wahl option { background: var(--ink2); color: var(--paper); }
+  .tab-leiste { display: flex; gap: 38px; margin-top: 46px; border-bottom: 1px solid rgba(246,245,242,.12); flex-wrap: wrap; }
+  .tab { background: none; border: none; color: rgba(246,245,242,.5); font-family: var(--sans); font-size: 14px; letter-spacing: .04em; padding: 0 2px 16px; cursor: pointer; position: relative; transition: color .25s; }
+  .tab:hover { color: #fff; }
+  .tab.aktiv { color: #fff; }
+  .tab.aktiv::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--rot); }
+  .tab-panel { margin-top: 44px; }
+  .tab-panel .check { margin-top: 0; padding: 0; background: none; }
+  .tab-panel .check h3 { margin-top: 8px; }
+
+  /* ---------- Markt-Instinkt-Quiz ---------- */
+  .quiz-karte { background: var(--ink); color: var(--paper); padding: 54px 58px; margin-top: 48px; }
+  .quiz-frage { font-family: var(--serif); font-weight: 400; font-size: clamp(21px, 2.3vw, 29px); line-height: 1.3; max-width: 720px; margin: 10px 0 34px; }
+  .quiz-wert { font-family: var(--serif); font-size: 40px; margin-top: 20px; font-variant-numeric: tabular-nums; }
+  .quiz-wert span { font-size: 18px; color: rgba(246,245,242,.5); margin-left: 6px; }
+  .quiz-aufloesung { margin-top: 26px; padding-top: 24px; border-top: 1px solid rgba(246,245,242,.12); }
+  .quiz-punkte { font-family: var(--serif); font-size: 21px; }
+  .quiz-punkte b { color: var(--rot); font-weight: 400; }
+  .quiz-quelle { color: rgba(246,245,242,.5); font-size: 13.5px; margin-top: 8px; }
+  .quiz-schluss-titel { font-family: var(--serif); font-size: clamp(28px, 3vw, 42px); line-height: 1.15; }
+  .quiz-schluss-titel b { color: var(--rot); font-weight: 400; }
+  .quiz-karte .ertrag-regler { max-width: 460px; }
+  @media (max-width: 860px) { .quiz-karte { padding: 34px 26px; } }
+
   .miet-block { margin-top: 90px; padding-top: 64px; border-top: 1px solid rgba(246,245,242,.1); }
   .miet-titel { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); margin: 14px 0 12px; }
   .wert-ergebnis { border-left: 1px solid rgba(246,245,242,.15); padding-left: 52px; display: flex; flex-direction: column; justify-content: center; }
@@ -589,7 +612,7 @@
           <div class="kanton">St. Gallen</div>
         </div>
         <p style="color:#504e49;margin-top:18px">Sie besitzen eine Liegenschaft in diesen Regionen und denken über einen Verkauf nach? Melden Sie sich direkt — wir prüfen innert weniger Tage und unterbreiten Ihnen eine verbindliche Einschätzung.</p>
-        <a class="cta" style="border-color:var(--ink);color:var(--ink);margin-top:16px" href="#kontakt">Liegenschaft anbieten</a>
+        <a class="cta" style="border-color:var(--ink);color:var(--ink);margin-top:16px" href="#wert">Liegenschaft anbieten</a>
       </div>
       <div class="profil">
         <h3>Ankaufsprofil</h3>
@@ -603,55 +626,23 @@
         </ul>
       </div>
     </div>
-
-    <div class="check enter" id="check">
-      <div class="label hell">Ankaufs-Check</div>
-      <h3>Passt Ihre Liegenschaft? <span class="rot">Antwort in 20 Sekunden.</span></h3>
-      <div class="check-felder">
-        <div>
-          <div class="feld-name">Kanton</div>
-          <div class="pillen" data-gruppe="kanton">
-            <button class="pille" data-wert="Luzern">Luzern</button>
-            <button class="pille" data-wert="Aargau">Aargau</button>
-            <button class="pille" data-wert="St. Gallen">St. Gallen</button>
-            <button class="pille" data-wert="anderer Kanton">Anderer</button>
-          </div>
-        </div>
-        <div>
-          <div class="feld-name">Objekt</div>
-          <div class="pillen" data-gruppe="objekt">
-            <button class="pille" data-wert="Wohnung / Studio">Wohnung / Studio</button>
-            <button class="pille" data-wert="Mehrfamilienhaus">Mehrfamilienhaus</button>
-            <button class="pille" data-wert="Wohn- und Geschäftshaus">Wohn- &amp; Geschäftshaus</button>
-            <button class="pille" data-wert="Gewerbe">Gewerbe</button>
-          </div>
-        </div>
-        <div>
-          <div class="feld-name">Preisvorstellung</div>
-          <div class="pillen" data-gruppe="preis">
-            <button class="pille" data-wert="bis CHF 1 Mio.">bis 1 Mio.</button>
-            <button class="pille" data-wert="CHF 1–2 Mio.">1–2 Mio.</button>
-            <button class="pille" data-wert="über CHF 2 Mio.">über 2 Mio.</button>
-          </div>
-        </div>
-      </div>
-      <div class="check-ergebnis" id="checkErgebnis" hidden>
-        <p id="checkText"></p>
-        <div class="check-ctas">
-          <a class="cta voll" id="checkWa" href="#" rel="noopener" target="_blank">Eckdaten per WhatsApp senden&ensp;&rarr;</a>
-          <a class="cta" id="checkMail" style="border-color:rgba(246,245,242,.4);color:var(--paper)" href="#">Per E-Mail</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 <section class="dunkel" id="wert">
   <div class="wrap enter">
-    <div class="label hell">Wert-Indikation</div>
-    <h2>Was ist Ihre Liegenschaft <span class="rot">wert?</span></h2>
-    <p style="max-width:620px;color:rgba(246,245,242,.55);font-weight:300">Drei Angaben genügen für eine erste, ertragsbasierte Indikation — sofort, anonym und unverbindlich. Verbindlich wird sie im Gespräch.</p>
+    <div class="label hell">Service</div>
+    <h2>Ihre Liegenschaft <span class="rot">in Zahlen.</span></h2>
+    <p style="max-width:620px;color:rgba(246,245,242,.55);font-weight:300">Drei Werkzeuge, eine Antwort in Sekunden — sofort, anonym und unverbindlich. Verbindlich wird es im Gespräch.</p>
 
+    <div class="tab-leiste" role="tablist">
+      <button class="tab aktiv" data-tab="wert" role="tab">Wert-Indikation</button>
+      <button class="tab" data-tab="miete" role="tab">Miet-Indikation</button>
+      <button class="tab" data-tab="check" role="tab">Ankaufs-Check</button>
+    </div>
+
+    <div class="tab-panel" id="panel-wert">
+    <p style="max-width:560px;color:rgba(246,245,242,.5);font-weight:300;font-size:14.5px;margin-bottom:34px">Was ist Ihre Liegenschaft wert? Ertragsbasierte Indikation aus drei Angaben.</p>
     <div class="wert-grid">
       <div>
         <div class="wert-feld">
@@ -712,10 +703,10 @@
       </div>
     </div>
 
-    <div class="miet-block">
-      <div class="label hell">Miet-Indikation</div>
-      <h3 class="miet-titel">Was ist Ihre Gewerbefläche <span class="rot">wert?</span></h3>
-      <p style="max-width:620px;color:rgba(246,245,242,.55);font-weight:300;font-size:15px">Marktübliche m²-Preise für Ihre Fläche — und auf Wunsch ein konkreter Mietvorschlag für Ihre Mieterschaft oder Nachvermietung.</p>
+    </div>
+
+    <div class="tab-panel" id="panel-miete" hidden>
+      <p style="max-width:560px;color:rgba(246,245,242,.5);font-weight:300;font-size:14.5px;margin-bottom:34px">Was ist Ihre Gewerbefläche wert? Marktübliche m²-Preise — auf Wunsch mit konkretem Mietvorschlag für Ihre Mieterschaft oder Nachvermietung.</p>
       <div class="wert-grid">
         <div>
           <div class="wert-feld">
@@ -728,11 +719,32 @@
             </div>
           </div>
           <div class="wert-feld">
+            <div class="feld-name">Kanton</div>
+            <select id="mietKanton" class="kanton-wahl" style="margin-top:2px" aria-label="Kanton der Gewerbefläche">
+              <option value="">Kanton wählen …</option>
+              <option>Zürich</option><option>Bern</option><option>Luzern</option><option>Zug</option>
+              <option>Schwyz</option><option>Aargau</option><option>St. Gallen</option><option>Solothurn</option>
+              <option>Basel-Stadt</option><option>Basel-Landschaft</option><option>Thurgau</option>
+              <option>Graubünden</option><option>Tessin</option><option>Waadt</option><option>Wallis</option>
+              <option>Freiburg</option><option>Genf</option><option>Neuenburg</option><option>Jura</option>
+              <option>Schaffhausen</option><option>Glarus</option><option>Uri</option><option>Obwalden</option>
+              <option>Nidwalden</option><option>Appenzell Ausserrhoden</option><option>Appenzell Innerrhoden</option>
+            </select>
+          </div>
+          <div class="wert-feld">
             <div class="feld-name">Lage</div>
             <div class="pillen" data-gruppe="glage">
               <button class="pille" data-wert="1A-Lage">1A — Bahnhof / Fussgängerzone</button>
               <button class="pille" data-wert="1B-Lage">1B — Zentrumsnah</button>
               <button class="pille" data-wert="Quartier / Agglomeration">Quartier / Agglo</button>
+            </div>
+          </div>
+          <div class="wert-feld">
+            <div class="feld-name">Stockwerk</div>
+            <div class="pillen" data-gruppe="gstock">
+              <button class="pille" data-wert="Erdgeschoss">Erdgeschoss</button>
+              <button class="pille" data-wert="Obergeschoss">Obergeschoss</button>
+              <button class="pille" data-wert="Untergeschoss">Untergeschoss</button>
             </div>
           </div>
           <div class="wert-feld">
@@ -755,6 +767,48 @@
           <div class="wert-hinweis">Netto-Mietpreis-Bandbreiten (ohne Nebenkosten) nach Nutzung und Lagequalität, schweizweite Praxiswerte. Der konkrete Vorschlag berücksichtigt Standort, Frequenz und Ausbau.</div>
         </div>
       </div>
+    </div>
+
+    <div class="tab-panel" id="panel-check" hidden>
+    <div class="check enter" id="check">
+      <div class="label hell">Ankaufs-Check</div>
+      <h3>Passt Ihre Liegenschaft? <span class="rot">Antwort in 20 Sekunden.</span></h3>
+      <div class="check-felder">
+        <div>
+          <div class="feld-name">Kanton</div>
+          <div class="pillen" data-gruppe="kanton">
+            <button class="pille" data-wert="Luzern">Luzern</button>
+            <button class="pille" data-wert="Aargau">Aargau</button>
+            <button class="pille" data-wert="St. Gallen">St. Gallen</button>
+            <button class="pille" data-wert="anderer Kanton">Anderer</button>
+          </div>
+        </div>
+        <div>
+          <div class="feld-name">Objekt</div>
+          <div class="pillen" data-gruppe="objekt">
+            <button class="pille" data-wert="Wohnung / Studio">Wohnung / Studio</button>
+            <button class="pille" data-wert="Mehrfamilienhaus">Mehrfamilienhaus</button>
+            <button class="pille" data-wert="Wohn- und Geschäftshaus">Wohn- &amp; Geschäftshaus</button>
+            <button class="pille" data-wert="Gewerbe">Gewerbe</button>
+          </div>
+        </div>
+        <div>
+          <div class="feld-name">Preisvorstellung</div>
+          <div class="pillen" data-gruppe="preis">
+            <button class="pille" data-wert="bis CHF 1 Mio.">bis 1 Mio.</button>
+            <button class="pille" data-wert="CHF 1–2 Mio.">1–2 Mio.</button>
+            <button class="pille" data-wert="über CHF 2 Mio.">über 2 Mio.</button>
+          </div>
+        </div>
+      </div>
+      <div class="check-ergebnis" id="checkErgebnis" hidden>
+        <p id="checkText"></p>
+        <div class="check-ctas">
+          <a class="cta voll" id="checkWa" href="#" rel="noopener" target="_blank">Eckdaten per WhatsApp senden&ensp;&rarr;</a>
+          <a class="cta" id="checkMail" style="border-color:rgba(246,245,242,.4);color:var(--paper)" href="#">Per E-Mail</a>
+        </div>
+      </div>
+    </div>
     </div>
 
     <div class="karte-block">
@@ -813,6 +867,38 @@
           <div>Eigene Investments — wir verstehen beide Seiten des Tisches</div>
         </div>
         <p>Kurze Wege, klare Aussagen, verbindliche Abwicklung: Sie sprechen direkt mit dem Inhaber — vom ersten Gespräch bis zur Beurkundung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hell-sektion" id="instinkt">
+  <div class="wrap enter">
+    <div class="label">Markt-Instinkt</div>
+    <h2>Wie gut kennen Sie den <span class="rot">Markt?</span></h2>
+    <p style="max-width:620px;color:#504e49">Fünf Schätzfragen, fünfzehn Sekunden pro Antwort. Am Ende wissen Sie, ob Ihr Instinkt reicht — oder ob Sie besser mit uns telefonieren.</p>
+    <div class="quiz-karte" id="quiz">
+      <div id="quizLauf">
+        <div class="feld-name"><span id="quizNr">Frage 1 / 5</span></div>
+        <div class="quiz-frage" id="quizFrage"></div>
+        <input class="ertrag-regler" id="quizRegler" type="range" aria-label="Schätzung einstellen">
+        <div class="quiz-wert"><span id="quizWert">–</span><span id="quizEinheit"></span></div>
+        <div class="quiz-aufloesung" id="quizAufloesung" hidden>
+          <div class="quiz-punkte" id="quizPunkte"></div>
+          <div class="quiz-quelle" id="quizQuelle"></div>
+        </div>
+        <div class="check-ctas" style="margin-top:30px">
+          <button class="cta voll" id="quizKnopf" style="cursor:pointer;font-family:var(--sans)">Antwort prüfen</button>
+        </div>
+      </div>
+      <div id="quizSchluss" hidden>
+        <div class="feld-name">Ihr Ergebnis</div>
+        <div class="quiz-schluss-titel" id="quizTitel"></div>
+        <p style="color:rgba(246,245,242,.6);max-width:520px;margin-top:16px" id="quizFazit"></p>
+        <div class="check-ctas" style="margin-top:30px">
+          <a class="cta voll" href="#kontakt">Mit dem Profi sprechen</a>
+          <button class="cta" id="quizNochmal" style="cursor:pointer;border-color:rgba(246,245,242,.4);color:var(--paper);font-family:var(--sans)">Nochmals versuchen</button>
+        </div>
       </div>
     </div>
   </div>
@@ -985,7 +1071,7 @@
     if (!e.isIntersecting) return;
     links.forEach(l => l.classList.toggle('aktiv', l.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-40% 0px -55% 0px' });
-  ['leistungen','track','partner','investitionen','wert','perspektiven','ueber','kontakt']
+  ['leistungen','track','partner','investitionen','wert','perspektiven','instinkt','ueber','kontakt']
     .forEach(id => { const el = document.getElementById(id); if (el) spyIo.observe(el); });
 
   // Eigener Cursor (nur mit Maus, nicht auf Touch)
@@ -1172,35 +1258,115 @@
     'Gastronomie':       { '1A-Lage': [350, 700], '1B-Lage': [220, 400], 'Quartier / Agglomeration': [150, 280] },
     'Lager / Fachmarkt': { '1A-Lage': [130, 220], '1B-Lage': [100, 170], 'Quartier / Agglomeration': [70, 130] }
   };
+  const STOCK_FAKTOR = {
+    'Retail':            { 'Erdgeschoss': 1, 'Obergeschoss': .55, 'Untergeschoss': .45 },
+    'Gastronomie':       { 'Erdgeschoss': 1, 'Obergeschoss': .6, 'Untergeschoss': .5 },
+    'Büro':              { 'Erdgeschoss': 1.05, 'Obergeschoss': 1, 'Untergeschoss': .6 },
+    'Lager / Fachmarkt': { 'Erdgeschoss': 1, 'Obergeschoss': .8, 'Untergeschoss': .7 }
+  };
+  const KANTON_FAKTOR = {
+    'Zürich': 1.35, 'Genf': 1.35, 'Zug': 1.25, 'Basel-Stadt': 1.15, 'Waadt': 1.15, 'Schwyz': 1.1,
+    'Luzern': 1.05, 'Bern': 1, 'Basel-Landschaft': 1, 'St. Gallen': .95, 'Aargau': .95,
+    'Graubünden': .95, 'Tessin': .95, 'Nidwalden': .9, 'Freiburg': .9, 'Thurgau': .85,
+    'Solothurn': .85, 'Wallis': .85, 'Neuenburg': .85, 'Schaffhausen': .85, 'Obwalden': .85,
+    'Glarus': .8, 'Uri': .8, 'Appenzell Ausserrhoden': .8, 'Appenzell Innerrhoden': .8, 'Jura': .75
+  };
+  const mietKanton = document.getElementById('mietKanton');
   const mietFlaeche = document.getElementById('mietFlaeche');
   const mietSlider = document.getElementById('mietSlider');
   function rechneMiete() {
-    const nutzung = wahl.gnutzung, lage = wahl.glage;
+    const nutzung = wahl.gnutzung, lage = wahl.glage, stock = wahl.gstock, kanton = mietKanton.value;
     const flaeche = parseFloat(mietFlaeche.value);
-    const bereit = nutzung && lage && flaeche > 0;
+    const bereit = nutzung && lage && stock && kanton && flaeche > 0;
     document.getElementById('mietWarten').hidden = bereit;
     document.getElementById('mietResultat').hidden = !bereit;
     if (!bereit) return;
-    const [mMin, mMax] = MIETEN[nutzung][lage];
+    const faktor = STOCK_FAKTOR[nutzung][stock] * (KANTON_FAKTOR[kanton] || 1);
+    const runde5 = v => Math.round(v / 5) * 5;
+    const [mMin, mMax] = MIETEN[nutzung][lage].map(v => runde5(v * faktor));
     const jahrMin = mMin * flaeche, jahrMax = mMax * flaeche;
     document.getElementById('mietZahl').innerHTML = `CHF ${mMin} – <b>${mMax} /m²·Jahr</b>`;
     document.getElementById('mietSub').textContent =
-      `Bei ${chf(flaeche)} m² (${nutzung}, ${lage}): CHF ${chf(jahrMin)} – ${chf(jahrMax)} pro Jahr, entsprechend CHF ${chf(jahrMin / 12)} – ${chf(jahrMax / 12)} pro Monat netto.`;
-    const msg = `Miet-Indikation von kuroiwa.ch:%0A%0ANutzung: ${encodeURIComponent(nutzung)}%0ALage: ${encodeURIComponent(lage)}%0AFläche: ${encodeURIComponent(chf(flaeche))} m²%0AIndikation: CHF ${mMin}–${mMax}/m²/Jahr (CHF ${encodeURIComponent(chf(jahrMin))}–${encodeURIComponent(chf(jahrMax))}/Jahr)%0A%0AIch wünsche einen konkreten Mietvorschlag.`;
+      `Bei ${chf(flaeche)} m² (${nutzung}, ${lage}, ${stock}, Kanton ${kanton}): CHF ${chf(jahrMin)} – ${chf(jahrMax)} pro Jahr, entsprechend CHF ${chf(jahrMin / 12)} – ${chf(jahrMax / 12)} pro Monat netto.`;
+    const msg = `Miet-Indikation von kuroiwa.ch:%0A%0ANutzung: ${encodeURIComponent(nutzung)}%0AKanton: ${encodeURIComponent(kanton)}%0ALage: ${encodeURIComponent(lage)}%0AStockwerk: ${encodeURIComponent(stock)}%0AFläche: ${encodeURIComponent(chf(flaeche))} m²%0AIndikation: CHF ${mMin}–${mMax}/m²/Jahr (CHF ${encodeURIComponent(chf(jahrMin))}–${encodeURIComponent(chf(jahrMax))}/Jahr)%0A%0AIch wünsche einen konkreten Mietvorschlag.`;
     document.getElementById('mietWa').href = 'https://wa.me/41792522570?text=' + msg;
     document.getElementById('mietMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent('Mietvorschlag — Gewerbefläche') + '&body=' + msg;
   }
-  ['gnutzung', 'glage'].forEach(g => {
+  ['gnutzung', 'glage', 'gstock'].forEach(g => {
     document.querySelector(`.pillen[data-gruppe="${g}"]`).addEventListener('click', () => setTimeout(rechneMiete));
   });
+  mietKanton.addEventListener('change', rechneMiete);
   mietSlider.addEventListener('input', () => { mietFlaeche.value = mietSlider.value; rechneMiete(); });
   mietFlaeche.addEventListener('input', () => {
     mietSlider.value = Math.min(2000, Math.max(0, parseFloat(mietFlaeche.value) || 0));
     rechneMiete();
   });
 
+  // Service-Tabs: nur ein Werkzeug sichtbar
+  document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('aktiv', x === t));
+    document.querySelectorAll('.tab-panel').forEach(p => { p.hidden = p.id !== 'panel-' + t.dataset.tab; });
+  }));
+
+  // Markt-Instinkt-Quiz
+  const QUIZ = [
+    { f: 'Was kostet ein m² Retail-Fläche an einer Schweizer 1A-Lage pro Jahr (netto, im Mittel)?', einheit: 'CHF', min: 0, max: 2000, step: 10, start: 500, antwort: 650, quelle: 'Marktübliche Bandbreite: CHF 400–900 pro m² und Jahr — Toplagen in Zürich oder Genf liegen deutlich darüber.' },
+    { f: 'Wie viel Prozent der Schweizer Haushalte wohnen zur Miete?', einheit: '%', min: 0, max: 100, step: 1, start: 40, antwort: 58, quelle: 'Rund 58 Prozent — die höchste Mieterquote Europas. Genau darum sind Renditeliegenschaften hier so gefragt.' },
+    { f: 'Wie hoch ist die Leerwohnungsziffer der Schweiz ungefähr?', einheit: '%', min: 0, max: 5, step: 0.1, start: 2.5, antwort: 1, quelle: 'Rund 1 Prozent und sinkend — in den Zentren praktisch Vollvermietung.' },
+    { f: 'Welche Bruttorendite ist für ein gepflegtes Mehrfamilienhaus in der Region Luzern realistisch?', einheit: '%', min: 0, max: 10, step: 0.1, start: 5, antwort: 4, quelle: 'Unsere Praxis: 3.6–4.4 Prozent, je nach Mikrolage und Zustand.' },
+    { f: 'Um wie viel Prozent liegt ein Ladenlokal im Obergeschoss typischerweise unter der Erdgeschoss-Miete?', einheit: '%', min: 0, max: 100, step: 5, start: 20, antwort: 45, quelle: 'Rund 40–50 Prozent — Frequenz ist im Retail fast alles.' }
+  ];
+  let quizIndex = 0, quizPunkteTotal = 0, quizGeprueft = false;
+  const quizRegler = document.getElementById('quizRegler');
+  const quizWert = document.getElementById('quizWert');
+  function quizZeige() {
+    const q = QUIZ[quizIndex];
+    document.getElementById('quizNr').textContent = `Frage ${quizIndex + 1} / ${QUIZ.length}`;
+    document.getElementById('quizFrage').textContent = q.f;
+    document.getElementById('quizEinheit').textContent = q.einheit === '%' ? '%' : ' ' + q.einheit;
+    quizRegler.min = q.min; quizRegler.max = q.max; quizRegler.step = q.step; quizRegler.value = q.start;
+    quizWert.textContent = q.start;
+    document.getElementById('quizAufloesung').hidden = true;
+    document.getElementById('quizKnopf').textContent = 'Antwort prüfen';
+    quizGeprueft = false;
+  }
+  quizRegler.addEventListener('input', () => { quizWert.textContent = quizRegler.value; });
+  document.getElementById('quizKnopf').addEventListener('click', () => {
+    const q = QUIZ[quizIndex];
+    if (!quizGeprueft) {
+      const fehler = Math.abs(parseFloat(quizRegler.value) - q.antwort) / (q.max - q.min);
+      const punkte = Math.max(0, Math.round(20 * (1 - fehler * 2.5)));
+      quizPunkteTotal += punkte;
+      document.getElementById('quizPunkte').innerHTML = `Richtig wäre: <b>${q.antwort}${q.einheit === '%' ? '%' : ' ' + q.einheit}</b> — Sie erhalten <b>${punkte} / 20</b> Punkten.`;
+      document.getElementById('quizQuelle').textContent = q.quelle;
+      document.getElementById('quizAufloesung').hidden = false;
+      document.getElementById('quizKnopf').textContent = quizIndex < QUIZ.length - 1 ? 'Nächste Frage' : 'Ergebnis anzeigen';
+      quizGeprueft = true;
+      return;
+    }
+    quizIndex++;
+    if (quizIndex < QUIZ.length) { quizZeige(); return; }
+    document.getElementById('quizLauf').hidden = true;
+    document.getElementById('quizSchluss').hidden = false;
+    const p = quizPunkteTotal;
+    const titel = p >= 75 ? `${p} / 100 — <b>Insider.</b>` : p >= 45 ? `${p} / 100 — <b>Marktkenner.</b>` : `${p} / 100 — <b>Beobachter.</b>`;
+    const fazit = p >= 75 ? 'Sie denken wie wir. Umso mehr lohnt sich ein Gespräch unter Kennern — über das, was der Markt nicht sieht.'
+                : p >= 45 ? 'Solides Gespür. Den Rest — Mikrolage, Frequenz, Off-Market-Preise — liefern wir im Gespräch.'
+                : 'Der Markt ist ein Insider-Geschäft. Gut, kennen Sie jetzt jemanden, der drin ist.';
+    document.getElementById('quizTitel').innerHTML = titel;
+    document.getElementById('quizFazit').textContent = fazit;
+  });
+  document.getElementById('quizNochmal').addEventListener('click', () => {
+    quizIndex = 0; quizPunkteTotal = 0;
+    document.getElementById('quizSchluss').hidden = true;
+    document.getElementById('quizLauf').hidden = false;
+    quizZeige();
+  });
+  quizZeige();
+
   // Ankaufs-Karte: Klick auf Region wählt sie im Rechner
   document.querySelectorAll('.marker').forEach(m => m.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="wert"]').click();
     const pille = document.querySelector(`.pillen[data-gruppe="wregion"] .pille[data-wert="${m.dataset.region}"]`);
     if (pille) pille.click();
     document.getElementById('wert').scrollIntoView({ behavior: 'smooth' });
