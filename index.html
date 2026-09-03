@@ -319,6 +319,36 @@
   }
   .gross, .zaehler { font-variant-numeric: tabular-nums; }
 
+  /* ---------- Wert-Indikation ---------- */
+  .wert-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; margin-top: 46px; }
+  .wert-feld { margin-bottom: 28px; }
+  .ertrag-eingabe { display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid rgba(246,245,242,.3); padding: 4px 0 8px; max-width: 340px; }
+  .ertrag-eingabe span { color: rgba(246,245,242,.5); font-size: 14px; white-space: nowrap; }
+  .ertrag-eingabe input { background: none; border: none; outline: none; color: var(--paper); font-family: var(--serif); font-size: 30px; width: 100%; font-variant-numeric: tabular-nums; }
+  .ertrag-eingabe input::-webkit-outer-spin-button, .ertrag-eingabe input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .ertrag-eingabe input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+  .wert-ergebnis { border-left: 1px solid rgba(246,245,242,.15); padding-left: 52px; display: flex; flex-direction: column; justify-content: center; }
+  .wert-warten { color: rgba(246,245,242,.4); font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; max-width: 300px; }
+  .wert-zahl { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.4vw, 50px); line-height: 1.1; }
+  .wert-zahl b { color: var(--rot); font-weight: 400; }
+  .wert-sub { color: rgba(246,245,242,.55); font-size: 14px; margin-top: 14px; max-width: 380px; }
+  .wert-hinweis { color: rgba(246,245,242,.35); font-size: 12px; margin-top: 26px; max-width: 400px; line-height: 1.6; }
+  @media (max-width: 900px) { .wert-grid { grid-template-columns: 1fr; gap: 40px; } .wert-ergebnis { border-left: none; padding-left: 0; } }
+
+  /* ---------- Ankaufs-Karte ---------- */
+  .karte-block { margin-top: 84px; }
+  .karte-block svg { width: 100%; height: auto; display: block; margin-top: 34px; }
+  .ch-umriss { fill: rgba(246,245,242,.03); stroke: rgba(246,245,242,.28); stroke-width: 1.6; }
+  .marker { cursor: pointer; }
+  .marker circle.kern { fill: var(--rot); transition: fill .2s; }
+  .marker text { fill: rgba(246,245,242,.85); font-family: var(--sans); font-size: 27px; letter-spacing: .04em; transition: fill .2s; }
+  .marker:hover text { fill: #fff; }
+  .marker:hover circle.kern { fill: #e04a41; }
+  .marker .puls { fill: none; stroke: var(--rot); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: puls 2.8s ease-out infinite; }
+  @keyframes puls { 0% { transform: scale(.5); opacity: .7; } 70%, 100% { transform: scale(2.1); opacity: 0; } }
+  .hq circle { fill: none; stroke: rgba(246,245,242,.7); stroke-width: 2.5; }
+  .hq text { fill: rgba(246,245,242,.5); font-family: var(--sans); font-size: 22px; letter-spacing: .08em; }
+
   /* ---------- Preloader ---------- */
   .lade { position: fixed; inset: 0; background: #060606; z-index: 10000; display: flex; align-items: center; justify-content: center; transition: transform .85s cubic-bezier(.77,0,.18,1); }
   .lade.weg { transform: translateY(-100%); }
@@ -391,6 +421,7 @@
       <a href="#track">Track Record</a>
       <a href="#partner">Partner</a>
       <a href="#investitionen">Investitionen</a>
+      <a href="#wert">Wert-Check</a>
       <a href="#perspektiven">Perspektiven</a>
       <a href="#ueber">Über</a>
       <a class="cta-mini" href="#kontakt">Kontakt</a>
@@ -604,6 +635,71 @@
   </div>
 </section>
 
+<section class="dunkel" id="wert">
+  <div class="wrap enter">
+    <div class="label hell">Wert-Indikation</div>
+    <h2>Was ist Ihre Liegenschaft <span class="rot">wert?</span></h2>
+    <p style="max-width:620px;color:rgba(246,245,242,.55);font-weight:300">Drei Angaben genügen für eine erste, ertragsbasierte Indikation — sofort, anonym und unverbindlich. Verbindlich wird sie im Gespräch.</p>
+
+    <div class="wert-grid">
+      <div>
+        <div class="wert-feld">
+          <div class="feld-name">Region</div>
+          <div class="pillen" data-gruppe="wregion">
+            <button class="pille" data-wert="Luzern">Luzern</button>
+            <button class="pille" data-wert="Aargau">Aargau</button>
+            <button class="pille" data-wert="St. Gallen">St. Gallen</button>
+            <button class="pille" data-wert="Übrige Schweiz">Übrige Schweiz</button>
+          </div>
+        </div>
+        <div class="wert-feld">
+          <div class="feld-name">Nutzung</div>
+          <div class="pillen" data-gruppe="wnutzung">
+            <button class="pille" data-wert="Wohnen">Wohnen</button>
+            <button class="pille" data-wert="Wohnen und Gewerbe">Wohnen &amp; Gewerbe</button>
+            <button class="pille" data-wert="Gewerbe">Gewerbe</button>
+          </div>
+        </div>
+        <div class="wert-feld">
+          <div class="feld-name">Zustand</div>
+          <div class="pillen" data-gruppe="wzustand">
+            <button class="pille" data-wert="saniert">Saniert / neuwertig</button>
+            <button class="pille" data-wert="gepflegt">Gepflegt</button>
+            <button class="pille" data-wert="sanierungsbedarf">Sanierungsbedarf</button>
+          </div>
+        </div>
+        <div class="wert-feld">
+          <div class="feld-name">Netto-Mietertrag pro Jahr</div>
+          <div class="ertrag-eingabe"><span>CHF</span><input id="wertErtrag" type="number" inputmode="numeric" min="0" step="1000" placeholder="120&#8217;000" aria-label="Netto-Mietertrag pro Jahr in Franken"></div>
+        </div>
+      </div>
+      <div class="wert-ergebnis">
+        <div class="wert-warten" id="wertWarten">Ihre Indikation erscheint hier, sobald alle Angaben gesetzt sind.</div>
+        <div id="wertResultat" hidden>
+          <div class="wert-zahl" id="wertZahl"></div>
+          <div class="wert-sub" id="wertSub"></div>
+          <div class="check-ctas" style="margin-top:28px">
+            <a class="cta voll" id="wertWa" href="#" rel="noopener" target="_blank">Verbindliche Einschätzung anfragen&ensp;&rarr;</a>
+            <a class="cta" id="wertMail" style="border-color:rgba(246,245,242,.4);color:var(--paper)" href="#">Per E-Mail</a>
+          </div>
+        </div>
+        <div class="wert-hinweis">Ertragsbasierte Indikation auf Basis marktüblicher Bruttorendite-Bandbreiten. Ersetzt keine Bewertung — Lage, Zustand und Potenzial prüfen wir persönlich.</div>
+      </div>
+    </div>
+
+    <div class="karte-block">
+      <div class="feld-name">Ankaufs-Karte — hier kaufen wir aktiv. Klicken Sie Ihre Region an.</div>
+      <svg viewBox="-20 -30 1040 700" role="img" aria-label="Ankaufsregionen der Kuroiwa Real Estate AG in der Schweiz">
+        <path class="ch-umriss" d="M778,244L776,238L786,228L779,203L782,186L808,141L817,138L817,132L814,130L815,115L806,108L803,109L793,98L788,104L777,103L766,95L766,92L757,85L754,75L732,60L692,41L675,39L659,48L649,50L644,47L642,41L639,41L638,36L643,36L642,32L635,30L632,31L627,20L625,23L627,25L621,30L621,32L626,33L628,36L625,42L611,37L612,28L609,28L607,22L614,18L609,14L605,16L601,14L601,8L596,2L594,4L594,14L588,17L587,3L576,0L575,4L578,9L558,12L551,22L551,27L540,35L544,39L541,42L542,45L553,49L553,52L557,53L556,51L568,52L567,47L575,44L578,46L585,43L588,51L586,54L584,54L585,50L582,51L584,61L580,69L574,67L576,62L573,59L565,56L563,61L557,62L552,67L554,71L558,70L560,72L547,76L539,73L536,76L529,76L522,74L517,68L515,63L507,60L501,62L497,59L489,66L475,72L471,79L465,77L455,82L449,80L441,80L437,84L432,81L429,71L412,71L405,80L380,88L370,79L380,76L381,73L379,70L385,65L377,68L373,67L369,73L364,73L364,70L360,69L359,74L355,74L353,78L340,87L341,89L346,88L348,90L346,93L341,93L344,99L339,105L335,105L326,99L324,104L331,107L321,119L316,121L304,118L297,119L285,125L282,119L274,120L268,117L273,101L266,102L259,98L257,100L247,102L235,98L229,101L231,113L224,116L222,120L218,120L217,129L213,130L211,136L205,139L204,145L238,140L245,149L243,153L241,155L236,155L230,164L220,166L219,178L221,182L196,203L196,206L199,206L197,209L173,224L175,231L167,232L162,238L167,240L168,243L164,247L155,251L152,260L123,272L120,270L107,284L114,295L112,309L107,324L113,328L111,334L105,340L99,342L96,347L73,360L36,396L46,407L36,416L32,427L27,431L27,435L29,440L25,447L32,449L48,462L32,491L37,496L35,503L23,503L20,507L17,505L9,511L5,512L3,518L8,521L4,523L0,535L3,539L7,535L17,537L20,535L21,532L39,536L50,528L51,523L61,515L64,515L75,509L78,503L78,500L74,498L70,502L67,501L62,492L65,488L58,481L65,466L84,451L103,448L125,434L159,435L190,445L187,461L180,466L186,477L201,490L199,500L191,507L189,513L189,523L184,531L185,534L189,539L196,538L209,541L206,550L207,558L203,565L206,566L213,559L217,560L217,564L219,563L227,578L232,580L236,588L233,590L235,594L239,594L240,606L245,609L253,625L267,619L269,623L274,625L274,621L279,615L287,615L293,606L300,610L308,610L308,612L314,614L328,603L333,602L333,598L339,594L349,596L350,586L357,586L358,591L376,589L380,595L387,598L388,606L392,606L395,601L399,602L406,608L411,605L420,608L423,606L421,601L424,590L430,582L447,582L449,577L451,577L452,571L456,566L454,556L456,548L472,545L474,539L481,537L483,533L481,531L485,524L481,512L474,505L474,502L467,500L467,496L481,484L486,486L494,483L501,472L505,472L508,469L508,465L519,460L519,454L514,451L518,445L521,445L531,436L537,436L548,432L553,437L553,447L555,454L553,457L555,467L553,468L554,476L546,487L552,498L549,500L553,503L554,507L568,511L573,521L583,531L583,537L586,542L593,542L596,546L607,550L613,541L618,549L624,552L629,550L639,558L638,567L635,567L633,573L629,576L625,584L634,586L644,597L647,597L648,602L655,613L659,625L653,636L663,633L665,635L669,634L671,638L675,640L682,622L688,617L682,608L674,605L673,597L668,593L669,589L675,586L675,582L671,572L674,566L680,562L687,562L689,556L686,544L696,538L705,527L711,527L714,515L719,508L724,507L725,497L732,486L736,471L732,467L732,451L725,443L725,438L730,435L732,423L740,420L751,419L753,420L752,424L757,430L761,432L764,429L764,424L772,419L773,433L771,447L774,458L772,461L781,466L786,479L791,484L804,487L807,489L812,489L820,484L827,488L830,480L828,477L832,469L841,474L857,465L865,464L865,461L870,459L875,463L882,460L885,465L890,468L888,478L891,482L891,490L905,497L904,508L908,511L914,508L923,508L931,500L926,488L918,482L915,475L915,468L920,465L920,460L924,457L928,457L927,449L925,450L923,445L910,447L901,439L903,433L901,429L901,418L903,416L902,407L910,400L909,396L913,395L915,385L921,386L932,380L939,382L945,377L950,386L946,393L948,398L951,396L956,398L958,405L964,404L968,407L970,403L973,403L979,406L984,404L992,409L996,403L999,385L992,377L980,378L976,361L983,353L980,344L989,338L988,333L985,329L986,324L989,324L991,321L994,310L997,306L995,297L1000,280L993,274L985,271L980,262L977,261L974,263L970,263L964,276L962,277L962,285L958,286L946,283L942,294L943,304L935,304L932,308L926,311L926,309L914,312L912,306L903,305L904,301L898,295L888,291L886,287L878,288L865,282L863,272L867,265L867,261L863,259L864,254L861,253L855,257L844,248L835,249L821,242L811,245L805,242L793,245L790,241L778,244Z"/>
+        <g class="marker" data-region="Luzern"><circle class="puls" cx="519" cy="244" r="13"/><circle class="kern" cx="519" cy="244" r="10"/><text x="541" y="252">Luzern</text></g>
+        <g class="marker" data-region="Aargau"><circle class="puls" cx="460" cy="134" r="13"/><circle class="kern" cx="460" cy="134" r="10"/><text x="482" y="142">Aargau</text></g>
+        <g class="marker" data-region="St. Gallen"><circle class="puls" cx="754" cy="123" r="13"/><circle class="kern" cx="754" cy="123" r="10"/><text x="776" y="131">St.&#8201;Gallen</text></g>
+        <g class="hq"><circle cx="564" cy="206" r="7"/><text x="582" y="196">Zug — Hauptsitz</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
 <section class="hell-sektion" id="perspektiven">
   <div class="wrap enter">
     <div class="label">Perspektiven</div>
@@ -686,6 +782,7 @@
         <a href="#leistungen">Leistungen</a>
         <a href="#track">Track Record</a>
         <a href="#investitionen">Investitionen</a>
+        <a href="#wert">Wert-Indikation</a>
         <a href="#perspektiven">Perspektiven</a>
         <a href="#ueber">Über Kaito</a>
       </div>
@@ -818,7 +915,7 @@
     if (!e.isIntersecting) return;
     links.forEach(l => l.classList.toggle('aktiv', l.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-40% 0px -55% 0px' });
-  ['leistungen','track','partner','investitionen','perspektiven','ueber','kontakt']
+  ['leistungen','track','partner','investitionen','wert','perspektiven','ueber','kontakt']
     .forEach(id => { const el = document.getElementById(id); if (el) spyIo.observe(el); });
 
   // Eigener Cursor (nur mit Maus, nicht auf Touch)
@@ -952,6 +1049,47 @@
     try { await navigator.clipboard.writeText(b.dataset.mail); } catch (e) {}
     toast.classList.add('zeig');
     setTimeout(() => toast.classList.remove('zeig'), 2200);
+  }));
+
+  // Wert-Indikation: ertragsbasierte Sofort-Schätzung
+  const RENDITE_REGION = { 'Luzern': [3.6, 4.4], 'Aargau': [4.0, 4.9], 'St. Gallen': [4.1, 5.0], 'Übrige Schweiz': [3.8, 5.2] };
+  const RENDITE_NUTZUNG = { 'Wohnen': 0, 'Wohnen und Gewerbe': .3, 'Gewerbe': 1.2 };
+  const RENDITE_ZUSTAND = { 'saniert': -.3, 'gepflegt': 0, 'sanierungsbedarf': .7 };
+  const ZUSTAND_TEXT = { 'saniert': 'saniert/neuwertig', 'gepflegt': 'gepflegt', 'sanierungsbedarf': 'mit Sanierungsbedarf' };
+  const wertErtrag = document.getElementById('wertErtrag');
+  const chf = n => Math.round(n).toLocaleString('de-CH');
+
+  function rechneWert() {
+    const region = wahl.wregion, nutzung = wahl.wnutzung, zustand = wahl.wzustand;
+    const ertrag = parseFloat(wertErtrag.value);
+    const bereit = region && nutzung && zustand && ertrag > 0;
+    document.getElementById('wertWarten').hidden = bereit;
+    document.getElementById('wertResultat').hidden = !bereit;
+    if (!bereit) return;
+    const zuschlag = RENDITE_NUTZUNG[nutzung] + RENDITE_ZUSTAND[zustand];
+    const [rMin, rMax] = RENDITE_REGION[region].map(r => r + zuschlag);
+    const wertHoch = ertrag / (rMin / 100), wertTief = ertrag / (rMax / 100);
+    const inMio = v => (v / 1e6).toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('wertZahl').innerHTML =
+      wertHoch >= 1e6 ? `CHF ${inMio(wertTief)} – <b>${inMio(wertHoch)} Mio.</b>`
+                      : `CHF ${chf(wertTief)} – <b>${chf(wertHoch)}</b>`;
+    document.getElementById('wertSub').textContent =
+      `Basis: Bruttorendite ${rMin.toFixed(1)} – ${rMax.toFixed(1)} % für ${nutzung}, Region ${region}, ${ZUSTAND_TEXT[zustand]}.`;
+    const msg = `Wert-Indikation von kuroiwa.ch:%0A%0ANutzung: ${encodeURIComponent(nutzung)}%0ARegion: ${encodeURIComponent(region)}%0AZustand: ${encodeURIComponent(ZUSTAND_TEXT[zustand])}%0ANetto-Mietertrag: CHF ${encodeURIComponent(chf(ertrag))}/Jahr%0AIndikation: CHF ${encodeURIComponent(inMio(wertTief))} – ${encodeURIComponent(inMio(wertHoch))} Mio.%0A%0AIch wünsche eine verbindliche Einschätzung.`;
+    document.getElementById('wertWa').href = 'https://wa.me/41792522570?text=' + msg;
+    document.getElementById('wertMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent('Verbindliche Einschätzung — Wert-Indikation') + '&body=' + msg;
+  }
+  ['wregion', 'wnutzung', 'wzustand'].forEach(g => {
+    document.querySelector(`.pillen[data-gruppe="${g}"]`).addEventListener('click', () => setTimeout(rechneWert));
+  });
+  wertErtrag.addEventListener('input', rechneWert);
+
+  // Ankaufs-Karte: Klick auf Region wählt sie im Rechner
+  document.querySelectorAll('.marker').forEach(m => m.addEventListener('click', () => {
+    const pille = document.querySelector(`.pillen[data-gruppe="wregion"] .pille[data-wert="${m.dataset.region}"]`);
+    if (pille) pille.click();
+    document.getElementById('wert').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => wertErtrag.focus({ preventScroll: true }), 600);
   }));
 
   // Ortszeit Zug im Footer
