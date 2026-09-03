@@ -196,13 +196,13 @@
   /* ---------- Track Record ---------- */
   .dunkel { background: var(--ink); color: var(--paper); }
   /* Track Record: horizontale Galerie, vom vertikalen Scroll getrieben */
-  .track-klebt { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 100px 0 54px; }
+  .track-klebt { overflow: hidden; padding: 100px 0 54px; }
   .deals { display: flex; gap: 20px; margin-top: 46px; width: max-content; padding-left: max(28px, calc((100vw - 1180px) / 2)); padding-right: 60px; will-change: transform; }
   .deal { background: var(--ink2); border: 1px solid var(--hair-w); flex: 0 0 420px; padding: 40px 36px 32px; display: flex; flex-direction: column; min-height: 300px; transition: background .35s ease; }
   .track-balken { height: 1px; background: rgba(246,245,242,.14); margin: 54px max(28px, calc((100vw - 1180px) / 2)) 0; }
   .track-balken div { height: 1px; width: 0; background: var(--rot); }
   @media (max-width: 860px) {
-    .track-klebt { position: static; min-height: 0; padding: 90px 0; }
+    .track-klebt { padding: 90px 0; }
     .deals { display: grid; grid-template-columns: 1fr; gap: 1px; width: auto; padding: 0 28px; margin-top: 40px; }
     .deal { flex: none; }
     .track-balken { display: none; }
@@ -730,7 +730,7 @@
     if (r.bottom > 0 && r.top < innerHeight) kanjiWz.style.transform = `translateY(${(innerHeight - r.top) * -.07}px)`;
     fuelleText();
     stapleKarten();
-    fahreSpur(y);
+    fahreSpur();
     fortschritt.style.width = (y / (document.documentElement.scrollHeight - innerHeight) * 100) + '%';
   }, { passive: true });
 
@@ -770,28 +770,27 @@
     }
   }
 
-  // Track Record: vertikaler Scroll fährt die Galerie horizontal
+  // Track Record: Galerie rollt seitlich, während man normal vorbeiscrollt (kein Pinning)
   const trackSektion = document.getElementById('track');
   const dealSpur = document.getElementById('dealSpur');
   const trackBalken = document.getElementById('trackBalken');
-  let spurWeite = 0, letztesY = 0, spurSkew = 0;
+  let spurWeite = 0;
   function messeSpur() {
-    if (innerWidth <= 860) { trackSektion.style.height = ''; dealSpur.style.transform = ''; spurWeite = 0; return; }
+    trackSektion.style.height = '';
+    if (innerWidth <= 860) { dealSpur.style.transform = ''; spurWeite = 0; return; }
     spurWeite = Math.max(0, dealSpur.scrollWidth - innerWidth);
-    trackSektion.style.height = (spurWeite + innerHeight) + 'px';
   }
-  function fahreSpur(y) {
+  function fahreSpur() {
     if (!spurWeite) return;
-    const start = trackSektion.offsetTop;
-    const p = Math.max(0, Math.min(1, (y - start) / spurWeite));
-    const geschw = y - letztesY; letztesY = y;
-    spurSkew += (Math.max(-1.5, Math.min(1.5, geschw * .04)) - spurSkew) * .12;
-    dealSpur.style.transform = `translateX(${-p * spurWeite}px) skewX(${p > 0 && p < 1 ? spurSkew : 0}deg)`;
+    const r = trackSektion.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight - r.top) / (innerHeight + r.height)));
+    dealSpur.style.transform = `translateX(${-p * spurWeite}px)`;
     trackBalken.style.width = (p * 100) + '%';
   }
   messeSpur();
-  addEventListener('resize', () => { messeSpur(); }, { passive: true });
-  addEventListener('load', messeSpur);
+  fahreSpur();
+  addEventListener('resize', () => { messeSpur(); fahreSpur(); }, { passive: true });
+  addEventListener('load', () => { messeSpur(); fahreSpur(); });
   hoch.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
   // Sanftes Erscheinen der Sektionen
