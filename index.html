@@ -327,6 +327,11 @@
   .ertrag-eingabe input { background: none; border: none; outline: none; color: var(--paper); font-family: var(--serif); font-size: 30px; width: 100%; font-variant-numeric: tabular-nums; }
   .ertrag-eingabe input::-webkit-outer-spin-button, .ertrag-eingabe input::-webkit-inner-spin-button { -webkit-appearance: none; }
   .ertrag-eingabe input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+  .ertrag-regler { -webkit-appearance: none; appearance: none; width: 100%; max-width: 340px; height: 2px; background: rgba(246,245,242,.22); outline: none; margin-top: 22px; display: block; cursor: pointer; }
+  .ertrag-regler::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--rot); border: none; transition: transform .15s ease; }
+  .ertrag-regler::-webkit-slider-thumb:hover { transform: scale(1.25); }
+  .ertrag-regler::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--rot); border: none; }
+  .regler-skala { display: flex; justify-content: space-between; max-width: 340px; margin-top: 8px; font-size: 10px; letter-spacing: .06em; color: rgba(246,245,242,.35); font-variant-numeric: tabular-nums; }
   .wert-ergebnis { border-left: 1px solid rgba(246,245,242,.15); padding-left: 52px; display: flex; flex-direction: column; justify-content: center; }
   .wert-warten { color: rgba(246,245,242,.4); font-family: var(--serif); font-size: 20px; font-weight: 300; font-style: italic; max-width: 300px; }
   .wert-zahl { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.4vw, 50px); line-height: 1.1; }
@@ -657,6 +662,7 @@
           <div class="pillen" data-gruppe="wnutzung">
             <button class="pille" data-wert="Wohnen">Wohnen</button>
             <button class="pille" data-wert="Wohnen und Gewerbe">Wohnen &amp; Gewerbe</button>
+            <button class="pille" data-wert="Büro">Büro</button>
             <button class="pille" data-wert="Gewerbe">Gewerbe</button>
           </div>
         </div>
@@ -671,6 +677,8 @@
         <div class="wert-feld">
           <div class="feld-name">Netto-Mietertrag pro Jahr</div>
           <div class="ertrag-eingabe"><span>CHF</span><input id="wertErtrag" type="number" inputmode="numeric" min="0" step="1000" placeholder="120&#8217;000" aria-label="Netto-Mietertrag pro Jahr in Franken"></div>
+          <input id="wertSlider" class="ertrag-regler" type="range" min="0" max="1000000" step="5000" value="0" aria-label="Netto-Mietertrag pro Jahr einstellen">
+          <div class="regler-skala"><span>0</span><span>250&#8217;000</span><span>500&#8217;000</span><span>750&#8217;000</span><span>1&#8217;000&#8217;000</span></div>
         </div>
       </div>
       <div class="wert-ergebnis">
@@ -1053,7 +1061,7 @@
 
   // Wert-Indikation: ertragsbasierte Sofort-Schätzung
   const RENDITE_REGION = { 'Luzern': [3.6, 4.4], 'Aargau': [4.0, 4.9], 'St. Gallen': [4.1, 5.0], 'Übrige Schweiz': [3.8, 5.2] };
-  const RENDITE_NUTZUNG = { 'Wohnen': 0, 'Wohnen und Gewerbe': .3, 'Gewerbe': 1.2 };
+  const RENDITE_NUTZUNG = { 'Wohnen': 0, 'Wohnen und Gewerbe': .3, 'Büro': .8, 'Gewerbe': 1.2 };
   const RENDITE_ZUSTAND = { 'saniert': -.3, 'gepflegt': 0, 'sanierungsbedarf': .7 };
   const ZUSTAND_TEXT = { 'saniert': 'saniert/neuwertig', 'gepflegt': 'gepflegt', 'sanierungsbedarf': 'mit Sanierungsbedarf' };
   const wertErtrag = document.getElementById('wertErtrag');
@@ -1082,7 +1090,12 @@
   ['wregion', 'wnutzung', 'wzustand'].forEach(g => {
     document.querySelector(`.pillen[data-gruppe="${g}"]`).addEventListener('click', () => setTimeout(rechneWert));
   });
-  wertErtrag.addEventListener('input', rechneWert);
+  const wertSlider = document.getElementById('wertSlider');
+  wertSlider.addEventListener('input', () => { wertErtrag.value = wertSlider.value; rechneWert(); });
+  wertErtrag.addEventListener('input', () => {
+    wertSlider.value = Math.min(1000000, Math.max(0, parseFloat(wertErtrag.value) || 0));
+    rechneWert();
+  });
 
   // Ankaufs-Karte: Klick auf Region wählt sie im Rechner
   document.querySelectorAll('.marker').forEach(m => m.addEventListener('click', () => {
