@@ -22,7 +22,7 @@ window.KURO_T = {
 
   // Acquisition check
   checkUeber2: 'For a direct acquisition this lies above our profile — but it makes a strong case for a brokerage mandate: we bring your property discreetly to vetted buyers.',
-  checkAnderer: 'Outside our core acquisition area of Lucerne, Aargau and St. Gallen — for sales and brokerage, however, we operate throughout Switzerland. Let us talk about it.',
+  checkAnderer: 'Outside our core area of Lucerne, Aargau and St. Gallen — though we do review selected locations such as Kreuzlingen or Bulle/Fribourg, and for sales and brokerage we operate throughout Switzerland. Let us talk about it.',
   checkGewerbe: 'Purely commercial properties are reviewed case by case — in central prime locations we are highly interested. Send us the key facts.',
   checkPasst: 'Your property fits our acquisition profile. We complete our review within days and present you with a binding assessment — no listing, no bidding process.',
   checkMsg: function (objekt, kanton, preis) {

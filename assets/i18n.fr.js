@@ -22,7 +22,7 @@ window.KURO_T = {
 
   // Ankaufs-Check
   checkUeber2: 'Pour une acquisition directe, cela dépasse notre profil — mais c’est un dossier solide pour un mandat de courtage : nous présentons votre bien, en toute discrétion, à des acheteurs vérifiés.',
-  checkAnderer: 'Hors de notre périmètre d’acquisition — Lucerne, Argovie et Saint-Gall — mais pour la vente et le courtage, nous sommes actifs dans toute la Suisse. Parlons-en.',
+  checkAnderer: 'Hors de notre périmètre principal — Lucerne, Argovie et Saint-Gall — mais nous examinons aussi des emplacements choisis comme Kreuzlingen ou Bulle/Fribourg, et pour la vente et le courtage, nous sommes actifs dans toute la Suisse. Parlons-en.',
   checkGewerbe: 'Les objets purement commerciaux sont examinés au cas par cas — les emplacements 1A centraux nous intéressent vivement. Envoyez-nous les données clés.',
   checkPasst: 'Votre bien correspond à notre profil d’acquisition. Nous l’examinons en quelques jours et vous soumettons une appréciation ferme — sans mise en vente publique, sans procédure d’enchères.',
   checkMsg: function (objekt, kanton, preis) {

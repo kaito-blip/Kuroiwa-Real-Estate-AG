@@ -22,7 +22,7 @@ window.KURO_T = {
 
   // Ankaufs-Check
   checkUeber2: 'Für den Direkterwerb liegt das über unserem Profil — aber es ist ein starker Fall für ein Vermittlungsmandat: Wir bringen Ihre Liegenschaft diskret zu geprüften Käufern.',
-  checkAnderer: 'Ausserhalb unseres Ankaufs-Kernraums Luzern, Aargau und St. Gallen — für Verkauf und Vermittlung sind wir jedoch schweizweit tätig. Sprechen wir darüber.',
+  checkAnderer: 'Ausserhalb unseres Kernraums Luzern, Aargau und St. Gallen — ausgewählte Lagen wie Kreuzlingen oder Bulle/Freiburg prüfen wir dennoch, und für Verkauf und Vermittlung sind wir schweizweit tätig. Sprechen wir darüber.',
   checkGewerbe: 'Reine Gewerbeobjekte prüfen wir im Einzelfall — an zentralen 1A-Lagen sind wir sehr interessiert. Senden Sie uns die Eckdaten.',
   checkPasst: 'Ihre Liegenschaft passt in unser Ankaufsprofil. Wir prüfen innert weniger Tage und unterbreiten Ihnen eine verbindliche Einschätzung — ohne Ausschreibung, ohne Bieterverfahren.',
   checkMsg: function (objekt, kanton, preis) {

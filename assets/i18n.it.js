@@ -22,7 +22,7 @@ window.KURO_T = {
 
   // Check di acquisto
   checkUeber2: 'Per l\'acquisto diretto supera il nostro profilo — ma è un caso ideale per un mandato di intermediazione: portiamo il Suo immobile, con discrezione, ad acquirenti verificati.',
-  checkAnderer: 'Al di fuori del nostro perimetro di acquisto — Lucerna, Argovia e San Gallo — ma per vendita e intermediazione operiamo in tutta la Svizzera. Parliamone.',
+  checkAnderer: 'Al di fuori del nostro perimetro principale — Lucerna, Argovia e San Gallo — ma esaminiamo anche posizioni selezionate come Kreuzlingen o Bulle/Friburgo, e per vendita e intermediazione operiamo in tutta la Svizzera. Parliamone.',
   checkGewerbe: 'Gli immobili puramente commerciali li valutiamo caso per caso — le posizioni 1A centrali ci interessano molto. Ci invii i dati essenziali.',
   checkPasst: 'Il Suo immobile rientra nel nostro profilo di acquisto. Lo esaminiamo entro pochi giorni e Le sottoponiamo una valutazione vincolante — senza bando, senza procedura d\'asta.',
   checkMsg: function (objekt, kanton, preis) {
