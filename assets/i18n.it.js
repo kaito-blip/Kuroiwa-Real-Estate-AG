@@ -4,7 +4,7 @@ window.KURO_T = {
   ortszeit: 'Ora locale',
 
   // Modulo di contatto
-  leadPlatzhalter: 'Modulo non ancora attivo — inserire l\'ID Formspree in index.html.',
+  leadPlatzhalter: 'Modulo non ancora attivo — inserire l\'URL Apps Script in assets/app.js.',
   leadSenden: 'Invio in corso …',
   leadFehler: 'Invio non riuscito — La preghiamo di scrivere direttamente a kaito@kuroiwa.ch.',
   leadNetz: 'Errore di rete — La preghiamo di scrivere direttamente a kaito@kuroiwa.ch.',

@@ -434,12 +434,13 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
   document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.addEventListener('click', () => track('kontakt_click', { typ: 'email' })));
 
   // ---------- Lead-Formular (Formspree, AJAX + Fallback) ----------
+  // Lead-Endpoint: Google-Apps-Script-Web-App (…/exec-URL aus der Bereitstellung) — gilt für alle Sprachversionen.
+  const LEAD_ENDPOINT = 'APPS_SCRIPT_EXEC_URL_HIER_EINTRAGEN';
   const leadForm = document.getElementById('leadForm');
   if (leadForm) {
     leadForm.addEventListener('submit', async (e) => {
       const status = document.getElementById('leadStatus');
-      const endpoint = leadForm.getAttribute('action') || '';
-      if (/XXXXXXXX/.test(endpoint)) {
+      if (!/^https:/.test(LEAD_ENDPOINT)) {
         e.preventDefault();
         status.className = 'lead-status err';
         status.textContent = KURO_T.leadPlatzhalter;
@@ -449,8 +450,11 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
       e.preventDefault();
       status.className = 'lead-status'; status.textContent = KURO_T.leadSenden;
       try {
-        const res = await fetch(endpoint, { method: 'POST', body: new FormData(leadForm), headers: { 'Accept': 'application/json' } });
-        if (res.ok) {
+        const daten = new URLSearchParams(new FormData(leadForm));
+        daten.append('sprache', document.documentElement.lang || 'de-CH');
+        const res = await fetch(LEAD_ENDPOINT, { method: 'POST', body: daten });
+        const antwort = await res.json().catch(() => ({}));
+        if (res.ok && antwort.ok !== false) {
           leadForm.style.display = 'none';
           document.getElementById('leadDank').classList.add('zeig');
           track('generate_lead', { method: 'kontaktformular' });

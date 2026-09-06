@@ -4,7 +4,7 @@ window.KURO_T = {
   ortszeit: 'Local time',
 
   // Lead form
-  leadPlatzhalter: 'Form not yet live — please add the Formspree ID in index.html.',
+  leadPlatzhalter: 'Form not live yet — add the Apps Script URL in assets/app.js.',
   leadSenden: 'Sending …',
   leadFehler: 'Sending failed — please write directly to kaito@kuroiwa.ch.',
   leadNetz: 'Network error — please write directly to kaito@kuroiwa.ch.',

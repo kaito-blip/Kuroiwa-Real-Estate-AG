@@ -4,7 +4,7 @@ window.KURO_T = {
   ortszeit: 'Ortszeit',
 
   // Lead-Formular
-  leadPlatzhalter: 'Formular noch nicht scharfgeschaltet — bitte Formspree-ID in index.html eintragen.',
+  leadPlatzhalter: 'Formular noch nicht scharfgeschaltet — Apps-Script-URL in assets/app.js eintragen.',
   leadSenden: 'Wird gesendet …',
   leadFehler: 'Senden fehlgeschlagen — bitte direkt an kaito@kuroiwa.ch.',
   leadNetz: 'Netzwerkfehler — bitte direkt an kaito@kuroiwa.ch.',

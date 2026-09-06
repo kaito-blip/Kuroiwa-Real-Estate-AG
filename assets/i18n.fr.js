@@ -4,7 +4,7 @@ window.KURO_T = {
   ortszeit: 'Heure locale',
 
   // Lead-Formular
-  leadPlatzhalter: 'Formulaire pas encore activé — veuillez saisir l’ID Formspree dans index.html.',
+  leadPlatzhalter: 'Formulaire pas encore actif — ajouter l\'URL Apps Script dans assets/app.js.',
   leadSenden: 'Envoi en cours …',
   leadFehler: 'Échec de l’envoi — veuillez écrire directement à kaito@kuroiwa.ch.',
   leadNetz: 'Erreur de réseau — veuillez écrire directement à kaito@kuroiwa.ch.',
