@@ -433,3 +433,9 @@
 .lang a.akt { color: #fff; box-shadow: 0 1px 0 var(--rot); }
 .fuss-lang { margin-top: 16px; }
 .fuss-lang a { display: inline-block; margin-bottom: 0; }
+
+/* ---------- Zielorte auf der Ankaufs-Karte ---------- */
+.ort { fill: rgba(192,39,31,.82); }
+.ort-label { fill: rgba(246,245,242,.5); font-family: var(--sans); font-size: 18px; letter-spacing: .05em; }
+.ortgrp:hover .ort { fill: #e04a41; }
+.ortgrp:hover .ort-label { fill: rgba(246,245,242,.85); }
