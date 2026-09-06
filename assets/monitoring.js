@@ -30,17 +30,24 @@
       replaysOnErrorSampleRate: 1.0   // Session-Replay bei Fehlern
     },
 
-    // Beispiel: Google Analytics 4 — einwilligungspflichtig (DSG/DSGVO).
+    // Google Analytics 4 — einwilligungspflichtig (DSG/DSGVO). Google-Ads-Verknüpfung
+    // läuft über die GA4-Property (Verwaltung → Produktverknüpfungen), kein extra Code nötig.
     ga4: {
       enabled: false,                 // auf true setzen, wenn gewünscht
       requiresConsent: true,
       id: 'G-XXXXXXXXXX',             // TODO: echte Mess-ID eintragen
       anonymizeIp: true
+    },
+
+    // Microsoft Clarity (Heatmaps + Session-Recordings) — einwilligungspflichtig.
+    clarity: {
+      enabled: false,                 // auf true setzen, wenn gewünscht
+      requiresConsent: true,
+      id: 'XXXXXXXXXX'                // TODO: Clarity-Projekt-ID eintragen
     }
 
     // Weitere Tools nach gleichem Muster, z. B.:
-    // plausible: { enabled: false, requiresConsent: false, domain: 'kuroiwa.ch' },
-    // clarity:   { enabled: false, requiresConsent: true,  id: 'XXXXXXXXXX' }
+    // plausible: { enabled: false, requiresConsent: false, domain: 'kuroiwa.ch' }
   };
 
   var PLACEHOLDER = /PUBLIC_KEY|PROJECT_ID|X{4,}/;
@@ -102,8 +109,16 @@
     window.gtag('config', c.id, { anonymize_ip: !!c.anonymizeIp });
   }
 
+  // ---------- Microsoft Clarity (consent-pflichtig) ----------
+  function startClarity() {
+    var c = CONFIG.clarity;
+    if (isPlaceholder(c.id)) return;
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    loadScript('https://www.clarity.ms/tag/' + c.id);
+  }
+
   // ---------- Registry: Tool-Name -> Start-Funktion ----------
-  var TOOLS = { sentry: startSentry, ga4: startGA4 };
+  var TOOLS = { sentry: startSentry, ga4: startGA4, clarity: startClarity };
 
   function startTools(onlyConsentTools) {
     Object.keys(TOOLS).forEach(function (name) {

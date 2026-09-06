@@ -1,5 +1,14 @@
 # Deployment, Security & Go-Live
 
+> **Aktueller Stand (06.09.2026):** Die Site läuft eigenständig auf
+> **https://kaito-blip.github.io/Kuroiwa-Real-Estate-AG/** — die Domain kuroiwa.ch ist
+> bewusst NICHT verknüpft (keine CNAME-Datei, kein Custom-Domain-Eintrag; kuroiwa.ch
+> leitet bei Infomaniak weiterhin auf kwicapital.ch um).
+> **Domain später anhängen:** entweder via Cloudflare Pages (Abschnitt unten, empfohlen)
+> oder für GitHub Pages: CNAME-Datei mit Inhalt `kuroiwa.ch` committen + bei Infomaniak
+> 4× A-Records auf 185.199.108–111.153 und CNAME www → kaito-blip.github.io setzen
+> (MX/TXT für Google-Mail nicht anfassen!).
+
 Diese Site wird für **Cloudflare Pages** vorbereitet (gratis, git-verbunden). Nur dort greifen
 echter Passwortschutz (`functions/_middleware.js`) und die Security-Header (`_headers`).
 GitHub Pages kann beides **nicht** und bleibt nur als Vorschau/Fallback.
