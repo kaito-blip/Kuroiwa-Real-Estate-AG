@@ -22,9 +22,12 @@ Danach ist die Seite hinter echtem, serverseitigem Basic-Auth (nicht über den Q
 **Geschützt → Öffentlich (indexierbar):**
 1. Cloudflare → Env-Var **`SITE_PUBLIC = true`** setzen → Auth entfällt, `X-Robots-Tag: noindex` entfällt.
 2. `robots.txt`: `Disallow: /` → `Allow: /` (Block unten ist vorbereitet, nur umkommentieren).
-3. In `index.html` das `<meta name="robots" content="noindex, nofollow">` auf `index, follow`
-   stellen (eine Zeile, mit `<!-- GO-LIVE -->` markiert).
-4. Sitemap in der Google Search Console einreichen.
+3. In allen 4 Sprachversionen das `<meta name="robots" content="noindex, nofollow">` auf
+   `index, follow` stellen (je eine Zeile, mit `<!-- GO-LIVE -->` markiert):
+   `index.html`, `en/index.html`, `fr/index.html`, `it/index.html`.
+   Schnellweg: `grep -rl 'noindex, nofollow' *.html */index.html` und ersetzen.
+4. Sitemap in der Google Search Console einreichen (enthält alle 4 Sprachversionen
+   inkl. hreflang-Alternates) + Google Business Profile anlegen/verknüpfen.
 
 **Öffentlich → wieder geschützt:** Schritte umkehren (`SITE_PUBLIC` löschen/`false`, robots/meta zurück).
 
