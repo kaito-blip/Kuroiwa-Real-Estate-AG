@@ -10,7 +10,10 @@
 <link rel="icon" type="image/png" href="assets/brand/kanji.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap"></noscript>
+<script defer src="assets/monitoring.js"></script>
 <style>
   :root { --ink: #0b0b0c; --ink2: #141416; --paper: #f6f5f2; --paper2: #edebe6; --rot: #c0271f; --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', -apple-system, sans-serif; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,7 +50,7 @@
 </head>
 <body>
 <div class="tor" id="tor">
-  <img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa">
+  <img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa">
   <div class="tor-text">Geschützter Bereich · Zugangscode</div>
   <input id="torCode" type="password" inputmode="numeric" maxlength="4" placeholder="&middot;&middot;&middot;&middot;" autocomplete="off" aria-label="Zugangscode">
   <div class="tor-fehler" id="torFehler" hidden>Falscher Code — bitte erneut versuchen.</div>
@@ -75,7 +78,7 @@
 
 <header class="kopf">
   <div class="wrap">
-    <a href="index.html"><img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa"></a>
+    <a href="index.html"><img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa"></a>
     <a class="zurueck" href="index.html">&larr; Zur Startseite</a>
   </div>
 </header>
@@ -118,6 +121,16 @@
     Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträger im
     Voraus einzuholen. Die Wort-Bild-Marke «Kuroiwa» sowie das Schriftzeichen 黒岩 sind geschützte
     Kennzeichen der Gesellschaft.</p>
+
+    <h2>Bildnachweise</h2>
+    <p>Die Standortaufnahmen im Bereich «Track Record» stammen aus frei lizenzierten Quellen und wurden für die Darstellung zugeschnitten und farblich angepasst:</p>
+    <p style="font-size:14px;color:rgba(246,245,242,.62)">
+      Zürich, Hauptbahnhof / Bahnhofplatz — Foto von Balise42, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Z%C3%BCrich_Hauptbahnhof_fa%C3%A7ade,_statue_and_flower_parterre.jpg" target="_blank" rel="noopener">Wikimedia&nbsp;Commons</a>.<br>
+      Zürich, Bahnhofstrasse — Foto von Balise42, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:Z%C3%BCrich_Bahnhofstrasse_02.jpg" target="_blank" rel="noopener">Wikimedia&nbsp;Commons</a>.<br>
+      Zug, Altstadt mit Zytturm — Foto von Roy Egloff, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-SA&nbsp;4.0</a> (bearbeitet), via <a href="https://commons.wikimedia.org/wiki/File:CH.ZG.Zug_Ober-Altstadt_Zytturm_01_16x9%2BR_8192x4608.jpg" target="_blank" rel="noopener">Wikimedia&nbsp;Commons</a>.<br>
+      Interlaken (Höheweg &amp; Bahnhofstrasse) — Fotos von Leonhard Lenz, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>. Olten, Altstadt — Foto von Gestumblindi, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>.<br>
+      Die Partner-Logos sind Marken der jeweiligen Unternehmen und werden ausschliesslich zur Referenz auf bestehende Mandate verwendet.
+    </p>
 
     <h2>Anwendbares Recht und Gerichtsstand</h2>
     <p>Auf das Verhältnis zwischen den Nutzerinnen und Nutzern dieser Website und der Kuroiwa Real Estate AG

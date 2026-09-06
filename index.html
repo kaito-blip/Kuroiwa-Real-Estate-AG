@@ -33,20 +33,16 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0b0c'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-size='34' fill='%23f6f5f2' text-anchor='middle'%3EK%3C/text%3E%3Crect x='44' y='14' width='6' height='36' fill='%23c0271f'/%3E%3C/svg%3E">
 
-<link rel="preload" as="image" href="assets/brand/hero-1920.jpg" fetchpriority="high">
-<link rel="preload" as="image" href="assets/brand/kuroiwa-wort.png">
+<link rel="preload" as="image" fetchpriority="high" imagesrcset="assets/brand/hero-800.webp 800w, assets/brand/hero-1200.webp 1200w, assets/brand/hero-1920.webp 1920w" imagesizes="100vw" href="assets/brand/hero-1200.webp">
+<link rel="preload" as="image" href="assets/brand/kuroiwa-wort.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap"></noscript>
 
-<!-- Google tag (gtag.js) — G-XXXXXXXXXX durch echte Mess-ID ersetzen -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
-</script>
+<!-- Monitoring & Analytics (Sentry + erweiterbar, consent-fähig) — Konfiguration in assets/monitoring.js -->
+<script defer src="assets/monitoring.js"></script>
 
 <script type="application/ld+json">
 {
@@ -130,6 +126,11 @@
   /* ---------- Intro (KWI-Style) ---------- */
   .intro { height: 100vh; height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
   .intro .bg { position: absolute; inset: 0; background: url('assets/brand/hero-1920.jpg') center/cover no-repeat; animation: kenburns 18s ease-out forwards; filter: brightness(.52) saturate(.85); will-change: transform; }
+  @supports (background-image: image-set(url('x.webp') type('image/webp'))) {
+    .intro .bg { background-image: image-set(url('assets/brand/hero-1920.webp') type('image/webp'), url('assets/brand/hero-1920.jpg') type('image/jpeg')); }
+    @media (max-width: 1200px) { .intro .bg { background-image: image-set(url('assets/brand/hero-1200.webp') type('image/webp'), url('assets/brand/hero-1920.jpg') type('image/jpeg')); } }
+    @media (max-width: 700px) { .intro .bg { background-image: image-set(url('assets/brand/hero-800.webp') type('image/webp'), url('assets/brand/hero-1920.jpg') type('image/jpeg')); } }
+  }
   @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
   .intro::after { content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 85% 65% at 50% 42%, rgba(11,11,12,.42), rgba(11,11,12,.94) 100%),
@@ -208,6 +209,12 @@
     .track-balken { display: none; }
   }
   .deal:hover { background: var(--ink2); }
+  /* Deal-Kopfbild */
+  .deal-bild { position: relative; margin: -40px -36px 22px; height: 186px; overflow: hidden; background: #0e0e10; }
+  .deal-bild img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.45) contrast(1.03) brightness(.8); transition: transform .9s cubic-bezier(.19,1,.22,1), filter .6s ease; }
+  .deal-bild::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0) 40%, rgba(11,11,12,.78)); pointer-events: none; }
+  .deal:hover .deal-bild img { transform: scale(1.06); filter: grayscale(0) contrast(1.05) brightness(.94); }
+  @media (max-width: 860px) { .deal-bild { margin: -40px -36px 22px; height: 168px; } }
   .deal .typ { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--rot); }
   .deal h3 { font-family: var(--serif); font-weight: 400; font-size: 21.5px; line-height: 1.25; margin: 14px 0 8px; }
   .deal p { color: rgba(246,245,242,.52); font-size: 14px; }
@@ -230,6 +237,10 @@
   .wm-only { font: 900 27px/1 var(--sans); letter-spacing: .16em; }
   .wm-swissbox { font: 700 19px/1 var(--sans); letter-spacing: .08em; }
   .wm-swissbox b { border: 2px solid var(--rot); padding: 2px 5px; margin-left: 3px; font-weight: 700; }
+  /* Echte Partner-Logos: einheitlich monochrom, Farbe bei Hover */
+  .logo-zelle img.logo-img { max-height: 46px; max-width: 122px; width: auto; height: auto; object-fit: contain; filter: brightness(0); opacity: .6; transition: opacity .35s ease, filter .45s ease, transform .45s ease; }
+  .logo-zelle img.logo-tall { max-height: 64px; max-width: 64px; }
+  .logo-zelle:hover img.logo-img { filter: none; opacity: 1; transform: scale(1.04); }
 
   /* ---------- Investitionen ---------- */
   .invest { background: var(--paper2); }
@@ -451,7 +462,7 @@
 </head>
 <body>
 <div class="tor" id="tor">
-  <img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa">
+  <img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa">
   <div class="tor-text">Geschützter Bereich · Zugangscode</div>
   <input id="torCode" type="password" inputmode="numeric" maxlength="4" placeholder="&middot;&middot;&middot;&middot;" autocomplete="off" aria-label="Zugangscode">
   <div class="tor-fehler" id="torFehler" hidden>Falscher Code — bitte erneut versuchen.</div>
@@ -483,7 +494,7 @@
 
 <nav id="nav">
   <div class="wrap nav-inner">
-    <a class="marke" href="#top"><img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa Real Estate" width="78" height="22" style="width:auto"></a>
+    <a class="marke" href="#top"><img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa Real Estate" width="78" height="22" style="width:auto"></a>
     <div class="nav-links">
       <a href="#leistungen">Leistungen</a>
       <a href="#track">Track Record</a>
@@ -502,7 +513,7 @@
   <div class="bg"></div>
   <div class="korn"></div>
   <div class="intro-inhalt">
-    <img class="logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa — 黒岩" width="430" height="80">
+    <img class="logo" src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa — 黒岩" width="430" height="80">
     <div class="unterzeile">Real Estate<b>.</b></div>
   </div>
   <div class="scrollcue"><span>Scrollen</span><span class="ln"></span></div>
@@ -574,36 +585,42 @@
     </div>
     <div class="deals" id="dealSpur">
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/ayverdis.webp" type="image/webp"><img src="assets/deals/ayverdis.jpg" alt="Zürich Hauptbahnhof am Bahnhofplatz" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Landmark-Vermietung</div>
         <h3>Ayverdi's — Bahnhofplatz 3, Zürich HB</h3>
         <p>Vermittlung der Landmark-Fläche direkt am Zürcher Hauptbahnhof an das expandierende Gastro-Konzept.</p>
         <div class="meta"><span>Zürich</span><span>ca. 500 m²</span></div>
       </div>
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/decathlon.webp" type="image/webp"><img src="assets/deals/decathlon.jpg" alt="Geschäftsstrasse in Interlaken" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Vermittlung Retail</div>
         <h3>Decathlon — Interlaken</h3>
         <p>Vermittlung der 1A-Retail-Fläche im touristischen Zentrum von Interlaken an den internationalen Sportartikel-Anbieter.</p>
         <div class="meta"><span>Interlaken BE</span><span>ca. 800 m²</span></div>
       </div>
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/olten.webp" type="image/webp"><img src="assets/deals/olten.jpg" alt="Altstadt von Olten an der Aare" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Investment-Verkauf</div>
         <h3>Wohn- &amp; Geschäftshaus — Baslerstrasse 2, Olten</h3>
         <p>Off-Market-Verkauf eines Wohn- und Geschäftshauses an eine institutionelle Käuferin — von der Erstansprache bis zur Beurkundung.</p>
         <div class="meta"><span>Olten SO</span><span>CHF 2.85 Mio.</span></div>
       </div>
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/only.webp" type="image/webp"><img src="assets/deals/only.jpg" alt="Bahnhofstrasse in Interlaken" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Vermittlung Retail</div>
         <h3>Only — Bahnhofstrasse 23, Interlaken</h3>
         <p>Vermittlung des Ladenlokals an der Bahnhofstrasse in Interlaken an die internationale Fashion-Marke.</p>
         <div class="meta"><span>Interlaken BE</span><span>1A-Lage</span></div>
       </div>
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/retail.webp" type="image/webp"><img src="assets/deals/retail.jpg" alt="Bahnhofstrasse Zürich, 1A-Retail-Lage" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Portfolio</div>
         <h3>100+ Retail-Abschlüsse an 1A-Lagen</h3>
         <p>Über hundert abgeschlossene Vermittlungs- und Beratungsmandate für Retail-Flächen an Schweizer Top-Lagen.</p>
         <div class="meta"><span>Schweiz</span><span>laufend</span></div>
       </div>
       <div class="deal">
+        <div class="deal-bild"><picture><source srcset="assets/deals/volumen.webp" type="image/webp"><img src="assets/deals/volumen.jpg" alt="Altstadt von Zug mit Zytturm" width="840" height="380" loading="lazy" decoding="async"></picture></div>
         <div class="typ">Transaktionsvolumen</div>
         <h3>CHF 90 Mio. verkauftes Volumen</h3>
         <p>Begleitete Verkäufe von Wohn- und Geschäftsliegenschaften — vom Einzelobjekt bis zum Portfolio.</p>
@@ -622,10 +639,10 @@
     <p style="max-width:640px;color:#504e49">Expansion ist Vertrauenssache: Wer eine Marke in die Schweiz bringt oder in die nächste Stadt trägt, braucht jemanden, der die Lagen kennt, die Eigentümer erreicht und den Abschluss durchzieht. Diese Konzepte begleiten wir bei der Standortsuche — vom Padel-Betreiber über Fashion und Gastronomie bis zur Fitnesskette.</p>
     <div class="logowall">
       <div class="logo-zelle"><span class="wm wm-padelta">PADELTA</span></div>
-      <div class="logo-zelle"><span class="wm wm-ayverdis">Ayverdi's</span></div>
-      <div class="logo-zelle"><span class="wm wm-arctic">ARCTIC JUICE<br>&amp; CAFÉ</span></div>
-      <div class="logo-zelle"><span class="wm wm-tonja">TONJA</span></div>
-      <div class="logo-zelle"><span class="wm wm-clever">clever fit</span></div>
+      <div class="logo-zelle"><img class="logo-img" src="assets/logos/ayverdis.webp" alt="Ayverdi's" width="490" height="160" loading="lazy" decoding="async"></div>
+      <div class="logo-zelle"><img class="logo-img" src="assets/logos/arctic.webp" alt="Arctic Juice &amp; Café" width="338" height="160" loading="lazy" decoding="async"></div>
+      <div class="logo-zelle"><img class="logo-img" src="assets/logos/tonja.webp" alt="Tonja Concept" width="521" height="160" loading="lazy" decoding="async"></div>
+      <div class="logo-zelle"><img class="logo-img logo-tall" src="assets/logos/clever-fit.webp" alt="clever fit" width="131" height="160" loading="lazy" decoding="async"></div>
       <div class="logo-zelle"><span class="wm wm-plm">PIERRE-LOUIS<br>MASCIA</span></div>
       <div class="logo-zelle"><span class="wm wm-only">ONLY</span></div>
       <div class="logo-zelle"><span class="wm wm-swissbox">SWISS<b>BOX</b></span></div>
@@ -960,7 +977,7 @@
   <div class="wrap">
     <div class="fuss-top">
       <div>
-        <img class="fuss-logo" src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa" loading="lazy">
+        <img class="fuss-logo" src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa" loading="lazy">
         <p class="fuss-desc">黒岩 — «schwarzer Fels». Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz.</p>
         <div class="flags" title="Japan × Schweiz">
           <svg width="20" height="14" viewBox="0 0 30 20"><rect width="30" height="20" rx="3" fill="#FAF9F6"/><circle cx="15" cy="10" r="5.6" fill="#BC002D"/></svg>

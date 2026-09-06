@@ -10,7 +10,10 @@
 <link rel="icon" type="image/png" href="assets/brand/kanji.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;800&display=swap"></noscript>
+<script defer src="assets/monitoring.js"></script>
 <style>
   :root { --ink: #0b0b0c; --ink2: #141416; --paper: #f6f5f2; --paper2: #edebe6; --rot: #c0271f; --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', -apple-system, sans-serif; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,7 +52,7 @@
 </head>
 <body>
 <div class="tor" id="tor">
-  <img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa">
+  <img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa">
   <div class="tor-text">Geschützter Bereich · Zugangscode</div>
   <input id="torCode" type="password" inputmode="numeric" maxlength="4" placeholder="&middot;&middot;&middot;&middot;" autocomplete="off" aria-label="Zugangscode">
   <div class="tor-fehler" id="torFehler" hidden>Falscher Code — bitte erneut versuchen.</div>
@@ -77,7 +80,7 @@
 
 <header class="kopf">
   <div class="wrap">
-    <a href="index.html"><img src="assets/brand/kuroiwa-wort.png" alt="Kuroiwa"></a>
+    <a href="index.html"><img src="assets/brand/kuroiwa-wort.webp" alt="Kuroiwa"></a>
     <a class="zurueck" href="index.html">&larr; Zur Startseite</a>
   </div>
 </header>
@@ -108,10 +111,17 @@
     bearbeiten wir die von Ihnen mitgeteilten Angaben (Name, Kontaktdaten, Inhalt der Anfrage)
     ausschliesslich zur Bearbeitung Ihres Anliegens und zur Abwicklung einer allfälligen
     Geschäftsbeziehung.</p>
-    <p><strong>Webanalyse.</strong> Diese Website kann Google Analytics (Google Ireland Ltd.) einsetzen.
-    Dabei werden Cookies verwendet und Nutzungsdaten in gekürzter, anonymisierter Form (IP-Anonymisierung)
-    ausgewertet, um die Nutzung der Website zu analysieren. Sie können die Erfassung verhindern, indem Sie
-    Cookies in Ihrem Browser deaktivieren oder das
+    <p><strong>Fehler- und Performance-Monitoring.</strong> Zur Gewährleistung eines stabilen und sicheren
+    Betriebs setzen wir Sentry (Functional Software, Inc.) mit Datenverarbeitung in der Europäischen Union
+    (Rechenzentrum Deutschland) ein. Dabei werden im Fehlerfall technische Angaben wie Fehlermeldung,
+    aufgerufene Seite, Browsertyp, Betriebssystem und gekürzte IP-Adresse übermittelt, um Störungen zu
+    erkennen und zu beheben. Die Bearbeitung stützt sich auf unser berechtigtes Interesse an einem
+    funktionsfähigen Webauftritt.</p>
+    <p><strong>Webanalyse.</strong> Diese Website kann zusätzliche Analyse-Dienste (z.&nbsp;B. Google Analytics,
+    Google Ireland Ltd.) einsetzen. Solche Dienste werden ausschliesslich nach Ihrer ausdrücklichen
+    Einwilligung geladen; ohne Einwilligung findet keine Webanalyse statt. Eine erteilte Einwilligung können
+    Sie jederzeit mit Wirkung für die Zukunft widerrufen, ebenso indem Sie Cookies in Ihrem Browser
+    deaktivieren oder das
     <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Browser-Add-on zur
     Deaktivierung von Google Analytics</a> installieren.</p>
 
@@ -146,7 +156,7 @@
 
     <h2>7. Änderungen</h2>
     <p>Wir können diese Datenschutzerklärung jederzeit anpassen. Es gilt die jeweils auf dieser Website
-    publizierte Fassung. Stand: August 2026.</p>
+    publizierte Fassung. Stand: September 2026.</p>
   </div>
 </main>
 
