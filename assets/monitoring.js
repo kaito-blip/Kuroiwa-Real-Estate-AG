@@ -105,6 +105,8 @@
     loadScript('https://www.googletagmanager.com/gtag/js?id=' + c.id);
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
+    // Consent Mode v2: dieses Script lädt erst NACH aktiver Einwilligung -> Signale granted
+    window.gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
     window.gtag('js', new Date());
     window.gtag('config', c.id, { anonymize_ip: !!c.anonymizeIp });
   }

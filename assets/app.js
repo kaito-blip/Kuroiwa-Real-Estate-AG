@@ -152,6 +152,17 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     });
   }
 
+  // ---------- Analytics-Events (greifen nur nach Consent, wenn gtag/clarity geladen sind) ----------
+  const getrackt = {};
+  function track(name, params, einmalig) {
+    if (einmalig && getrackt[name]) return;
+    getrackt[name] = true;
+    try {
+      if (window.gtag) window.gtag('event', name, params || {});
+      if (window.clarity) window.clarity('event', name);
+    } catch (e) {}
+  }
+
   // Ankaufs-Check: Auswahl -> sofortige Einschätzung + vorbefüllte Anfrage
   const wahl = {};
   document.querySelectorAll('.pillen').forEach(g => g.addEventListener('click', e => {
@@ -172,6 +183,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     const msg = KURO_T.checkMsg(KURO_T.checkObjekt[wahl.objekt], KURO_T.checkKanton[wahl.kanton], KURO_T.checkPreis[wahl.preis]);
     document.getElementById('checkWa').href = 'https://wa.me/41792522570?text=' + msg;
     document.getElementById('checkMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent(KURO_T.checkMailSubject) + '&body=' + msg;
+    track('ankaufs_check', { kanton: wahl.kanton, objekt: wahl.objekt, preis: wahl.preis }, true);
     document.getElementById('checkErgebnis').hidden = false;
   }
 
@@ -270,6 +282,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     const msg = KURO_T.wertMsg(nutzungText, regionText, zustandText, chf(ertrag), inMio(wertTief), inMio(wertHoch));
     document.getElementById('wertWa').href = 'https://wa.me/41792522570?text=' + msg;
     document.getElementById('wertMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent(KURO_T.wertMailSubject) + '&body=' + msg;
+    track('wert_indikation', { region: region, nutzung: nutzung, zustand: zustand }, true);
   }
   ['wregion', 'wnutzung', 'wzustand'].forEach(g => {
     document.querySelector(`.pillen[data-gruppe="${g}"]`).addEventListener('click', () => setTimeout(rechneWert));
@@ -327,6 +340,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     const msg = KURO_T.mietMsg(nutzungText, kantonText, lageText, stockText, chf(flaeche), mMin, mMax, chf(jahrMin), chf(jahrMax));
     document.getElementById('mietWa').href = 'https://wa.me/41792522570?text=' + msg;
     document.getElementById('mietMail').href = 'mailto:kaito@kuroiwa.ch?subject=' + encodeURIComponent(KURO_T.mietMailSubject) + '&body=' + msg;
+    track('miet_indikation', { nutzung: nutzung, lage: lage, kanton: kanton }, true);
   }
   ['gnutzung', 'glage', 'gstock'].forEach(g => {
     document.querySelector(`.pillen[data-gruppe="${g}"]`).addEventListener('click', () => setTimeout(rechneMiete));
@@ -390,6 +404,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
     const fazit = KURO_T.quizFazit(p);
     document.getElementById('quizTitel').innerHTML = titel;
     document.getElementById('quizFazit').textContent = fazit;
+    track('quiz_abgeschlossen', { punkte: p });
   });
   document.getElementById('quizNochmal').addEventListener('click', () => {
     quizIndex = 0; quizPunkteTotal = 0;
@@ -413,6 +428,11 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
   const zeitFormat = new Intl.DateTimeFormat('de-CH', { timeZone: 'Europe/Zurich', hour: '2-digit', minute: '2-digit' });
   (function uhr() { ortszeit.textContent = KURO_T.ortszeit + ' ' + zeitFormat.format(new Date()); setTimeout(uhr, 15000); })();
 
+  // Klick-Tracking auf Kontakt-Kanäle
+  document.querySelectorAll('a[href^="https://wa.me"]').forEach(a => a.addEventListener('click', () => track('whatsapp_click', { quelle: a.id || 'link' })));
+  document.querySelectorAll('a[href^="tel:"]').forEach(a => a.addEventListener('click', () => track('kontakt_click', { typ: 'telefon' })));
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.addEventListener('click', () => track('kontakt_click', { typ: 'email' })));
+
   // ---------- Lead-Formular (Formspree, AJAX + Fallback) ----------
   const leadForm = document.getElementById('leadForm');
   if (leadForm) {
@@ -433,7 +453,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
         if (res.ok) {
           leadForm.style.display = 'none';
           document.getElementById('leadDank').classList.add('zeig');
-          if (window.gtag) window.gtag('event', 'generate_lead', { method: 'kontaktformular' });
+          track('generate_lead', { method: 'kontaktformular' });
         } else {
           status.className = 'lead-status err';
           status.textContent = KURO_T.leadFehler;
