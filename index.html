@@ -466,6 +466,47 @@
     .intro .bg { animation: none !important; transform: none !important; }
     .zeiger { display: none !important; }
   }
+
+  /* ---------- Lead-Formular ---------- */
+  .lead { display: flex; flex-direction: column; gap: 16px; }
+  .lead-reihe { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .lead-reihe { grid-template-columns: 1fr; } }
+  .lead label { display: block; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: rgba(246,245,242,.55); margin-bottom: 7px; }
+  .lead input, .lead select, .lead textarea {
+    width: 100%; background: rgba(246,245,242,.04); border: 1px solid rgba(246,245,242,.18);
+    color: var(--paper); font-family: var(--sans); font-size: 15px; padding: 12px 14px; border-radius: 2px;
+    outline: none; transition: border-color .2s, background .2s; }
+  .lead input:focus, .lead select:focus, .lead textarea:focus { border-color: var(--rot); background: rgba(246,245,242,.07); }
+  .lead select option { background: var(--ink2); color: var(--paper); }
+  .lead textarea { resize: vertical; min-height: 96px; }
+  .lead .zustimmung { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: rgba(246,245,242,.6); line-height: 1.5; letter-spacing: 0; text-transform: none; }
+  .lead .zustimmung input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--rot); margin-top: 1px; }
+  .lead .zustimmung a { color: var(--paper); text-decoration: underline; }
+  .lead button.senden { align-self: flex-start; cursor: pointer; font-family: var(--sans); }
+  .lead-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .lead-status { font-size: 14px; padding: 10px 0; min-height: 1px; }
+  .lead-status.ok { color: #7fd1a3; }
+  .lead-status.err { color: #ff8178; }
+  .lead-dank { display: none; }
+  .lead-dank.zeig { display: block; }
+  .lead-dank h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin-bottom: 10px; }
+  .lead-dank p { color: rgba(246,245,242,.7); }
+
+  /* ---------- Consent-Banner (revDSG) ---------- */
+  .consent { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 20000; background: rgba(9,9,10,.97);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(246,245,242,.14);
+    border-radius: 4px; box-shadow: 0 18px 60px rgba(0,0,0,.5); padding: 20px 22px; max-width: 760px; margin: 0 auto; }
+  .consent-inner { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .consent-text { color: rgba(246,245,242,.74); font-size: 13.5px; line-height: 1.6; flex: 1 1 340px; margin: 0; }
+  .consent-text a { color: var(--paper); text-decoration: underline; }
+  .consent-btns { display: flex; gap: 10px; flex-shrink: 0; }
+  .consent-btn { cursor: pointer; font-family: var(--sans); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 11px 20px; border-radius: 2px; border: 1px solid rgba(246,245,242,.3); background: transparent; color: rgba(246,245,242,.8);
+    transition: background .2s, border-color .2s, color .2s; min-height: 24px; }
+  .consent-btn.nur:hover { border-color: #fff; color: #fff; }
+  .consent-btn.ja { background: var(--rot); border-color: var(--rot); color: #fff; }
+  .consent-btn.ja:hover { background: #a01f18; border-color: #a01f18; }
+  @media (max-width: 560px) { .consent-btns { width: 100%; } .consent-btn { flex: 1; } }
 </style>
 <style>
   .tor { position: fixed; inset: 0; background: #060606; z-index: 30000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
@@ -977,13 +1018,36 @@
       <div>
         <div class="label hell">Kontakt</div>
         <h2>Sprechen wir über Ihre <span class="rot">Liegenschaft.</span></h2>
-        <p style="color:rgba(246,245,242,.58);max-width:440px">Ob Verkauf, Vermietung oder Direkterwerb: Der schnellste Weg ist ein kurzes Gespräch. Diskretion selbstverständlich.</p>
-      </div>
-      <div>
+        <p style="color:rgba(246,245,242,.62);max-width:440px">Ob Verkauf, Vermietung oder Direkterwerb: Der schnellste Weg ist ein kurzes Gespräch. Diskretion selbstverständlich.</p>
         <div class="k-zeile"><span class="was">Telefon</span><a href="tel:+41792522570">079 252 25 70</a></div>
         <div class="k-zeile"><span class="was">E-Mail</span><a href="mailto:kaito@kuroiwa.ch">kaito@kuroiwa.ch</a><button class="kopier" data-mail="kaito@kuroiwa.ch">Adresse kopieren</button></div>
         <div class="k-zeile"><span class="was">Adresse</span><span>Baarerstrasse 107, 6300 Zug</span></div>
-        <p style="margin-top:22px;font-size:13.5px;color:rgba(246,245,242,.45)">Erreichbar Montag bis Samstag. Erste Rückmeldung in der Regel innert 24 Stunden — verbindliche Einschätzung zu Ihrer Liegenschaft innert weniger Tage.</p>
+        <p style="margin-top:22px;font-size:13.5px;color:rgba(246,245,242,.6)">Erreichbar Montag bis Samstag. Erste Rückmeldung in der Regel innert 24 Stunden — verbindliche Einschätzung zu Ihrer Liegenschaft innert weniger Tage.</p>
+      </div>
+      <div>
+        <form class="lead" id="leadForm" action="https://formspree.io/f/XXXXXXXX" method="POST" novalidate>
+          <input type="text" name="_gotcha" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="lead-reihe">
+            <div><label for="lf-name">Name</label><input id="lf-name" name="name" type="text" autocomplete="name" required></div>
+            <div><label for="lf-mail">E-Mail</label><input id="lf-mail" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="lead-reihe">
+            <div><label for="lf-tel">Telefon (optional)</label><input id="lf-tel" name="telefon" type="tel" autocomplete="tel"></div>
+            <div><label for="lf-anliegen">Anliegen</label><select id="lf-anliegen" name="anliegen" required>
+              <option value="">Bitte wählen …</option>
+              <option>Verkauf</option>
+              <option>Vermietung / Vermittlung</option>
+              <option>Ankauf (Sie kaufen mein Objekt)</option>
+              <option>Wert-Indikation / Bewertung</option>
+              <option>Anderes</option>
+            </select></div>
+          </div>
+          <div><label for="lf-msg">Nachricht</label><textarea id="lf-msg" name="nachricht" required></textarea></div>
+          <label class="zustimmung"><input type="checkbox" name="einwilligung" required value="ja"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden (siehe <a href="datenschutz.html">Datenschutzerklärung</a>).</span></label>
+          <div class="lead-status" id="leadStatus" role="status" aria-live="polite"></div>
+          <button type="submit" class="cta voll senden">Anfrage senden</button>
+        </form>
+        <div class="lead-dank" id="leadDank" role="status"><h3>Danke — wir melden uns.</h3><p>Ihre Anfrage ist eingegangen. Erste Rückmeldung in der Regel innert 24 Stunden.</p></div>
       </div>
     </div>
   </div>
@@ -1023,6 +1087,16 @@
     </div>
   </div>
 </footer>
+
+<div class="consent" id="consent" hidden>
+  <div class="consent-inner">
+    <p class="consent-text">Wir nutzen notwendige Cookies für den Betrieb. Mit «Akzeptieren» erlauben Sie zusätzlich anonyme Statistik, die uns hilft, die Seite zu verbessern. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="consent-btns">
+      <button class="consent-btn nur" id="consentDeny" type="button">Nur notwendige</button>
+      <button class="consent-btn ja" id="consentAccept" type="button">Akzeptieren</button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('jahr').textContent = new Date().getFullYear();
@@ -1444,6 +1518,57 @@
   const ortszeit = document.getElementById('ortszeit');
   const zeitFormat = new Intl.DateTimeFormat('de-CH', { timeZone: 'Europe/Zurich', hour: '2-digit', minute: '2-digit' });
   (function uhr() { ortszeit.textContent = 'Ortszeit ' + zeitFormat.format(new Date()); setTimeout(uhr, 15000); })();
+
+  // ---------- Lead-Formular (Formspree, AJAX + Fallback) ----------
+  const leadForm = document.getElementById('leadForm');
+  if (leadForm) {
+    leadForm.addEventListener('submit', async (e) => {
+      const status = document.getElementById('leadStatus');
+      const endpoint = leadForm.getAttribute('action') || '';
+      if (/XXXXXXXX/.test(endpoint)) {
+        e.preventDefault();
+        status.className = 'lead-status err';
+        status.textContent = 'Formular noch nicht scharfgeschaltet — bitte Formspree-ID in index.html eintragen.';
+        return;
+      }
+      if (!leadForm.checkValidity()) return;
+      e.preventDefault();
+      status.className = 'lead-status'; status.textContent = 'Wird gesendet …';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: new FormData(leadForm), headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          leadForm.style.display = 'none';
+          document.getElementById('leadDank').classList.add('zeig');
+          if (window.gtag) window.gtag('event', 'generate_lead', { method: 'kontaktformular' });
+        } else {
+          status.className = 'lead-status err';
+          status.textContent = 'Senden fehlgeschlagen — bitte direkt an kaito@kuroiwa.ch.';
+        }
+      } catch (err) {
+        status.className = 'lead-status err';
+        status.textContent = 'Netzwerkfehler — bitte direkt an kaito@kuroiwa.ch.';
+      }
+    });
+  }
+
+  // ---------- Consent-Banner (revDSG) ----------
+  (function () {
+    const banner = document.getElementById('consent');
+    if (!banner) return;
+    let choice = null;
+    try { choice = localStorage.getItem('kuroiwa-consent'); } catch (e) {}
+    if (!choice) banner.hidden = false;
+    const accept = document.getElementById('consentAccept');
+    const deny = document.getElementById('consentDeny');
+    accept && accept.addEventListener('click', () => {
+      if (window.Kuroiwa) window.Kuroiwa.grantConsent(); else { try { localStorage.setItem('kuroiwa-consent', 'granted'); } catch (e) {} }
+      banner.hidden = true;
+    });
+    deny && deny.addEventListener('click', () => {
+      if (window.Kuroiwa) window.Kuroiwa.revokeConsent(); else { try { localStorage.setItem('kuroiwa-consent', 'denied'); } catch (e) {} }
+      banner.hidden = true;
+    });
+  })();
 </script>
 </body>
 </html>
