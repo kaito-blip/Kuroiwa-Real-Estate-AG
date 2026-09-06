@@ -6,7 +6,7 @@
 <title>Kuroiwa Real Estate AG — Off-Market Immobilien, Verkauf & Vermittlung | Zug</title>
 <meta name="description" content="Kuroiwa Real Estate AG, Zug: Off-Market-Transaktionen, Verkauf und Vermittlung von Gewerbe- und Wohnimmobilien in der Schweiz. Eigener Ankauf von Liegenschaften in den Kantonen Luzern, Aargau und St. Gallen.">
 <meta name="keywords" content="Immobilien Zug, Off-Market Immobilien Schweiz, Gewerbeimmobilien, Mehrfamilienhaus verkaufen, Immobilienvermittlung, Liegenschaft verkaufen Luzern, Aargau, St. Gallen, Renditeliegenschaft, Kuroiwa Real Estate">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow"><!-- GO-LIVE: auf "index, follow" stellen (siehe DEPLOYMENT.md) -->
 <meta name="author" content="Kuroiwa Real Estate AG">
 <link rel="canonical" href="https://kuroiwa.ch/">
 <link rel="alternate" hreflang="de-CH" href="https://kuroiwa.ch/">
@@ -35,11 +35,9 @@
 
 <link rel="preload" as="image" fetchpriority="high" imagesrcset="assets/brand/hero-800.webp 800w, assets/brand/hero-1200.webp 1200w, assets/brand/hero-1920.webp 1920w" imagesizes="100vw" href="assets/brand/hero-1200.webp">
 <link rel="preload" as="image" href="assets/brand/kuroiwa-wort.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,800;0,900;1,800&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/playfairdisplay-400-normal-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400-normal-latin.woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 
 <!-- Monitoring & Analytics (Sentry + erweiterbar, consent-fähig) — Konfiguration in assets/monitoring.js -->
 <script defer src="assets/monitoring.js"></script>
@@ -93,7 +91,7 @@
 <style>
   :root {
     --ink: #0b0b0c; --ink2: #141416; --paper: #f6f5f2; --paper2: #edebe6;
-    --rot: #c0271f; --grau: #8d8b86; --hair: rgba(11,11,12,.1); --hair-w: rgba(246,245,242,.14);
+    --rot: #c0271f; --grau: #6b6862; --hair: rgba(11,11,12,.1); --hair-w: rgba(246,245,242,.14);
     --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', -apple-system, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -450,6 +448,24 @@
   .flags { display: flex; gap: 10px; margin-top: 16px; }
   .fuss-unten { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 28px; flex-wrap: wrap; color: rgba(246,245,242,.32); font-size: 12px; letter-spacing: .04em; }
   @media (max-width: 860px) { .fuss-top { grid-template-columns: 1fr; gap: 34px; } }
+
+  /* ---------- Accessibility (WCAG 2.2 AA) ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--rot); outline-offset: 3px; border-radius: 1px;
+  }
+  .dunkel a:focus-visible, .kontakt a:focus-visible, .profil a:focus-visible, .tor input:focus-visible,
+  .check a:focus-visible, footer a:focus-visible, .wert-ergebnis a:focus-visible, .tab:focus-visible { outline-color: #ff6a5f; }
+  .tab, .kopier { min-height: 24px; }
+  /* Lesbarer Kontrast (SC 1.4.3): schwache Hilfstexte auf >= ~4.5:1 anheben */
+  .fussnote, .wert-hinweis, .feld-hilfe, .regler-skala, .wert-sub, .quiz-quelle,
+  .fuss-desc, .fuss-unten, .k-zeile .was, .deal .meta, .kopier, .scrollcue { color: rgba(246,245,242,.72); }
+  .portrait .platzhalter { color: rgba(246,245,242,.66); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+    .intro .bg { animation: none !important; transform: none !important; }
+    .zeiger { display: none !important; }
+  }
 </style>
 <style>
   .tor { position: fixed; inset: 0; background: #060606; z-index: 30000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }

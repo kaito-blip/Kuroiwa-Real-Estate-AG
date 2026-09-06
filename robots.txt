@@ -1,2 +1,8 @@
+# GATED (aktuell): Seite nicht crawlen / nicht indexieren (Non-Compete).
 User-agent: *
 Disallow: /
+
+# GO-LIVE: die zwei Zeilen oben durch die folgenden ersetzen (siehe DEPLOYMENT.md):
+# User-agent: *
+# Allow: /
+# Sitemap: https://kuroiwa.ch/sitemap.xml
