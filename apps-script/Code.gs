@@ -14,6 +14,7 @@
 
 var CONFIG = {
   EMPFAENGER: 'kaito@kuroiwa.ch',        // wohin Lead-Mails + KPI-Report gehen
+  ABSENDER: 'kaito@kuroiwa.ch',           // Gmail-«Senden als»-Alias — alle Mails gehen als diese Adresse raus
   ABSENDER_NAME: 'Kuroiwa Real Estate',
   GA4_PROPERTY_ID: '',                    // z. B. '123456789' (GA4 → Verwaltung → Property-Details); leer = Report ohne GA4-Zahlen
   REPORT_STUNDE: 7                        // Uhrzeit des täglichen KPI-Mails
@@ -34,6 +35,7 @@ function doPost(e) {
       '🔴 Neuer Lead: ' + (p.anliegen || 'Anfrage') + ' — ' + p.name,
       '', {
         name: CONFIG.ABSENDER_NAME,
+        from: CONFIG.ABSENDER,
         replyTo: p.email,
         htmlBody: '<div style="font-family:Helvetica,Arial,sans-serif;max-width:560px">' +
           '<h2 style="margin:0 0 14px">Neuer Lead über kuroiwa.ch</h2>' +
@@ -54,7 +56,7 @@ function doPost(e) {
       it: ['La Sua richiesta presso Kuroiwa Real Estate', 'Buongiorno ' + p.name + '\n\nGrazie per la Sua richiesta — è stata ricevuta. Di norma riceverà una risposta personale entro 24 ore.\n\nCordiali saluti\nKaito Weingart\nKuroiwa Real Estate AG · Baarerstrasse 107 · 6300 Zug\n+41 79 252 25 70 · kuroiwa.ch']
     };
     var m = t[s] || t.de;
-    GmailApp.sendEmail(p.email, m[0], m[1], { name: CONFIG.ABSENDER_NAME, replyTo: CONFIG.EMPFAENGER });
+    GmailApp.sendEmail(p.email, m[0], m[1], { name: CONFIG.ABSENDER_NAME, from: CONFIG.ABSENDER, replyTo: CONFIG.EMPFAENGER });
 
     return _json({ ok: true });
   } catch (err) {
@@ -127,7 +129,7 @@ function dailyReport() {
   }
 
   html += '<p style="margin-top:22px;font-size:12px;color:#888">Clarity-Heatmaps: clarity.microsoft.com · GA4: analytics.google.com · Leads: Spreadsheet «Kuroiwa Leads»</p></div>';
-  GmailApp.sendEmail(CONFIG.EMPFAENGER, '📊 Kuroiwa KPI ' + gestern + ' — ' + betreffZusatz, '', { name: CONFIG.ABSENDER_NAME, htmlBody: html });
+  GmailApp.sendEmail(CONFIG.EMPFAENGER, '📊 Kuroiwa KPI ' + gestern + ' — ' + betreffZusatz, '', { name: CONFIG.ABSENDER_NAME, from: CONFIG.ABSENDER, htmlBody: html });
 }
 
 // ---------------------------------------------------------------- Setup (einmal ausführen)
