@@ -1,11 +1,11 @@
 /**
- * Kuroiwa Real Estate — Lead-Endpoint + Mini-CRM + täglicher KPI-Report  (v3)
+ * Kuroiwa Real Estate — Lead-Endpoint + Mini-CRM + täglicher KPI-Report  (v4)
  * ===========================================================================
  * NACH JEDER ÄNDERUNG: Cmd+S, dann «Bereitstellen → Bereitstellungen
  * verwalten → ✏️ → Version: Neue Version → Bereitstellen» (URL bleibt gleich!).
  */
 
-var VERSION = 'v3';
+var VERSION = 'v4';
 
 var CONFIG = {
   EMPFAENGER: 'kaito@kuroiwa.ch',
@@ -62,18 +62,26 @@ function doPost(e) {
     var T = {
       de: { betreff: 'Ihre Anfrage bei Kuroiwa Real Estate', anrede: 'Guten Tag ' + p.name,
             text: 'Vielen Dank für Ihre Anfrage — sie ist bei uns eingegangen. Sie erhalten in der Regel <b>innert 24 Stunden</b> eine persönliche Rückmeldung.',
+            eilig: 'Es eilt? Sie erreichen mich direkt:', btnTel: 'Direkt anrufen',
+            waText: 'Guten Tag Herr Weingart, ich habe soeben eine Anfrage über kuroiwa.ch gesendet.',
             gruss: 'Freundliche Grüsse',
             legal: 'Diese E-Mail kann vertrauliche Informationen enthalten. Sollten Sie nicht der richtige Adressat sein, informieren Sie bitte den Absender und löschen Sie diese E-Mail.' },
       en: { betreff: 'Your enquiry with Kuroiwa Real Estate', anrede: 'Dear ' + p.name,
             text: 'Thank you for your enquiry — it has been received. You will normally hear back from us personally <b>within 24 hours</b>.',
+            eilig: 'In a hurry? Reach me directly:', btnTel: 'Call directly',
+            waText: 'Hello Mr. Weingart, I have just sent an enquiry via kuroiwa.ch.',
             gruss: 'Kind regards',
             legal: 'This e-mail may contain confidential information. If you are not the intended recipient, please notify the sender and delete this e-mail.' },
       fr: { betreff: 'Votre demande auprès de Kuroiwa Real Estate', anrede: 'Bonjour ' + p.name,
             text: "Merci pour votre demande — nous l'avons bien reçue. Vous recevrez en règle générale une réponse personnelle <b>sous 24 heures</b>.",
+            eilig: 'C’est urgent ? Joignez-moi directement :', btnTel: 'Appeler',
+            waText: 'Bonjour Monsieur Weingart, je viens d’envoyer une demande via kuroiwa.ch.',
             gruss: 'Meilleures salutations',
             legal: 'Ce courriel peut contenir des informations confidentielles. Si vous n’êtes pas le destinataire prévu, veuillez en informer l’expéditeur et supprimer ce courriel.' },
       it: { betreff: 'La Sua richiesta presso Kuroiwa Real Estate', anrede: 'Buongiorno ' + p.name,
             text: 'Grazie per la Sua richiesta — è stata ricevuta. Di norma riceverà una risposta personale <b>entro 24 ore</b>.',
+            eilig: 'È urgente? Mi contatti direttamente:', btnTel: 'Chiamare',
+            waText: 'Buongiorno Signor Weingart, ho appena inviato una richiesta tramite kuroiwa.ch.',
             gruss: 'Cordiali saluti',
             legal: 'Questa e-mail può contenere informazioni riservate. Se non siete il destinatario previsto, vi preghiamo di informare il mittente e cancellare questa e-mail.' }
     };
@@ -81,7 +89,12 @@ function doPost(e) {
     var antwort =
       '<p style="margin:0 0 18px;font-family:Georgia,serif;font-size:22px;color:' + INK + '">' + _esc(t.anrede) + '</p>' +
       '<p style="margin:0 0 8px;font-size:15px;line-height:1.7;color:#333">' + t.text + '</p>' +
-      '<p style="margin:22px 0 18px;font-size:15px;color:#333">' + _esc(t.gruss) + '</p>' +
+      '<p style="margin:26px 0 12px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:' + GRAU + ';font-weight:bold">' + _esc(t.eilig) + '</p>' +
+      '<table cellpadding="0" cellspacing="0"><tr>' +
+      _btn('tel:+41792522570', t.btnTel + ' — 079 252 25 70', true) +
+      _btn('https://wa.me/41792522570?text=' + encodeURIComponent(t.waText), 'WhatsApp', false) +
+      '</tr></table>' +
+      '<p style="margin:26px 0 18px;font-size:15px;color:#333">' + _esc(t.gruss) + '</p>' +
       _signatur();
     GmailApp.sendEmail(p.email, t.betreff, '', {
       name: CONFIG.ABSENDER_NAME, from: CONFIG.ABSENDER_ANTWORT, replyTo: CONFIG.ABSENDER_ANTWORT,
