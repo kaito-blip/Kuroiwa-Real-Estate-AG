@@ -22,7 +22,7 @@
     sentry: {
       enabled: true,
       requiresConsent: false,
-      dsn: 'https://PUBLIC_KEY@oXXXXXXX.ingest.de.sentry.io/PROJECT_ID', // TODO: echte DSN eintragen
+      loader: 'https://js-de.sentry-cdn.com/5f4f6df38e203f23745c1d798cc544e8.min.js', // EU-Loader (DSN eingebettet)
       environment: 'production',
       release: 'kuroiwa-web@2026-09',
       tracesSampleRate: 0.1,          // Performance-Traces (0–1)
@@ -73,20 +73,17 @@
   // ---------- Sentry (Loader-Script, versionsunabhängig) ----------
   function startSentry() {
     var c = CONFIG.sentry;
-    if (isPlaceholder(c.dsn)) {
-      console.info('[Kuroiwa] Sentry inaktiv — echte DSN in assets/monitoring.js eintragen.');
+    if (!c.loader || isPlaceholder(c.loader)) {
+      console.info('[Kuroiwa] Sentry inaktiv — Loader-URL in assets/monitoring.js eintragen.');
       return;
     }
-    var m = c.dsn.match(/^https:\/\/([^@]+)@/);
-    if (!m) { console.warn('[Kuroiwa] Sentry-DSN unlesbar.'); return; }
-    // Wird vom Sentry-Loader aufgerufen, sobald das SDK bereit ist.
+    // Wird vom Sentry-Loader aufgerufen, sobald das SDK bereit ist (DSN steckt im Loader).
     window.sentryOnLoad = function () {
       if (!window.Sentry) return;
       var integrations = [];
       if (window.Sentry.browserTracingIntegration) integrations.push(window.Sentry.browserTracingIntegration());
       if (window.Sentry.replayIntegration) integrations.push(window.Sentry.replayIntegration());
       window.Sentry.init({
-        dsn: c.dsn,
         environment: c.environment,
         release: c.release,
         integrations: integrations,
@@ -95,7 +92,7 @@
         replaysOnErrorSampleRate: c.replaysOnErrorSampleRate
       });
     };
-    loadScript('https://js.sentry-cdn.com/' + m[1] + '.min.js', { crossorigin: 'anonymous' });
+    loadScript(c.loader, { crossorigin: 'anonymous' });
   }
 
   // ---------- Google Analytics 4 (consent-pflichtig) ----------

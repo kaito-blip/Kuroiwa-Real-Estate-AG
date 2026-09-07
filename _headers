@@ -2,7 +2,7 @@
 # CSP-Hinweis: 'unsafe-inline' bei script-src ist ein Übergang, solange Inline-JS existiert;
 # nach dem Auslagern von JS in assets/app.js auf Hashes/Nonces verschärfen.
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://js.sentry-cdn.com https://browser.sentry-cdn.com https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://*.sentry.io https://*.ingest.de.sentry.io https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://js.sentry-cdn.com https://js-de.sentry-cdn.com https://browser.sentry-cdn.com https://www.googletagmanager.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://*.sentry.io https://*.ingest.de.sentry.io https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
