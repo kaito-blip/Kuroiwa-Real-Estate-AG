@@ -33,9 +33,9 @@
     // Google Analytics 4 — einwilligungspflichtig (DSG/DSGVO). Google-Ads-Verknüpfung
     // läuft über die GA4-Property (Verwaltung → Produktverknüpfungen), kein extra Code nötig.
     ga4: {
-      enabled: false,                 // auf true setzen, wenn gewünscht
+      enabled: true,
       requiresConsent: true,
-      id: 'G-XXXXXXXXXX',             // TODO: echte Mess-ID eintragen
+      id: 'G-DZBG5RQHD3',
       anonymizeIp: true
     },
 
