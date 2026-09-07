@@ -435,7 +435,7 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
 
   // ---------- Lead-Formular (Formspree, AJAX + Fallback) ----------
   // Lead-Endpoint: Google-Apps-Script-Web-App (…/exec-URL aus der Bereitstellung) — gilt für alle Sprachversionen.
-  const LEAD_ENDPOINT = 'APPS_SCRIPT_EXEC_URL_HIER_EINTRAGEN';
+  const LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzdkZHVC7DLdei6T2joaBNTibmEj9msgwif9stfB0dS4-ff4RL0lYfk74QraaTI3PFXsw/exec';
   const leadForm = document.getElementById('leadForm');
   if (leadForm) {
     leadForm.addEventListener('submit', async (e) => {
