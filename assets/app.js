@@ -440,14 +440,13 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
   if (leadForm) {
     leadForm.addEventListener('submit', async (e) => {
       const status = document.getElementById('leadStatus');
+      e.preventDefault();
       if (!/^https:/.test(LEAD_ENDPOINT)) {
-        e.preventDefault();
         status.className = 'lead-status err';
         status.textContent = KURO_T.leadPlatzhalter;
         return;
       }
-      if (!leadForm.checkValidity()) return;
-      e.preventDefault();
+      if (!leadForm.checkValidity()) { leadForm.reportValidity(); return; }
       status.className = 'lead-status'; status.textContent = KURO_T.leadSenden;
       try {
         const daten = new URLSearchParams(new FormData(leadForm));
@@ -463,8 +462,15 @@ document.getElementById('jahr').textContent = new Date().getFullYear();
           status.textContent = KURO_T.leadFehler;
         }
       } catch (err) {
-        status.className = 'lead-status err';
-        status.textContent = KURO_T.leadNetz;
+        try {
+          await fetch(LEAD_ENDPOINT, { method: 'POST', body: daten, mode: 'no-cors' });
+          leadForm.style.display = 'none';
+          document.getElementById('leadDank').classList.add('zeig');
+          track('generate_lead', { method: 'kontaktformular' });
+        } catch (e2) {
+          status.className = 'lead-status err';
+          status.textContent = KURO_T.leadNetz;
+        }
       }
     });
   }
