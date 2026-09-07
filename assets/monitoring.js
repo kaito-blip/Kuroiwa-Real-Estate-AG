@@ -41,9 +41,9 @@
 
     // Microsoft Clarity (Heatmaps + Session-Recordings) — einwilligungspflichtig.
     clarity: {
-      enabled: false,                 // auf true setzen, wenn gewünscht
+      enabled: true,
       requiresConsent: true,
-      id: 'XXXXXXXXXX'                // TODO: Clarity-Projekt-ID eintragen
+      id: 'yejcv3bf40'
     }
 
     // Weitere Tools nach gleichem Muster, z. B.:
