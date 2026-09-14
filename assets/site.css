@@ -179,11 +179,15 @@
   /* ---------- Über ---------- */
   .ueber-grid { display: grid; grid-template-columns: 360px 1fr; gap: 76px; align-items: center; }
   @media (max-width: 900px) { .ueber-grid { grid-template-columns: 1fr; } }
-  .portrait { aspect-ratio: 4/5; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .portrait { aspect-ratio: 2/3; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .portrait::after { content: '黒岩'; position: absolute; top: 18px; right: 20px; font-family: var(--serif); color: rgba(246,245,242,.14); font-size: 21px; letter-spacing: .2em; }
-  .portrait picture, .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%; }
+  .portrait > picture, .portrait > picture img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
   .portrait.mit-bild { background: var(--paper2); }
-  .portrait.mit-bild::after { color: rgba(11,11,12,.20); z-index: 2; }
+  .portrait.mit-bild::after { content: none; }
+  .bild-marke { position: absolute; top: 18px; right: 18px; z-index: 2; display: flex; align-items: center; gap: 11px; }
+  .bild-marke img { width: 82px; height: auto; display: block; opacity: .52; }
+  .bild-marke .strich { width: 1px; height: 17px; background: rgba(11,11,12,.3); }
+  .bild-marke .kanji { font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif; font-size: 13.5px; letter-spacing: .16em; color: rgba(11,11,12,.55); line-height: 1; }
   .ueber p { color: #504e49; margin-bottom: 14px; max-width: 560px; }
   .ueber .punkte { margin: 26px 0; }
   .ueber .punkte div { padding: 14px 0; border-bottom: 1px solid var(--hair); display: flex; gap: 16px; font-size: 15.5px; }
