@@ -183,7 +183,7 @@
   .portrait::after { content: '黒岩'; position: absolute; top: 18px; right: 20px; font-family: var(--serif); color: rgba(246,245,242,.14); font-size: 21px; letter-spacing: .2em; }
   .portrait picture, .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%; }
   .portrait.mit-bild { background: var(--paper2); }
-  .portrait.mit-bild::after { color: rgba(11,11,12,.16); z-index: 2; }
+  .portrait.mit-bild::after { content: none; }
   .ueber p { color: #504e49; margin-bottom: 14px; max-width: 560px; }
   .ueber .punkte { margin: 26px 0; }
   .ueber .punkte div { padding: 14px 0; border-bottom: 1px solid var(--hair); display: flex; gap: 16px; font-size: 15.5px; }
