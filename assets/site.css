@@ -177,7 +177,7 @@
   .studie:hover .mehr::after { transform: translateX(6px); }
 
   /* ---------- Über ---------- */
-  .ueber-grid { display: grid; grid-template-columns: 360px 1fr; gap: 76px; align-items: center; }
+  .ueber-grid { display: grid; grid-template-columns: 300px 1fr; gap: 76px; align-items: center; }
   @media (max-width: 900px) { .ueber-grid { grid-template-columns: 1fr; } }
   .portrait { aspect-ratio: 2/3; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .portrait::after { content: '黒岩'; position: absolute; top: 18px; right: 20px; font-family: var(--serif); color: rgba(246,245,242,.14); font-size: 21px; letter-spacing: .2em; }
