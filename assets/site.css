@@ -179,10 +179,11 @@
   /* ---------- Über ---------- */
   .ueber-grid { display: grid; grid-template-columns: 360px 1fr; gap: 76px; align-items: center; }
   @media (max-width: 900px) { .ueber-grid { grid-template-columns: 1fr; } }
-  .portrait { aspect-ratio: 4/5; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; }
+  .portrait { aspect-ratio: 4/5; background: linear-gradient(165deg, #1c1c1f, var(--ink)); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   .portrait::after { content: '黒岩'; position: absolute; top: 18px; right: 20px; font-family: var(--serif); color: rgba(246,245,242,.14); font-size: 21px; letter-spacing: .2em; }
-  .portrait svg { width: 40%; opacity: .3; }
-  .portrait .platzhalter { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: rgba(246,245,242,.32); font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase; }
+  .portrait picture, .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 30%; }
+  .portrait.mit-bild { background: var(--paper2); }
+  .portrait.mit-bild::after { color: rgba(11,11,12,.16); z-index: 2; }
   .ueber p { color: #504e49; margin-bottom: 14px; max-width: 560px; }
   .ueber .punkte { margin: 26px 0; }
   .ueber .punkte div { padding: 14px 0; border-bottom: 1px solid var(--hair); display: flex; gap: 16px; font-size: 15.5px; }
@@ -368,7 +369,6 @@
   /* Lesbarer Kontrast (SC 1.4.3): schwache Hilfstexte auf >= ~4.5:1 anheben */
   .fussnote, .wert-hinweis, .feld-hilfe, .regler-skala, .wert-sub, .quiz-quelle,
   .fuss-desc, .fuss-unten, .k-zeile .was, .deal .meta, .kopier, .scrollcue { color: rgba(246,245,242,.72); }
-  .portrait .platzhalter { color: rgba(246,245,242,.66); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
